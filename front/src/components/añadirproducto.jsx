@@ -55,6 +55,7 @@ function Formulario() {
 
   return (
     <form onSubmit={handleSubmit}>
+      <legend>Añadir producto</legend>
       <label>
         Nombre:
         <input type="text" value={nombre} onChange={handleNombreChange} />

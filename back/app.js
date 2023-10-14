@@ -1,8 +1,11 @@
 const express = require("express");
 const mysql = require("mysql2/promise");
+const cors = require("cors");
 
 const app = express();
 const port = 3000;
+
+app.use(cors());
 
 const dbConfig = {
   host: "localhost",
@@ -34,6 +37,34 @@ app.get("/", async (req, res) => {
   } catch (err) {
     console.error("Error al consultar la base de datos: " + err.message);
     res.status(500).json({ error: "Error al obtener datos de la tabla" });
+  }
+});
+
+app.delete("/eliminar", async (req, res) => {
+  try {
+    const connection = await mysql.createConnection(dbConfig);
+
+    const { id } = req.headers; // Asumo que estás pasando el ID del producto a eliminar en req.body
+    console.log(id);
+
+    // Realiza la consulta para eliminar el producto
+    const [result] = await connection.execute(
+      "DELETE FROM producto WHERE id = ?",
+      [id]
+    );
+
+    connection.end(); // Cierra la conexión
+
+    if (result.affectedRows > 0) {
+      // La operación de eliminación se realizó con éxito
+      res.status(204).send(); // Código de respuesta 204 (Sin contenido)
+    } else {
+      // El producto no se encontró en la base de datos
+      res.status(404).json({ error: "Producto no encontrado" });
+    }
+  } catch (err) {
+    console.error("Error al consultar la base de datos: " + err.message);
+    res.status(500).json({ error: "Error al eliminar el producto" });
   }
 });
 

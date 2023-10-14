@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Formulario from "./components/añadirproducto";
+import EliminarProducto from "./components/eliminarproducto";
 
 function App() {
   const [datos, setDatos] = useState([]);
@@ -48,7 +49,6 @@ function App() {
 
   return (
     <>
-      <h2>Añadir producto </h2>
       <Formulario />
       {Array.isArray(datos) ? (
         <table>
@@ -63,14 +63,14 @@ function App() {
             </tr>
           </thead>
           <tbody>
-            {datos.map((item, index) => (
-              <tr key={index}>
+            {datos.map((item) => (
+              <tr key={item.id}>
                 <td>{item.nombre_producto}</td>
                 <td>{item.categoria}</td>
                 <td>{item.precio}€</td>
                 <td>{item.cantidad}</td>
                 <td>{item.caducidad.slice(0, 10)}</td>
-                <td>Elimminar Producto</td>
+                <EliminarProducto id={item.id} />
               </tr>
             ))}
           </tbody>
