@@ -42,22 +42,15 @@ function Formulario() {
     };
 
     // Configurar la solicitud POST
-    console.log(datos);
     fetch("http://localhost:3000/anadir", {
-      method: "post", // Puedes usar 'PUT' u otros métodos según tus necesidades
+      method: "post",
       headers: {
         "Content-Type": "application/json", // Indicar que los datos son JSON
       },
       body: JSON.stringify(datos), // Convertir los datos a formato JSON
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        // Procesar la respuesta si es necesario
-        console.log(data);
-      })
-      .catch((error) => {
-        console.error("Error al realizar la solicitud:", error);
-      });
+    }).catch((error) => {
+      console.error("Error al realizar la solicitud:", error);
+    });
   };
 
   return (
