@@ -4,7 +4,7 @@ import Formulario from "./components/añadirproducto";
 function App() {
   const [datos, setDatos] = useState([]);
   const [estadoInicial, setEstadoInicial] = useState(true);
-  const [datosAntiguos, setDatosAntiguos] = useState([]);
+  const [contador, setContador] = useState(0);
 
   useEffect(() => {
     fetch("http://localhost:3000")
@@ -16,24 +16,33 @@ function App() {
       .catch((err) => {
         console.error("Error al realizar la solicitud:", err);
       });
-  }, []);
+  }, [contador]);
 
-  const ordenarPorPrecio = (e) => {
+  const ordenarPorPrecio = () => {
     const datosCopia = [...datos]; // Crea una copia del arreglo de datos
-    setDatosAntiguos({ ...datos });
-    console.log("datos copiados del primer fetch", datosCopia);
     if (estadoInicial) {
       const datosOrdenadosPrecio = datosCopia.sort(
         (a, b) => b.precio - a.precio
       );
       setDatos(datosOrdenadosPrecio);
       setEstadoInicial(false);
-      console.log("if", estadoInicial);
     } else {
-      console.log("else");
-      setDatos(datosCopia);
+      setContador(contador + 1);
       setEstadoInicial(true);
-      console.log("datosCopia", datosCopia);
+    }
+  };
+
+  const ordenarPorCantidad = () => {
+    const datosCopia = [...datos]; // Crea una copia del arreglo de datos
+    if (estadoInicial) {
+      const datosOrdenadosCantidad = datosCopia.sort(
+        (a, b) => b.cantidad - a.cantidad
+      );
+      setDatos(datosOrdenadosCantidad);
+      setEstadoInicial(false);
+    } else {
+      setContador(contador + 1);
+      setEstadoInicial(true);
     }
   };
 
@@ -49,7 +58,7 @@ function App() {
               <th>Nombre</th>
               <th>Categoria</th>
               <th onClick={(e) => ordenarPorPrecio(e)}>Precio</th>
-              <th>Cantidad</th>
+              <th onClick={(e) => ordenarPorCantidad(e)}>Cantidad</th>
               <th>Fecha de caducidad</th>
             </tr>
           </thead>
