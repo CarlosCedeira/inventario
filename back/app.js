@@ -40,11 +40,11 @@ app.get("/", async (req, res) => {
   }
 });
 
-app.delete("/eliminar", async (req, res) => {
+app.delete("/eliminar/:id", async (req, res) => {
   try {
     const connection = await mysql.createConnection(dbConfig);
 
-    const { id } = req.headers; // Asumo que estás pasando el ID del producto a eliminar en req.body
+    const { id } = req.params; // Asumo que estás pasando el ID del producto a eliminar en req.body
     console.log(id);
 
     // Realiza la consulta para eliminar el producto

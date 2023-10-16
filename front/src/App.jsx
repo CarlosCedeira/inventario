@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Formulario from "./components/añadirproducto";
 import EliminarProducto from "./components/eliminarproducto";
+import { useContadorContext } from "./context";
 
 function App() {
   const [datos, setDatos] = useState([]);
   const [estadoInicial, setEstadoInicial] = useState(true);
-  const [contador, setContador] = useState(0);
+  const { contador, setContador } = useContadorContext();
 
   useEffect(() => {
     fetch("http://localhost:3000")

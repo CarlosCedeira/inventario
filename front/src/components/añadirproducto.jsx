@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useContadorContext } from "../context";
 
 function Formulario() {
   // Definir estados para los campos del formulario
@@ -7,6 +8,7 @@ function Formulario() {
   const [precio, setPrecio] = useState("");
   const [cantidad, setCantidad] = useState("");
   const [caducidad, setCaducidad] = useState("");
+  const { contador, setContador } = useContadorContext();
 
   // Manejar cambios en los campos del formulario
   const handleNombreChange = (e) => {
@@ -51,6 +53,7 @@ function Formulario() {
     }).catch((error) => {
       console.error("Error al realizar la solicitud:", error);
     });
+    setContador(contador + 1);
   };
 
   return (
