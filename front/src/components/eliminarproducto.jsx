@@ -26,7 +26,11 @@ function EliminarProducto(props) {
     }
   };
 
-  return <td onClick={eliminar}>Eliminar Producto</td>;
+  return (
+    <td>
+      <button onClick={eliminar}>Eliminar Producto</button>
+    </td>
+  );
 }
 
 export default EliminarProducto;
