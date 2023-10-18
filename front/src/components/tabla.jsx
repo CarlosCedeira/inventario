@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useContadorContext } from "../context";
 import EliminarProducto from "./eliminarproducto";
+import "../css/Tabla.css";
 
 function Tabla() {
   const [datos, setDatos] = useState();
@@ -11,6 +12,8 @@ function Tabla() {
       .then((response) => response.json())
       .then((data) => {
         setDatos(data);
+        const tipo = document.getElementById("selecttipo");
+        tipo.value = "predefinido";
       })
       .catch((err) => {
         console.error("Error al realizar la solicitud:", err);
@@ -64,18 +67,18 @@ function Tabla() {
     <>
       {Array.isArray(datos) ? (
         <>
-          <div /*style={{ display: "flex" }}*/>
+          <div style={{ display: "flex" }}>
             <p>Seleccionar por</p>
+            <select id="selectorden" onChange={tipoControler}>
+              <option value="mayor">mayor</option>
+              <option value="menor">menor</option>
+            </select>
+
             <select id="selecttipo" onChange={tipoControler}>
               <option value="predefinido">predefinido</option>
               <option value="cantidad">cantidad</option>
               <option value="precio">precio</option>
               <option value="caducidad">caducidad</option>
-            </select>
-            <p>de</p>
-            <select id="selectorden" onChange={tipoControler}>
-              <option value="mayor">mayor</option>
-              <option value="menor">menor</option>
             </select>
           </div>
 
@@ -88,6 +91,7 @@ function Tabla() {
                 <th>Precio</th>
                 <th>Cantidad</th>
                 <th>Fecha de caducidad</th>
+                <th>Aciones</th>
               </tr>
             </thead>
             <tbody>

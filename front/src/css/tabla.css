@@ -1,0 +1,27 @@
+p {
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+
+select {
+    margin: 5px 5px 0px 5px;
+    height: 28px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+}
+
+caption{
+    font-size: 2rem;
+}
+
+tr, td{
+    border: 1px solid #000;
+}
+
+thead, tr:nth-child(2n){
+    background-color: rgb(204, 227, 247);
+}

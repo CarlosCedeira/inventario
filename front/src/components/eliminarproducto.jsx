@@ -13,9 +13,7 @@ function EliminarProducto(props) {
         method: "DELETE",
       })
         .then((response) => {
-          console.log(props.id);
           if (response.ok) {
-            // La eliminación fue exitosa, puedes realizar otras acciones necesarias.
             console.log("Producto eliminado con éxito.");
             setContador(contador + 1);
           }
@@ -28,7 +26,8 @@ function EliminarProducto(props) {
 
   return (
     <td>
-      <button onClick={eliminar}>Eliminar Producto</button>
+      <button>✏️</button>
+      <button onClick={eliminar}>🗑️</button>
     </td>
   );
 }
