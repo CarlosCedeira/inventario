@@ -24,12 +24,7 @@ function EliminarProducto(props) {
     }
   };
 
-  return (
-    <td>
-      <button>✏️</button>
-      <button onClick={eliminar}>🗑️</button>
-    </td>
-  );
+  return <button onClick={eliminar}>🗑️</button>;
 }
 
 export default EliminarProducto;

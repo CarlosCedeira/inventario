@@ -14,16 +14,6 @@ const dbConfig = {
   database: "almacen",
 };
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
-
 app.get("/", async (req, res) => {
   try {
     const connection = await mysql.createConnection(dbConfig);
@@ -47,7 +37,6 @@ app.delete("/eliminar/:id", async (req, res) => {
     const { id } = req.params; // Asumo que estás pasando el ID del producto a eliminar en req.body
     console.log(id);
 
-    // Realiza la consulta para eliminar el producto
     const [result] = await connection.execute(
       "DELETE FROM producto WHERE id = ?",
       [id]
@@ -56,10 +45,8 @@ app.delete("/eliminar/:id", async (req, res) => {
     connection.end(); // Cierra la conexión
 
     if (result.affectedRows > 0) {
-      // La operación de eliminación se realizó con éxito
       res.status(204).send(); // Código de respuesta 204 (Sin contenido)
     } else {
-      // El producto no se encontró en la base de datos
       res.status(404).json({ error: "Producto no encontrado" });
     }
   } catch (err) {
@@ -75,7 +62,6 @@ app.post("/anadir", async (req, res) => {
     const connection = await mysql.createConnection(dbConfig);
 
     const { nombre, categoria, precio, cantidad, caducidad } = req.body;
-    // Realiza una consulta a la tabla
     const [rows] = await connection.execute(
       "INSERT INTO producto (nombre_producto, categoria, precio, cantidad, caducidad) VALUES (?, ?, ?, ?, ?)",
       [nombre, categoria, precio, cantidad, caducidad]
@@ -87,6 +73,30 @@ app.post("/anadir", async (req, res) => {
   } catch (err) {
     console.error("Error al consultar la base de datos: " + err.message);
     res.status(500).json({ error: "Error al obtener datos de la tabla" });
+  }
+});
+
+app.put("/editar", async (req, res) => {
+  try {
+    console.log(req.body);
+    const { id, nombre, categoria, precio, cantidad, caducidad } = req.body;
+    const connection = await mysql.createConnection(dbConfig);
+
+    const [result] = await connection.execute(
+      "UPDATE producto SET nombre_producto = ?, categoria = ?, precio = ?, cantidad = ?, caducidad= ? WHERE id = ?",
+      [nombre, categoria, precio, cantidad, caducidad, id]
+    );
+
+    connection.end();
+
+    if (result) {
+      res.status(204).send();
+    } else {
+      res.status(405).json({ error: "Producto no encontrado" });
+    }
+  } catch (err) {
+    console.error("Error al consultar la base de datos: " + err.message);
+    res.status(500).json({ error: "Error al eliminar el producto" });
   }
 });
 

@@ -1,7 +1,10 @@
+import "../css/Tabla.css";
+
+import EliminarProducto from "./eliminarproducto";
+
 import { useEffect, useState } from "react";
 import { useContadorContext } from "../context";
-import EliminarProducto from "./eliminarproducto";
-import "../css/Tabla.css";
+import EditarProducto from "./editarproducto";
 
 function Tabla() {
   const [datos, setDatos] = useState();
@@ -101,8 +104,20 @@ function Tabla() {
                   <td>{item.categoria}</td>
                   <td>{item.precio}€</td>
                   <td>{item.cantidad}</td>
-                  <td>{item.caducidad.slice(0, 10)}</td>
-                  <EliminarProducto id={item.id} />
+                  <td>
+                    {item.caducidad.slice(0, 10).split("-").reverse().join("-")}
+                  </td>
+                  <td>
+                    <EditarProducto
+                      id={item.id}
+                      nombre={item.nombre_producto}
+                      categoria={item.categoria}
+                      precio={item.precio}
+                      cantidad={item.cantidad}
+                      caducidad={item.caducidad.slice(0, 10)}
+                    />
+                    <EliminarProducto id={item.id} />
+                  </td>
                 </tr>
               ))}
             </tbody>

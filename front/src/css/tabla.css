@@ -25,3 +25,8 @@ tr, td{
 thead, tr:nth-child(2n){
     background-color: rgb(204, 227, 247);
 }
+
+button {
+    border: none;
+    background-color: transparent
+} 
