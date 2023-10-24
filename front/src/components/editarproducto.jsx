@@ -43,63 +43,64 @@ function EditarProducto(props) {
   };
 
   return accion ? (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <legend>Editar producto</legend>
-        <label>
-          Nombre:
-          <input
-            type="text"
-            name="nombre"
-            value={formData.nombre}
-            onChange={handleInputChange}
-          />
-        </label>
-        <br />
-        <label>
-          Categoría:
-          <input
-            type="text"
-            name="categoria"
-            value={formData.categoria}
-            onChange={handleInputChange}
-          />
-        </label>
-        <br />
-        <label>
-          Precio:
-          <input
-            type="number"
-            name="precio"
-            value={formData.precio}
-            onChange={handleInputChange}
-          />
-        </label>
-        <br />
-        <label>
-          Cantidad:
-          <input
-            type="number"
-            name="cantidad"
-            value={formData.cantidad}
-            onChange={handleInputChange}
-          />
-        </label>
-        <br />
-        <label>
-          Fecha de Caducidad:
-          <input
-            type="date"
-            name="caducidad"
-            value={formData.caducidad}
-            onChange={handleInputChange}
-          />
-        </label>
-        <br />
-        <button type="submit">Editar producto</button>
-      </form>
-
-      <button onClick={() => setAccion(false)}>cancelar</button>
+    <div id="oscurecer-fondo">
+      <div id="formulario-editar">
+        <p onClick={() => setAccion(false)}>❌</p>
+        <form onSubmit={handleSubmit}>
+          <legend>Editar {nombre}</legend>
+          <label>
+            Nombre:
+            <input
+              type="text"
+              name="nombre"
+              value={formData.nombre}
+              onChange={handleInputChange}
+            />
+          </label>
+          <br />
+          <label>
+            Categoría:
+            <input
+              type="text"
+              name="categoria"
+              value={formData.categoria}
+              onChange={handleInputChange}
+            />
+          </label>
+          <br />
+          <label>
+            Precio:
+            <input
+              type="number"
+              name="precio"
+              value={formData.precio}
+              onChange={handleInputChange}
+            />
+          </label>
+          <br />
+          <label>
+            Cantidad:
+            <input
+              type="number"
+              name="cantidad"
+              value={formData.cantidad}
+              onChange={handleInputChange}
+            />
+          </label>
+          <br />
+          <label>
+            Fecha de Caducidad:
+            <input
+              type="date"
+              name="caducidad"
+              value={formData.caducidad}
+              onChange={handleInputChange}
+            />
+          </label>
+          <br />
+          <button type="submit">guardar cambios</button>
+        </form>
+      </div>
     </div>
   ) : (
     <button onClick={() => setAccion(true)}>✏️</button>

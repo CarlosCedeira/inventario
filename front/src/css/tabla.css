@@ -28,5 +28,7 @@ thead, tr:nth-child(2n){
 
 button {
     border: none;
-    background-color: transparent
+    background-color: transparent;
+    cursor: pointer; 
+
 } 

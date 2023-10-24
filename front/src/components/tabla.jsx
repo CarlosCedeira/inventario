@@ -46,15 +46,19 @@ function Tabla() {
           : (datosOrdenados = [...datos].sort((a, b) => a.precio - b.precio));
         break;
 
-      /*case "caducidad":
-        orden === "caducidad"
+      case "caducidad":
+        orden === "mayor"
           ? (datosOrdenados = [...datos].sort(
-              (a, b) => b.caducidad - a.caducidad
+              (a, b) =>
+                b.caducidad.slice(0, 10).split("-").join("") -
+                a.caducidad.slice(0, 10).split("-").join("")
             ))
           : (datosOrdenados = [...datos].sort(
-              (a, b) => a.caducidad - b.caducidad
+              (a, b) =>
+                a.caducidad.slice(0, 10).split("-").join("") -
+                b.caducidad.slice(0, 10).split("-").join("")
             ));
-        break;*/
+        break;
 
       default:
         setContador(contador + 1);
@@ -99,26 +103,32 @@ function Tabla() {
             </thead>
             <tbody>
               {datos.map((item) => (
-                <tr key={item.id}>
-                  <td>{item.nombre_producto}</td>
-                  <td>{item.categoria}</td>
-                  <td>{item.precio}€</td>
-                  <td>{item.cantidad}</td>
-                  <td>
-                    {item.caducidad.slice(0, 10).split("-").reverse().join("-")}
-                  </td>
-                  <td>
-                    <EditarProducto
-                      id={item.id}
-                      nombre={item.nombre_producto}
-                      categoria={item.categoria}
-                      precio={item.precio}
-                      cantidad={item.cantidad}
-                      caducidad={item.caducidad.slice(0, 10)}
-                    />
-                    <EliminarProducto id={item.id} />
-                  </td>
-                </tr>
+                <>
+                  <tr key={item.id}>
+                    <td>{item.nombre_producto}</td>
+                    <td>{item.categoria}</td>
+                    <td>{item.precio}€</td>
+                    <td>{item.cantidad}</td>
+                    <td>
+                      {item.caducidad
+                        .slice(0, 10)
+                        .split("-")
+                        .reverse()
+                        .join("-")}
+                    </td>
+                    <td>
+                      <EditarProducto
+                        id={item.id}
+                        nombre={item.nombre_producto}
+                        categoria={item.categoria}
+                        precio={item.precio}
+                        cantidad={item.cantidad}
+                        caducidad={item.caducidad.slice(0, 10)}
+                      />
+                      <EliminarProducto id={item.id} />
+                    </td>
+                  </tr>
+                </>
               ))}
             </tbody>
           </table>
