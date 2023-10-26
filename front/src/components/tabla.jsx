@@ -75,7 +75,7 @@ function Tabla() {
       {Array.isArray(datos) ? (
         <>
           <div style={{ display: "flex" }}>
-            <p>Seleccionar por</p>
+            <p>Ordenar por</p>
             <select id="selectorden" onChange={tipoControler}>
               <option value="mayor">mayor</option>
               <option value="menor">menor</option>
@@ -88,6 +88,8 @@ function Tabla() {
               <option value="caducidad">caducidad</option>
             </select>
           </div>
+
+          <input type="search" />
 
           <table>
             <caption>Inventario</caption>

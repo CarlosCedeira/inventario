@@ -1,18 +1,10 @@
 const express = require("express");
 const mysql = require("mysql2/promise");
+const dbConfig = require("./config");
 const cors = require("cors");
 
 const app = express();
-const port = 3000;
-
 app.use(cors());
-
-const dbConfig = {
-  host: "localhost",
-  user: "root",
-  password: "root",
-  database: "almacen",
-};
 
 app.get("/", async (req, res) => {
   try {
@@ -34,15 +26,14 @@ app.delete("/eliminar/:id", async (req, res) => {
   try {
     const connection = await mysql.createConnection(dbConfig);
 
-    const { id } = req.params; // Asumo que estás pasando el ID del producto a eliminar en req.body
-    console.log(id);
+    const { id } = req.params;
 
     const [result] = await connection.execute(
       "DELETE FROM producto WHERE id = ?",
       [id]
     );
 
-    connection.end(); // Cierra la conexión
+    connection.end();
 
     if (result.affectedRows > 0) {
       res.status(204).send(); // Código de respuesta 204 (Sin contenido)
@@ -67,7 +58,7 @@ app.post("/anadir", async (req, res) => {
       [nombre, categoria, precio, cantidad, caducidad]
     );
 
-    connection.end(); // Cierra la conexión
+    connection.end();
 
     res.json(rows);
   } catch (err) {
@@ -78,7 +69,6 @@ app.post("/anadir", async (req, res) => {
 
 app.put("/editar", async (req, res) => {
   try {
-    console.log(req.body);
     const { id, nombre, categoria, precio, cantidad, caducidad } = req.body;
     const connection = await mysql.createConnection(dbConfig);
 
@@ -100,6 +90,8 @@ app.put("/editar", async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Servidor Express en funcionamiento en el puerto ${port}`);
+app.listen(process.env.port, () => {
+  console.log(
+    `Servidor Express en funcionamiento en el puerto ${process.env.port}`
+  );
 });
