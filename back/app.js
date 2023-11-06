@@ -10,10 +10,9 @@ app.get("/", async (req, res) => {
   try {
     const connection = await mysql.createConnection(dbConfig);
 
-    // Realiza una consulta a la tabla
     const [rows] = await connection.execute("SELECT * FROM producto");
 
-    connection.end(); // Cierra la conexión
+    connection.end();
 
     res.json(rows);
   } catch (err) {
@@ -27,6 +26,10 @@ app.delete("/eliminar/:id", async (req, res) => {
     const connection = await mysql.createConnection(dbConfig);
 
     const { id } = req.params;
+
+    await connection.execute("DELETE FROM movimiento WHERE id_foraneo = ?", [
+      id,
+    ]);
 
     const [result] = await connection.execute(
       "DELETE FROM producto WHERE id = ?",
@@ -58,9 +61,10 @@ app.post("/anadir", async (req, res) => {
       [nombre, categoria, precio, cantidad, caducidad]
     );
 
-    connection.end();
+    const insertedId = rows.insertId;
 
-    res.json(rows);
+    res.json({ id: insertedId });
+    connection.end();
   } catch (err) {
     console.error("Error al consultar la base de datos: " + err.message);
     res.status(500).json({ error: "Error al obtener datos de la tabla" });
@@ -87,6 +91,34 @@ app.put("/editar", async (req, res) => {
   } catch (err) {
     console.error("Error al consultar la base de datos: " + err.message);
     res.status(500).json({ error: "Error al eliminar el producto" });
+  }
+});
+
+app.post("/movimiento", async (req, res) => {
+  try {
+    const dbConfig2 = {
+      host: "localhost",
+      user: "root",
+      password: "root",
+      database: "almacen",
+    };
+
+    const connection = await mysql.createConnection(dbConfig2);
+    const { accion, id } = req.body;
+    console.log(id, accion);
+
+    const [rows] = await connection.execute(
+      "INSERT INTO movimiento (accion, nombre, precio, cantidad, caducidad, id_foraneo) " +
+        "SELECT ?, nombre_producto, precio, cantidad, caducidad, ? FROM almacen.producto WHERE id = ?",
+      [accion, id, id]
+    );
+
+    await connection.end();
+
+    res.json(rows);
+  } catch (err) {
+    console.error("Error al consultar la base de datos: " + err.message);
+    res.status(500).json({ error: "Error al obtener datos de la tabla" });
   }
 });
 

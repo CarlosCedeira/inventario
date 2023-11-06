@@ -14,7 +14,6 @@ function EliminarProducto(props) {
       })
         .then((response) => {
           if (response.ok) {
-            console.log("Producto eliminado con éxito.");
             setContador(contador + 1);
           }
         })

@@ -29,9 +29,27 @@ function AñadirProducto() {
     })
       .then((response) => {
         if (response.ok) {
-          console.log("Producto añadido con éxito.");
-          setContador(contador + 1);
+          return response.json();
+        } else {
+          throw new Error("La respuesta no es exitosa");
         }
+      })
+      .then((data) => {
+        const { id } = data;
+        console.log(id);
+        const datos = { accion: "añadir", id };
+
+        fetch("http://localhost:3000/movimiento", {
+          method: "post",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(datos),
+        }).then((response) => {
+          if (response.ok) {
+            setContador(contador + 1);
+          }
+        });
       })
       .catch((error) => {
         console.error("Error al realizar la solicitud:", error);

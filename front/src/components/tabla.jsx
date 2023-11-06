@@ -127,7 +127,13 @@ function Tabla() {
                         cantidad={item.cantidad}
                         caducidad={item.caducidad.slice(0, 10)}
                       />
-                      <EliminarProducto id={item.id} />
+                      <EliminarProducto
+                        id={item.id}
+                        nombre={item.nombre_producto}
+                        precio={item.precio}
+                        cantidad={item.cantidad}
+                        caducidad={item.caducidad.slice(0, 10)}
+                      />
                     </td>
                   </tr>
                 </>

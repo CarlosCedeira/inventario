@@ -33,8 +33,20 @@ function EditarProducto(props) {
     })
       .then((response) => {
         if (response.ok) {
-          setContador(contador + 1);
-          setAccion(false);
+          const datos = { accion: "editar", id };
+
+          fetch("http://localhost:3000/movimiento", {
+            method: "post",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(datos),
+          }).then((response) => {
+            if (response.ok) {
+              setContador(contador + 1);
+              setAccion(false);
+            }
+          });
         }
       })
       .catch((error) => {
