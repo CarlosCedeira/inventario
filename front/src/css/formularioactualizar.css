@@ -5,7 +5,7 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5); 
-    z-index: 100; /
+    z-index: 1; 
 }
 
 #formulario-editar {
@@ -23,7 +23,6 @@
     left: 92%;
     bottom: 90%;
     cursor: pointer; 
-    color: red;
 }
 
 legend {
@@ -33,8 +32,8 @@ legend {
 }
 
 #formulario-editar button, form button {
-display: inline-block;
-margin: 5px 10px;
+  display: inline-block;
+  margin: 5px 10px;
   padding: 5px 10px; 
   background-color: #1c80f3; 
   color: #fff; 

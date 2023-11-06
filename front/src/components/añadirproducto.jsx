@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useContadorContext } from "../context";
 
+import "../css/formularioañadir.css";
+
 function AñadirProducto() {
   const [formData, setFormData] = useState({
     nombre: "",
@@ -9,7 +11,7 @@ function AñadirProducto() {
     cantidad: "",
     caducidad: "",
   });
-
+  const [accion, setAccion] = useState(false);
   const { contador, setContador } = useContadorContext();
 
   const handleInputChange = (e) => {
@@ -19,6 +21,7 @@ function AñadirProducto() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setAccion(false);
 
     fetch("http://localhost:3000/anadir", {
       method: "post",
@@ -48,6 +51,13 @@ function AñadirProducto() {
         }).then((response) => {
           if (response.ok) {
             setContador(contador + 1);
+            setFormData({
+              nombre: "",
+              categoria: "",
+              precio: "",
+              cantidad: "",
+              caducidad: "",
+            });
           }
         });
       })
@@ -56,61 +66,70 @@ function AñadirProducto() {
       });
   };
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <legend>Añadir producto</legend>
-      <label>
-        Nombre:
-        <input
-          type="text"
-          name="nombre"
-          value={formData.nombre}
-          onChange={handleInputChange}
-        />
-      </label>
-      <br />
-      <label>
-        Categoría:
-        <input
-          type="text"
-          name="categoria"
-          value={formData.categoria}
-          onChange={handleInputChange}
-        />
-      </label>
-      <br />
-      <label>
-        Precio:
-        <input
-          type="number"
-          name="precio"
-          value={formData.precio}
-          onChange={handleInputChange}
-        />
-      </label>
-      <br />
-      <label>
-        Cantidad:
-        <input
-          type="number"
-          name="cantidad"
-          value={formData.cantidad}
-          onChange={handleInputChange}
-        />
-      </label>
-      <br />
-      <label>
-        Fecha de Caducidad:
-        <input
-          type="date"
-          name="caducidad"
-          value={formData.caducidad}
-          onChange={handleInputChange}
-        />
-      </label>
-      <br />
-      <button type="submit">Añadir producto</button>
-    </form>
+  return accion ? (
+    <div id="oscurecer-fondo">
+      <div id="formulario-añadir">
+        <p onClick={() => setAccion(false)}>❌</p>
+        <form onSubmit={handleSubmit}>
+          <legend>Añadir producto</legend>
+          <label>
+            Nombre:
+            <input
+              type="text"
+              name="nombre"
+              value={formData.nombre}
+              onChange={handleInputChange}
+            />
+          </label>
+          <br />
+          <label>
+            Categoría:
+            <input
+              type="text"
+              name="categoria"
+              value={formData.categoria}
+              onChange={handleInputChange}
+            />
+          </label>
+          <br />
+          <label>
+            Precio:
+            <input
+              type="number"
+              name="precio"
+              value={formData.precio}
+              onChange={handleInputChange}
+            />
+          </label>
+          <br />
+          <label>
+            Cantidad:
+            <input
+              type="number"
+              name="cantidad"
+              value={formData.cantidad}
+              onChange={handleInputChange}
+            />
+          </label>
+          <br />
+          <label>
+            Fecha de Caducidad:
+            <input
+              type="date"
+              name="caducidad"
+              value={formData.caducidad}
+              onChange={handleInputChange}
+            />
+          </label>
+          <br />
+          <button type="submit">Añadir producto</button>
+        </form>
+      </div>
+    </div>
+  ) : (
+    <button id="boton-añadir" onClick={() => setAccion(true)}>
+      Añadir Producto
+    </button>
   );
 }
 

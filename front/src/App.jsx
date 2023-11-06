@@ -5,7 +5,6 @@ function App() {
   return (
     <>
       <AñadirProducto />
-      <button>➕</button>
       <Tabla />
     </>
   );
