@@ -1,13 +1,13 @@
-import "../css/Tabla.css";
-
-import FilaProducto from "./filatabla";
-
 import { useEffect, useState } from "react";
 import { useContadorContext } from "../context";
+
+import FilaProducto from "./filatabla";
+import "../css/Tabla.css";
 
 function Tabla() {
   const [datos, setDatos] = useState([]);
   const { contador, setContador } = useContadorContext();
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:3000")
@@ -21,6 +21,21 @@ function Tabla() {
         console.error("Error al realizar la solicitud:", err);
       });
   }, [contador]);
+
+  const handleSearchChange = (event) => {
+    if (event.target.value === "" || datos.length === 0) {
+      setContador(contador + 1);
+    }
+    const newSearch = event.target.value;
+    setSearch(newSearch);
+    const filteredData = datos.filter((item) => {
+      return (
+        item.nombre_producto &&
+        item.nombre_producto.toLowerCase().includes(newSearch.toLowerCase())
+      );
+    });
+    setDatos(filteredData);
+  };
 
   const tipoControler = () => {
     const tipo = document.getElementById("selecttipo").value;
@@ -88,6 +103,13 @@ function Tabla() {
             </select>
           </div>
 
+          <input
+            type="search"
+            name="search"
+            value={search}
+            onChange={handleSearchChange}
+            placeholder="Buscar por nombre"
+          />
           <table>
             <caption>Inventario</caption>
             <thead>
