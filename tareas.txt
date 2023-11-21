@@ -1,0 +1,5 @@
+- Añadir tabla de movimientos.
+- Añdir IVA (en base de datos o calculado por JS).
+- Añadir computo total de productos en el almacen, dinero invertido, cantidad total de categorias
+    productos totales proximos a caducar y productos caducados.
+- Añadir apartado de visualizacion de datos.

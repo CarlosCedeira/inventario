@@ -4,7 +4,7 @@ import { useContadorContext } from "../context";
 import FilaProducto from "./filatabla";
 import "../css/Tabla.css";
 
-function Tabla() {
+function Productos() {
   const [datos, setDatos] = useState([]);
   const { contador, setContador } = useContadorContext();
   const [search, setSearch] = useState("");
@@ -22,11 +22,11 @@ function Tabla() {
       });
   }, [contador]);
 
-  const handleSearchChange = (event) => {
-    if (event.target.value === "" || datos.length === 0) {
+  const handleSearchChange = (e) => {
+    if (e.target.value === "") {
       setContador(contador + 1);
     }
-    const newSearch = event.target.value;
+    const newSearch = e.target.value;
     setSearch(newSearch);
     const filteredData = datos.filter((item) => {
       return (
@@ -136,4 +136,4 @@ function Tabla() {
   );
 }
 
-export default Tabla;
+export default Productos;

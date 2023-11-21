@@ -3,8 +3,16 @@ import EliminarProducto from "./eliminarproducto";
 import EditarProducto from "./editarproducto";
 
 function FilaProducto({ item }) {
+  let filaStyle = {};
+
+  if (item.cercano_caducidad === 2) {
+    filaStyle = { backgroundColor: "red" };
+  } else if (item.cercano_caducidad === 1) {
+    filaStyle = { backgroundColor: "orange" };
+  }
+
   return (
-    <tr key={item.id}>
+    <tr key={item.id} style={filaStyle}>
       <td>{item.nombre_producto}</td>
       <td>{item.categoria}</td>
       <td>{item.precio}€</td>

@@ -1,11 +1,11 @@
-import Tabla from "./components/tabla";
+import Productos from "./components/tabla";
 import AñadirProducto from "./components/añadirproducto";
 
 function App() {
   return (
     <>
       <AñadirProducto />
-      <Tabla />
+      <Productos />
     </>
   );
 }
