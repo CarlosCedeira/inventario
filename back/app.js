@@ -48,6 +48,30 @@ app.post("/movimiento", async (req, res) => {
   }
 });
 
+app.get("/vermovimientos", async (req, res) => {
+  try {
+    const dbConfig2 = {
+      host: "localhost",
+      user: "root",
+      password: "root",
+      database: "almacen",
+    };
+
+    const connection = await mysql.createConnection(dbConfig2);
+
+    const [rows] = await connection.execute(
+      "SELECT * FROM movimiento ORDER BY id DESC"
+    );
+
+    await connection.end();
+
+    res.json(rows);
+  } catch (e) {
+    console.error("Error al consultar la base de datos: " + e.message);
+    res.status(500).json({ e: "Error al obtener datos de la tabla" });
+  }
+});
+
 app.listen(process.env.port, () => {
   console.log(
     `Servidor Express en funcionamiento en el puerto ${process.env.port}`

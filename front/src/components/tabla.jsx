@@ -3,6 +3,7 @@ import { useContadorContext } from "../context";
 
 import FilaProducto from "./filatabla";
 import "../css/Tabla.css";
+import AñadirProducto from "./añadirproducto";
 
 function Productos() {
   const [datos, setDatos] = useState([]);
@@ -88,6 +89,7 @@ function Productos() {
     <>
       {Array.isArray(datos) ? (
         <>
+          <AñadirProducto />
           <div style={{ display: "flex" }}>
             <p>Ordenar por</p>
             <select id="selectorden" onChange={tipoControler}>

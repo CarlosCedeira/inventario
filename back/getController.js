@@ -16,7 +16,6 @@ router.get("/", async (req, res) => {
       END AS cercano_caducidad
     FROM producto
 `);
-
     connection.end();
 
     res.json(rows);
