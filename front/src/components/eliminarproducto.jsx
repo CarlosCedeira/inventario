@@ -17,6 +17,29 @@ function EliminarProducto(props) {
             setContador(contador + 1);
           }
         })
+        /*  
+       
+       Al borrar un registro de la tabla inventario no aparece 
+       en la tabla movimientos porqué la tabla movimientos tiene el efecto cascada.
+
+       .then((response) => {
+          if (response.ok) {
+            const datos = { accion: "Eiminar", id: props.id };
+
+            fetch("http://localhost:3000/movimiento", {
+              method: "post",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(datos),
+            }).then((response) => {
+              if (response.ok) {
+                setContador(contador + 1);
+                setAccion(false);
+              }
+            });
+          }
+        }) */
         .catch((error) => {
           console.error("Error al realizar la solicitud:", error);
         });

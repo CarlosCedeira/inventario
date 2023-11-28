@@ -1,5 +1,19 @@
-- Añadir tabla de movimientos.
+			
+			-----FUNCIONALIDADES-----
+
+- Añadir ventas de productos en mvimientos.
+- Añadir una autorizacion para poder edita y borrar elementos del inventario.
 - Añdir IVA (en base de datos o calculado por JS).
 - Añadir computo total de productos en el almacen, dinero invertido, cantidad total de categorias
     productos totales proximos a caducar y productos caducados.
 - Añadir apartado de visualizacion de datos.
+
+			-----VISUALIZACION-----
+
+- Ver ejemplos de diseños de inventarios ya hechos.
+- Adaptacion a moviles.
+
+			-----CAMBIOS A REALIZAR-----
+
+- Almacenar los datos originales en un useref para pasarlos al usestate cuando se quiera volver 
+    a los datos originales sin que esten filtrados o ordenados.
