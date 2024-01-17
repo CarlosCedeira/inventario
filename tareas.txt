@@ -17,12 +17,16 @@
 
 - Almacenar los datos originales en un useref para pasarlos al usestate cuando se quiera volver 
     a los datos originales sin que esten filtrados o ordenados.
+- Eliminar la propiedad cascada de la tabla movimientos para asi cuando borres un registro esten	
+	no se borre de la tabla movimientos tambien.
 
 
 			-----ERRORES-----
 
 - Las fechas las guarda correctamente en la base de datos pero a la hora de imprimirlas les resta
 	un dia; posiblemente porque redondee el dia con la hora 
+- El numero maximo de productos que se muestra en la grafica se despacia sobre el eje x en funcion
+	de la cantidad.
 
 			-----POSIBLES PROBLEMAS-----
 			
