@@ -8,9 +8,12 @@ export function useContadorContext() {
 
 export function ContadorProvider({ children }) {
   const [contador, setContador] = useState(0);
+  const [datos, setDatos] = useState([]);
 
   return (
-    <ContadorContext.Provider value={{ contador, setContador }}>
+    <ContadorContext.Provider
+      value={{ datos, setDatos, contador, setContador }}
+    >
       {children}
     </ContadorContext.Provider>
   );

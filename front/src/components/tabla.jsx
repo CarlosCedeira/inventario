@@ -6,8 +6,7 @@ import "../css/Tabla.css";
 import AñadirProducto from "./añadirproducto";
 
 function Productos() {
-  const [datos, setDatos] = useState([]);
-  const { contador, setContador } = useContadorContext();
+  const { datos, setDatos, contador, setContador } = useContadorContext();
   const [search, setSearch] = useState("");
 
   useEffect(() => {
