@@ -1,4 +1,3 @@
-import React from "react";
 import EliminarProducto from "./eliminarproducto";
 import EditarProducto from "./editarproducto";
 

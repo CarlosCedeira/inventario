@@ -13,6 +13,12 @@
     top: 30%; 
     left: 50%; 
     transform: translate(-30%, -50%); 
+
+    padding-left: 25px;
+    padding-right: 25px;
+
+    border-radius: 1em;
+
     background-color: azure;
 }
 
@@ -22,12 +28,16 @@ legend {
     margin-bottom: 1rem;
 }
 
+label {
+    margin-top: 50px; 
+}
+
 #formulario-añadir > p {
     display: flex;
     position: fixed;
     margin: 0;
     left: 92%;
-    bottom: 90%;
+    bottom: 85%;
     cursor: pointer; 
 }
 

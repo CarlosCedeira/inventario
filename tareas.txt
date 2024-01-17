@@ -1,7 +1,7 @@
 			
 			-----FUNCIONALIDADES-----
 
-- Añadir ventas de productos en mvimientos.
+- Añadir ventas de productos en movimientos.
 - Añadir una autorizacion para poder edita y borrar elementos del inventario.
 - Añdir IVA (en base de datos o calculado por JS).
 - Añadir computo total de productos en el almacen, dinero invertido, cantidad total de categorias
@@ -17,3 +17,15 @@
 
 - Almacenar los datos originales en un useref para pasarlos al usestate cuando se quiera volver 
     a los datos originales sin que esten filtrados o ordenados.
+
+
+			-----ERRORES-----
+
+- Las fechas las guarda correctamente en la base de datos pero a la hora de imprimirlas les resta
+	un dia; posiblemente porque redondee el dia con la hora 
+
+			-----POSIBLES PROBLEMAS-----
+			
+- El color de la fila que se pinta en naranja o rojo en funcion de la fecha de caducidad el estilo
+	se realiza en liña en el componente, hecho que puede afectar a la escalavilidad y cambios fu-
+	ros, reflesionar sobre como se podría añadir a una hoja de estilos.

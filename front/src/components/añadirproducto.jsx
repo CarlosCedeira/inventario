@@ -39,7 +39,6 @@ function AñadirProducto() {
       })
       .then((data) => {
         const { id } = data;
-        console.log(id);
         const datos = { accion: "añadir", id };
 
         fetch("http://localhost:3000/movimiento", {
@@ -120,6 +119,7 @@ function AñadirProducto() {
               value={formData.caducidad}
               onChange={handleInputChange}
             />
+            <p>{formData.caducidad}</p>
           </label>
           <br />
           <button type="submit">Añadir producto</button>

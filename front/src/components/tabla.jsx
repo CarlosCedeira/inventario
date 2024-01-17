@@ -105,13 +105,17 @@ function Productos() {
             </select>
           </div>
 
-          <input
-            type="search"
-            name="search"
-            value={search}
-            onChange={handleSearchChange}
-            placeholder="Buscar por nombre"
-          />
+          <div style={{ display: "flex" }}>
+            <p>Buscar producto:</p>
+            <input
+              type="search"
+              name="search"
+              value={search}
+              onChange={handleSearchChange}
+              placeholder="Escribe un nombre..."
+            />
+          </div>
+
           <table>
             <caption>Inventario</caption>
             <thead>

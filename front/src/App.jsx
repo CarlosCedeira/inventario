@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Productos from "./components/tabla";
 import Movimientos from "./components/movimientos";
+import ChartExample from "./components/grafica";
 
 function App() {
   const [mostrarMovimientos, setMostrarMovimientos] = useState(false);
@@ -29,6 +30,8 @@ function App() {
       />
 
       {mostrarMovimientos ? <Movimientos /> : <Productos />}
+
+      <ChartExample />
     </>
   );
 }
