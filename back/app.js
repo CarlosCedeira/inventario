@@ -23,7 +23,7 @@ app.post("/anadir", añadirController);
 
 app.put("/editar", editarController);
 
-app.post("/venta", ventaControler);
+app.put("/venta", ventaControler);
 
 app.post("/movimiento", movimientoController);
 

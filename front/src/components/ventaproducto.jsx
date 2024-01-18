@@ -24,23 +24,23 @@ function VentaProducto(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:3000/editar", {
+    const datos = { accion: "venta", id, cantidad: formData.cantidad };
+
+    fetch("http://localhost:3000/venta", {
       method: "put",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(datos),
     })
       .then((response) => {
         if (response.ok) {
-          const datos = { accion: "venta", id };
-
           fetch("http://localhost:3000/movimiento", {
             method: "post",
             headers: {
               "content-type": "application/json",
             },
-            body: JSON.stringify(datos),
+            body: JSON.stringify({ accion: "venta", id }),
           }).then((response) => {
             if (response.ok) {
               setContador(contador + 1);

@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const mysql = require("mysql2/promise");
 
-router.post("/venta", async (req, res) => {
+router.put("/venta", async (req, res) => {
   try {
     const dbConfig2 = {
       host: "localhost",
@@ -12,12 +12,12 @@ router.post("/venta", async (req, res) => {
     };
 
     const connection = await mysql.createConnection(dbConfig2);
-    const { accion, id } = req.body;
+    const { accion, id, cantidad } = req.body;
 
     const [rows] = await connection.execute(
       "INSERT INTO movimiento (accion, nombre, precio, cantidad, caducidad, id_foraneo) " +
-        "SELECT ?, nombre_producto, precio, cantidad, caducidad, ? FROM almacen.producto WHERE id = ?",
-      [accion, id, id]
+        "SELECT ?, nombre_producto, precio, ?, caducidad, ? FROM almacen.producto WHERE id = ?",
+      [accion, cantidad, id, id]
     );
 
     await connection.end();
