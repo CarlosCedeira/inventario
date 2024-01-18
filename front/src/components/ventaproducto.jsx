@@ -24,14 +24,23 @@ function VentaProducto(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const datos = { accion: "venta", id, cantidad: formData.cantidad };
+    const cantidadResto = cantidad - formData.cantidad;
+    const { id, nombre, categoria, precio, caducidad } = formData;
+    console.log(cantidadResto);
 
-    fetch("http://localhost:3000/venta", {
+    fetch("http://localhost:3000/editar", {
       method: "put",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(datos),
+      body: JSON.stringify({
+        id,
+        nombre,
+        categoria,
+        precio,
+        cantidad: cantidadResto,
+        caducidad,
+      }),
     })
       .then((response) => {
         if (response.ok) {
