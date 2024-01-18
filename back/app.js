@@ -6,6 +6,7 @@ const getController = require("./getController");
 const editarController = require("./controller/editar");
 const añadirController = require("./controller/añadir");
 const deleteController = require("./controller/delete");
+const ventaControler = require("./controller/venta");
 const movimientoController = require("./controller/movimiento");
 const verMovimientosController = require("./controller/verMovimientos");
 
@@ -21,6 +22,8 @@ app.use(express.json());
 app.post("/anadir", añadirController);
 
 app.put("/editar", editarController);
+
+app.post("/venta", ventaControler);
 
 app.post("/movimiento", movimientoController);
 

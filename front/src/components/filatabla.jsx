@@ -1,5 +1,6 @@
 import EliminarProducto from "./eliminarproducto";
 import EditarProducto from "./editarproducto";
+import VentaProducto from "./VentaProducto";
 
 function FilaProducto({ item }) {
   let filaStyle = {};
@@ -18,6 +19,14 @@ function FilaProducto({ item }) {
       <td>{item.cantidad}</td>
       <td>{item.caducidad.slice(0, 10).split("-").reverse().join("-")}</td>
       <td>
+        <VentaProducto
+          id={item.id}
+          nombre={item.nombre_producto}
+          categoria={item.categoria}
+          precio={item.precio}
+          cantidad={item.cantidad}
+          caducidad={item.caducidad.slice(0, 10)}
+        />
         <EditarProducto
           id={item.id}
           nombre={item.nombre_producto}
