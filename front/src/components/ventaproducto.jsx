@@ -26,7 +26,6 @@ function VentaProducto(props) {
 
     const cantidadResto = cantidad - formData.cantidad;
     const { id, nombre, categoria, precio, caducidad } = formData;
-    console.log(cantidadResto);
 
     fetch("http://localhost:3000/editar", {
       method: "put",
@@ -49,7 +48,11 @@ function VentaProducto(props) {
             headers: {
               "content-type": "application/json",
             },
-            body: JSON.stringify({ accion: "venta", id }),
+            body: JSON.stringify({
+              accion: "venta",
+              id,
+              cantidad: cantidad - cantidadResto,
+            }),
           }).then((response) => {
             if (response.ok) {
               setContador(contador + 1);
