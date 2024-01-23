@@ -1,0 +1,40 @@
+header {
+    background-color: lightblue;
+
+}
+
+body {
+    background-color: bisque;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+.menu ol {
+    padding: 0;
+    margin-left: 5rem;
+    display: flex;
+}
+
+.menu li {
+    list-style: none;
+  }
+  
+.menu input {
+    display: "inline-block";
+    margin: 5px 10px;
+    padding: 5px 10px;
+    background-color: #1c80f3;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+.menu input:hover {
+    background-color: #555;
+  }

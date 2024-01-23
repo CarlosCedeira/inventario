@@ -1,5 +1,11 @@
 import React from "react";
-import { VictoryBar, VictoryChart, VictoryAxis, VictoryLabel } from "victory";
+import {
+  VictoryBar,
+  VictoryChart,
+  VictoryAxis,
+  VictoryLabel,
+  VictoryTheme,
+} from "victory";
 import { useContadorContext } from "../context";
 
 const ChartExample = () => {
@@ -11,7 +17,7 @@ const ChartExample = () => {
   const maxCantidad = Math.max(...cantidades);
 
   return (
-    <VictoryChart>
+    <VictoryChart theme={VictoryTheme.material}>
       <VictoryBar
         data={cantidades.map((cantidad, index) => ({
           x: nombres[index], // Usar el nombre del producto en lugar del índice

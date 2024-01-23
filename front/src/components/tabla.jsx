@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { useContadorContext } from "../context";
 
 import FilaProducto from "./filatabla";
-import "../css/Tabla.css";
 import AñadirProducto from "./añadirproducto";
+
+import "../css/Tabla.css";
 
 function Productos() {
   const { datos, setDatos, contador, setContador } = useContadorContext();
@@ -20,7 +21,7 @@ function Productos() {
       .catch((err) => {
         console.error("Error al realizar la solicitud:", err);
       });
-  }, [contador]);
+  }, [contador, setDatos]);
 
   const handleSearchChange = (e) => {
     if (e.target.value === "") {
