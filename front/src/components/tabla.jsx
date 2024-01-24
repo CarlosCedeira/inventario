@@ -90,7 +90,7 @@ function Productos() {
       {Array.isArray(datos) ? (
         <>
           <AñadirProducto />
-          <div style={{ display: "flex" }}>
+          <div className="filtradodedatos">
             <p>Ordenar por</p>
             <select id="selectorden" onChange={tipoControler}>
               <option value="mayor">mayor</option>
@@ -103,9 +103,7 @@ function Productos() {
               <option value="precio">precio</option>
               <option value="caducidad">caducidad</option>
             </select>
-          </div>
 
-          <div style={{ display: "flex" }}>
             <p>Buscar producto:</p>
             <input
               type="search"

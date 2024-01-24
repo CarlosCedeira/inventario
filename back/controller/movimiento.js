@@ -18,14 +18,12 @@ router.post("/movimiento", async (req, res) => {
     const connection = await mysql.createConnection(dbConfig2);
 
     if (cantidad) {
-      console.log(req.body);
       const [rows] = await connection.execute(
         "INSERT INTO movimiento (accion, nombre, precio, cantidad, caducidad, id_foraneo) " +
           "SELECT ?, nombre_producto, precio, ?, caducidad, ? FROM almacen.producto WHERE id = ?",
         [accion, cantidad, id, id]
       );
     } else {
-      console.log(req.body);
       const [rows] = await connection.execute(
         "INSERT INTO movimiento (accion, nombre, precio, cantidad, caducidad, id_foraneo) " +
           "SELECT ?, nombre_producto, precio, cantidad, caducidad, ? FROM almacen.producto WHERE id = ?",

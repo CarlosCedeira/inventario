@@ -1,3 +1,7 @@
+.filtradodedatos {
+    display: flex;
+}
+
 p {
     margin-bottom: 0px;
     margin-top: 10px;
@@ -6,12 +10,52 @@ p {
 select {
     margin: 5px 5px 0px 5px;
     height: 28px;
+
+    border-radius: 5px;
+
+    color: white;
+    background-color: #1c80f3;
+
+    cursor: pointer;
+
+    box-shadow: 1px 1px 15px black;
+
+}
+
+select:hover {
+    color: black;
+    background-color: rgb(253, 187, 64);  
+  }
+
+input[type="search"]:hover {
+    color: black;
+    background-color: rgb(253, 187, 64);  
+  }
+
+input {
+    margin: 5px 5px 0px 5px;
+    height: 28px;
+
+    border-radius: 5px;
+
+    background-color: #1c80f3;
+
+    cursor: pointer;
+
+    box-shadow: 1px 1px 15px black;
+
+}
+
+input::placeholder {
+    color: white;
 }
 
 table {
     border-collapse: collapse;
     width: 100%;
     text-align: center;
+    
+    box-shadow: 10px 10px 35px black;
 }
 
 caption{

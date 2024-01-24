@@ -128,7 +128,7 @@ function AñadirProducto() {
     </div>
   ) : (
     <button id="boton-añadir" onClick={() => setAccion(true)}>
-      Añadir Producto
+      ➕
     </button>
   );
 }

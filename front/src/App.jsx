@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import Productos from "./components/tabla";
 import Movimientos from "./components/movimientos";
-import ChartExample from "./components/grafica";
+import ProductosTotales from "./components/graficaProductosTotales";
 
 import "./css/app.css";
 
@@ -27,13 +27,10 @@ function App() {
               <input
                 type="button"
                 className="input"
-                value={
-                  mostrarMovimientos ? "Ver Inventario" : "Ver Movimientos"
-                }
+                value={mostrarMovimientos ? "Inventario" : "Movimientos"}
                 onClick={handleChangeVisualizer}
               />
             </li>
-
             <li>
               <input
                 type="button"
@@ -44,10 +41,10 @@ function App() {
           </ol>
         </nav>
       </header>
-      <body>
-        {verDatos ? <ChartExample /> : null}
+      <main>
         {mostrarMovimientos ? <Movimientos /> : <Productos />}
-      </body>
+        {verDatos ? <ProductosTotales /> : null}
+      </main>
     </>
   );
 }

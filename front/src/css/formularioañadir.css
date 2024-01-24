@@ -41,6 +41,15 @@ label {
     cursor: pointer; 
 }
 
+#boton-añadir {
+    box-shadow: 1px 1px 15px black;
+}
+
+#boton-añadir:hover {
+    color: black;
+    background-color: rgb(253, 187, 64);  
+}
+
 #boton-añadir, #formulario-añadir button, form button {
     display: inline-block;
     margin: 5px 10px;
