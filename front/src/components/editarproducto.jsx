@@ -4,7 +4,7 @@ import { useContadorContext } from "../context";
 import "../css/formularioactualizar.css";
 
 function EditarProducto(props) {
-  const { id, nombre, categoria, precio, cantidad, caducidad } = props;
+  const { id, nombre, categoria, precio, cantidad, caducidad, lote } = props;
   const { contador, setContador } = useContadorContext();
   const [accion, setAccion] = useState(false);
   const [formData, setFormData] = useState({
@@ -13,9 +13,9 @@ function EditarProducto(props) {
     categoria,
     precio,
     cantidad,
+    lote,
     caducidad,
   });
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -96,6 +96,16 @@ function EditarProducto(props) {
               type="number"
               name="cantidad"
               value={formData.cantidad}
+              onChange={handleInputChange}
+            />
+          </label>
+          <br />
+          <label>
+            Lote:
+            <input
+              type="number"
+              name="lote"
+              value={formData.lote}
               onChange={handleInputChange}
             />
           </label>

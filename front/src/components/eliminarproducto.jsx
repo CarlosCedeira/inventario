@@ -5,7 +5,7 @@ function EliminarProducto(props) {
 
   const eliminar = () => {
     const confirmar = window.confirm(
-      "¿Estás seguro de que deseas eliminar el producto?"
+      `¿Estás seguro de que deseas eliminar el producto?`
     );
 
     if (confirmar) {

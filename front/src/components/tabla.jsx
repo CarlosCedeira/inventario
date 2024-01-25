@@ -122,6 +122,7 @@ function Productos() {
                 <th>Categoria</th>
                 <th>Precio</th>
                 <th>Cantidad</th>
+                <th>Lote</th>
                 <th>Fecha de caducidad</th>
                 <th>Aciones</th>
               </tr>

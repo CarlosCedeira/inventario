@@ -9,6 +9,7 @@ function AñadirProducto() {
     categoria: "",
     precio: "",
     cantidad: "",
+    lote: "",
     caducidad: "",
   });
   const [accion, setAccion] = useState(false);
@@ -107,6 +108,16 @@ function AñadirProducto() {
               type="number"
               name="cantidad"
               value={formData.cantidad}
+              onChange={handleInputChange}
+            />
+          </label>
+          <br />
+          <label>
+            Lote:
+            <input
+              type="number"
+              name="lote"
+              value={formData.lote}
               onChange={handleInputChange}
             />
           </label>

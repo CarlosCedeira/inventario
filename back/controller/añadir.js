@@ -7,10 +7,10 @@ router.post("/anadir", async (req, res) => {
   try {
     const connection = await mysql.createConnection(dbConfig);
 
-    const { nombre, categoria, precio, cantidad, caducidad } = req.body;
+    const { nombre, categoria, precio, cantidad, caducidad, lote } = req.body;
     const [rows] = await connection.execute(
-      "INSERT INTO producto (nombre_producto, categoria, precio, cantidad, caducidad) VALUES (?, ?, ?, ?, ?)",
-      [nombre, categoria, precio, cantidad, caducidad]
+      "INSERT INTO producto (nombre_producto, categoria, precio, cantidad, caducidad, lote) VALUES (?, ?, ?, ?, ?, ?)",
+      [nombre, categoria, precio, cantidad, caducidad, lote]
     );
 
     const insertedId = rows.insertId;

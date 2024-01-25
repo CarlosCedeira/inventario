@@ -17,6 +17,7 @@ function FilaProducto({ item }) {
       <td>{item.categoria}</td>
       <td>{item.precio}€</td>
       <td>{item.cantidad}</td>
+      <td>{item.lote}</td>
       <td>{item.caducidad.slice(0, 10).split("-").reverse().join("-")}</td>
       <td>
         <VentaProducto
@@ -25,6 +26,7 @@ function FilaProducto({ item }) {
           categoria={item.categoria}
           precio={item.precio}
           cantidad={item.cantidad}
+          lote={item.lote}
           caducidad={item.caducidad.slice(0, 10)}
         />
         <EditarProducto
@@ -33,6 +35,7 @@ function FilaProducto({ item }) {
           categoria={item.categoria}
           precio={item.precio}
           cantidad={item.cantidad}
+          lote={item.lote}
           caducidad={item.caducidad.slice(0, 10)}
         />
         <EliminarProducto

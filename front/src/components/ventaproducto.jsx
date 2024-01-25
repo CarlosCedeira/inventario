@@ -71,7 +71,7 @@ function VentaProducto(props) {
       <div id="formulario-editar">
         <p onClick={() => setAccion(false)}>❌</p>
         <form onSubmit={handleSubmit}>
-          <legend>Editar {nombre}</legend>
+          <legend>Vender {nombre}</legend>
           <label>
             Nombre:
             <input
