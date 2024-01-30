@@ -4,7 +4,23 @@ import { useContadorContext } from "../context";
 import "../css/formularioactualizar.css";
 
 function EditarProducto(props) {
-  const { id, nombre, categoria, precio, cantidad, caducidad, lote } = props;
+  const {
+    id,
+    nombre,
+    categoria,
+    precio,
+    cantidad,
+    caducidad,
+    lote,
+    nombreProducto,
+    direccion,
+    correo,
+    telefono,
+    ruta,
+  } = props;
+  console.log(props);
+  console.log(nombreProducto, direccion, correo, telefono, ruta);
+
   const { contador, setContador } = useContadorContext();
   const [accion, setAccion] = useState(false);
   const [formData, setFormData] = useState({
@@ -24,7 +40,7 @@ function EditarProducto(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:3000/editar", {
+    fetch(`http://localhost:3000/${props.ruta}`, {
       method: "put",
       headers: {
         "Content-Type": "application/json",

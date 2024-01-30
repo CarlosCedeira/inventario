@@ -3,12 +3,14 @@ import React, { useState } from "react";
 import Productos from "./components/tabla";
 import Movimientos from "./components/movimientos";
 import ProductosTotales from "./components/graficaProductosTotales";
+import Clientes from "./components/verClientes";
 
 import "./css/app.css";
 
 function App() {
   const [mostrarMovimientos, setMostrarMovimientos] = useState(false);
   const [verDatos, setVerDatos] = useState(false);
+  const [verClientes, setVerClientes] = useState(false);
 
   const handleChangeVisualizer = () => {
     setMostrarMovimientos(!mostrarMovimientos);
@@ -16,6 +18,10 @@ function App() {
 
   const handleChangeDatos = () => {
     setVerDatos(!verDatos);
+  };
+
+  const handleChangeClientes = () => {
+    setVerClientes(!verClientes);
   };
 
   return (
@@ -34,8 +40,15 @@ function App() {
             <li>
               <input
                 type="button"
-                value={verDatos ? "ocultar datos" : "Ver datos"}
+                value={verDatos ? "ocultar datos" : "mostrar datos"}
                 onClick={handleChangeDatos}
+              />
+            </li>
+            <li>
+              <input
+                type="button"
+                value={verClientes ? "ocultar clientes" : "mostrar clientes"}
+                onClick={handleChangeClientes}
               />
             </li>
           </ol>
@@ -44,6 +57,7 @@ function App() {
       <main>
         {mostrarMovimientos ? <Movimientos /> : <Productos />}
         {verDatos ? <ProductosTotales /> : null}
+        {verClientes ? <Clientes /> : null}
       </main>
     </>
   );

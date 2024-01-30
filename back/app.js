@@ -6,8 +6,11 @@ const getController = require("./getController");
 const editarController = require("./controller/editar");
 const añadirController = require("./controller/añadir");
 const deleteController = require("./controller/delete");
+
 const movimientoController = require("./controller/movimiento");
 const verMovimientosController = require("./controller/verMovimientos");
+
+const cliente = require("./controller/getCliente");
 
 const app = express();
 app.use(cors());
@@ -27,6 +30,8 @@ app.put("/venta", movimientoController);
 app.post("/movimiento", movimientoController);
 
 app.get("/vermovimientos", verMovimientosController);
+
+app.get("/cliente", cliente);
 
 app.listen(process.env.port, () => {
   console.log(

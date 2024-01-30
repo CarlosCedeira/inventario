@@ -37,6 +37,7 @@ function FilaProducto({ item }) {
           cantidad={item.cantidad}
           lote={item.lote}
           caducidad={item.caducidad.slice(0, 10)}
+          ruta="editar"
         />
         <EliminarProducto
           id={item.id}
@@ -44,6 +45,7 @@ function FilaProducto({ item }) {
           precio={item.precio}
           cantidad={item.cantidad}
           caducidad={item.caducidad.slice(0, 10)}
+          ruta="eliminar"
         />
       </td>
     </tr>

@@ -23,7 +23,6 @@ function Movimientos() {
           <caption>Movimientos</caption>
           <thead>
             <tr>
-              <th>id</th>
               <th>Nombre</th>
               <th>Aciones</th>
               <th>Precio</th>
@@ -34,7 +33,6 @@ function Movimientos() {
           <tbody>
             {datos.map((item) => (
               <tr key={item.id}>
-                <td>{item.id_foraneo}</td>
                 <td>{item.nombre}</td>
                 <td>{item.accion}</td>
                 <td>{item.precio}€</td>
