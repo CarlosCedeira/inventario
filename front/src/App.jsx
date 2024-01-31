@@ -8,20 +8,20 @@ import Clientes from "./components/clientes/verClientes";
 import "./css/app.css";
 
 function App() {
-  const [mostrarMovimientos, setMostrarMovimientos] = useState(false);
-  const [verDatos, setVerDatos] = useState(false);
-  const [verClientes, setVerClientes] = useState(false);
+  const [formData, setFormData] = useState({
+    inventario: true,
+    movimientos: false,
+    datos: false,
+    clientes: false,
+  });
 
-  const handleChangeVisualizer = () => {
-    setMostrarMovimientos(!mostrarMovimientos);
-  };
-
-  const handleChangeDatos = () => {
-    setVerDatos(!verDatos);
-  };
-
-  const handleChangeClientes = () => {
-    setVerClientes(!verClientes);
+  const handleInputChange = (field) => {
+    setFormData({
+      inventario: field === "inventario",
+      movimientos: field === "movimientos",
+      datos: field === "datos",
+      clientes: field === "clientes",
+    });
   };
 
   return (
@@ -32,32 +32,43 @@ function App() {
             <li>
               <input
                 type="button"
-                className="input"
-                value={mostrarMovimientos ? "Inventario" : "Movimientos"}
-                onClick={handleChangeVisualizer}
+                className={formData.inventario ? "hidden" : ""}
+                value={formData.inventario ? "" : "inventario"}
+                onClick={() => handleInputChange("inventario")}
               />
             </li>
             <li>
               <input
                 type="button"
-                value={verDatos ? "ocultar datos" : "ver datos"}
-                onClick={handleChangeDatos}
+                className={formData.movimientos ? "hidden" : ""}
+                value={formData.movimientos ? "" : "movimientos"}
+                onClick={() => handleInputChange("movimientos")}
               />
             </li>
             <li>
               <input
                 type="button"
-                value={verClientes ? "ocultar clientes" : "ver clientes"}
-                onClick={handleChangeClientes}
+                className={formData.datos ? "hidden" : ""}
+                value={formData.datos ? "" : "datos"}
+                onClick={() => handleInputChange("datos")}
+              />
+            </li>
+            <li>
+              <input
+                type="button"
+                className={formData.clientes ? "hidden" : ""}
+                value={formData.clientes ? "" : "clientes"}
+                onClick={() => handleInputChange("clientes")}
               />
             </li>
           </ol>
         </nav>
       </header>
       <main>
-        {mostrarMovimientos ? <Movimientos /> : <Productos />}
-        {verDatos ? <ProductosTotales /> : null}
-        {verClientes ? <Clientes /> : null}
+        {formData.inventario ? <Productos /> : null}
+        {formData.movimientos ? <Movimientos /> : null}
+        {formData.datos ? <ProductosTotales /> : null}
+        {formData.clientes ? <Clientes /> : null}
       </main>
     </>
   );

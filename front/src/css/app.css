@@ -49,3 +49,7 @@ main {
   color: black;
   background-color: rgb(253, 187, 64);  
 }
+
+.menu .hidden {
+  visibility: hidden;
+}
