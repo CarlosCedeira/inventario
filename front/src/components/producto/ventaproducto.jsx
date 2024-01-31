@@ -1,19 +1,21 @@
 import { useState } from "react";
-import { useContadorContext } from "../context";
+import { useContadorContext } from "../../context";
 
-import "../css/formularioañadir.css";
+import "../../css/formularioactualizar.css";
 
-function AñadirProducto() {
-  const [formData, setFormData] = useState({
-    nombre: "",
-    categoria: "",
-    precio: "",
-    cantidad: "",
-    lote: "",
-    caducidad: "",
-  });
-  const [accion, setAccion] = useState(false);
+function VentaProducto(props) {
+  const { id, nombre, categoria, precio, cantidad, caducidad, lote } = props;
   const { contador, setContador } = useContadorContext();
+  const [accion, setAccion] = useState(false);
+  const [formData, setFormData] = useState({
+    id,
+    nombre,
+    categoria,
+    precio,
+    cantidad,
+    caducidad,
+    lote,
+  });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -22,44 +24,44 @@ function AñadirProducto() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setAccion(false);
 
-    fetch("http://localhost:3000/anadir", {
-      method: "post",
+    const cantidadResto = cantidad - formData.cantidad;
+    const { id, nombre, categoria, precio, caducidad, lote } = formData;
+
+    fetch("http://localhost:3000/editar", {
+      method: "put",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify({
+        id,
+        nombre,
+        categoria,
+        precio,
+        cantidad: cantidadResto,
+        caducidad,
+        lote,
+      }),
     })
       .then((response) => {
         if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error("La respuesta no es exitosa");
+          fetch("http://localhost:3000/movimiento", {
+            method: "post",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify({
+              accion: "venta",
+              id,
+              cantidad: cantidad - cantidadResto,
+            }),
+          }).then((response) => {
+            if (response.ok) {
+              setContador(contador + 1);
+              setAccion(false);
+            }
+          });
         }
-      })
-      .then((data) => {
-        const { id } = data;
-        const datos = { accion: "añadir", id };
-
-        fetch("http://localhost:3000/movimiento", {
-          method: "post",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(datos),
-        }).then((response) => {
-          if (response.ok) {
-            setContador(contador + 1);
-            setFormData({
-              nombre: "",
-              categoria: "",
-              precio: "",
-              cantidad: "",
-              caducidad: "",
-            });
-          }
-        });
       })
       .catch((error) => {
         console.error("Error al realizar la solicitud:", error);
@@ -68,10 +70,10 @@ function AñadirProducto() {
 
   return accion ? (
     <div id="oscurecer-fondo">
-      <div id="formulario-añadir">
+      <div id="formulario-editar">
         <p onClick={() => setAccion(false)}>❌</p>
         <form onSubmit={handleSubmit}>
-          <legend>Añadir producto</legend>
+          <legend>Vender {nombre}</legend>
           <label>
             Nombre:
             <input
@@ -79,6 +81,7 @@ function AñadirProducto() {
               name="nombre"
               value={formData.nombre}
               onChange={handleInputChange}
+              readOnly
             />
           </label>
           <br />
@@ -89,6 +92,7 @@ function AñadirProducto() {
               name="categoria"
               value={formData.categoria}
               onChange={handleInputChange}
+              readOnly
             />
           </label>
           <br />
@@ -99,6 +103,7 @@ function AñadirProducto() {
               name="precio"
               value={formData.precio}
               onChange={handleInputChange}
+              readOnly
             />
           </label>
           <br />
@@ -113,35 +118,34 @@ function AñadirProducto() {
           </label>
           <br />
           <label>
-            Lote:
-            <input
-              type="number"
-              name="lote"
-              value={formData.lote}
-              onChange={handleInputChange}
-            />
-          </label>
-          <br />
-          <label>
             Fecha de Caducidad:
             <input
               type="date"
               name="caducidad"
               value={formData.caducidad}
               onChange={handleInputChange}
+              readOnly
             />
-            <p>{formData.caducidad}</p>
           </label>
           <br />
-          <button type="submit">Añadir producto</button>
+          <label>
+            Lote:
+            <input
+              type="number"
+              name="lote"
+              value={formData.lote}
+              onChange={handleInputChange}
+              readOnly
+            />
+          </label>
+          <br />
+          <button type="submit">guardar cambios</button>
         </form>
       </div>
     </div>
   ) : (
-    <button id="boton-añadir" onClick={() => setAccion(true)}>
-      ➕
-    </button>
+    <button onClick={() => setAccion(true)}>🛒</button>
   );
 }
 
-export default AñadirProducto;
+export default VentaProducto;

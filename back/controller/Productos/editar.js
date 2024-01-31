@@ -8,7 +8,6 @@ router.put("/editar", async (req, res) => {
     const { id, nombre, categoria, precio, cantidad, caducidad, lote } =
       req.body;
     const connection = await mysql.createConnection(dbConfig);
-
     const [result] = await connection.execute(
       "UPDATE producto SET nombre_producto = ?, categoria = ?, precio = ?, cantidad = ?, caducidad = ?, lote = ? WHERE id = ?",
       [nombre, categoria, precio, cantidad, caducidad, lote, id]

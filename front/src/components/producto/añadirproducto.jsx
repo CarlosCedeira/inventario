@@ -1,20 +1,19 @@
 import { useState } from "react";
-import { useContadorContext } from "../context";
+import { useContadorContext } from "../../context";
 
-import "../css/formularioactualizar.css";
+import "../../css/formularioañadir.css";
 
-function VentaProducto(props) {
-  const { id, nombre, categoria, precio, cantidad, caducidad } = props;
-  const { contador, setContador } = useContadorContext();
-  const [accion, setAccion] = useState(false);
+function AñadirProducto() {
   const [formData, setFormData] = useState({
-    id,
-    nombre,
-    categoria,
-    precio,
-    cantidad,
-    caducidad,
+    nombre: "",
+    categoria: "",
+    precio: "",
+    cantidad: "",
+    lote: "",
+    caducidad: "",
   });
+  const [accion, setAccion] = useState(false);
+  const { contador, setContador } = useContadorContext();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -23,43 +22,44 @@ function VentaProducto(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setAccion(false);
 
-    const cantidadResto = cantidad - formData.cantidad;
-    const { id, nombre, categoria, precio, caducidad } = formData;
-
-    fetch("http://localhost:3000/editar", {
-      method: "put",
+    fetch("http://localhost:3000/anadir", {
+      method: "post",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        id,
-        nombre,
-        categoria,
-        precio,
-        cantidad: cantidadResto,
-        caducidad,
-      }),
+      body: JSON.stringify(formData),
     })
       .then((response) => {
         if (response.ok) {
-          fetch("http://localhost:3000/movimiento", {
-            method: "post",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify({
-              accion: "venta",
-              id,
-              cantidad: cantidad - cantidadResto,
-            }),
-          }).then((response) => {
-            if (response.ok) {
-              setContador(contador + 1);
-              setAccion(false);
-            }
-          });
+          return response.json();
+        } else {
+          throw new Error("La respuesta no es exitosa");
         }
+      })
+      .then((data) => {
+        const { id } = data;
+        const datos = { accion: "añadir", id };
+
+        fetch("http://localhost:3000/movimiento", {
+          method: "post",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(datos),
+        }).then((response) => {
+          if (response.ok) {
+            setContador(contador + 1);
+            setFormData({
+              nombre: "",
+              categoria: "",
+              precio: "",
+              cantidad: "",
+              caducidad: "",
+            });
+          }
+        });
       })
       .catch((error) => {
         console.error("Error al realizar la solicitud:", error);
@@ -68,10 +68,10 @@ function VentaProducto(props) {
 
   return accion ? (
     <div id="oscurecer-fondo">
-      <div id="formulario-editar">
+      <div id="formulario-añadir">
         <p onClick={() => setAccion(false)}>❌</p>
         <form onSubmit={handleSubmit}>
-          <legend>Vender {nombre}</legend>
+          <legend>Añadir producto</legend>
           <label>
             Nombre:
             <input
@@ -79,7 +79,6 @@ function VentaProducto(props) {
               name="nombre"
               value={formData.nombre}
               onChange={handleInputChange}
-              readOnly
             />
           </label>
           <br />
@@ -90,7 +89,6 @@ function VentaProducto(props) {
               name="categoria"
               value={formData.categoria}
               onChange={handleInputChange}
-              readOnly
             />
           </label>
           <br />
@@ -101,7 +99,6 @@ function VentaProducto(props) {
               name="precio"
               value={formData.precio}
               onChange={handleInputChange}
-              readOnly
             />
           </label>
           <br />
@@ -116,23 +113,35 @@ function VentaProducto(props) {
           </label>
           <br />
           <label>
+            Lote:
+            <input
+              type="number"
+              name="lote"
+              value={formData.lote}
+              onChange={handleInputChange}
+            />
+          </label>
+          <br />
+          <label>
             Fecha de Caducidad:
             <input
               type="date"
               name="caducidad"
               value={formData.caducidad}
               onChange={handleInputChange}
-              readOnly
             />
+            <p>{formData.caducidad}</p>
           </label>
           <br />
-          <button type="submit">guardar cambios</button>
+          <button type="submit">Añadir producto</button>
         </form>
       </div>
     </div>
   ) : (
-    <button onClick={() => setAccion(true)}>🛒</button>
+    <button id="boton-añadir" onClick={() => setAccion(true)}>
+      ➕
+    </button>
   );
 }
 
-export default VentaProducto;
+export default AñadirProducto;

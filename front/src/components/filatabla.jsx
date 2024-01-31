@@ -1,6 +1,6 @@
-import EliminarProducto from "./eliminarproducto";
-import EditarProducto from "./editarproducto";
-import VentaProducto from "./VentaProducto";
+import EliminarProducto from "./producto/eliminarproducto";
+import EditarProducto from "./producto/editarproducto";
+import VentaProducto from "./producto/VentaProducto";
 
 function FilaProducto({ item }) {
   let filaStyle = {};

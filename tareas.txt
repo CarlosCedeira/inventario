@@ -1,7 +1,7 @@
 			
 			-----FUNCIONALIDADES-----
 
-- Añadir ventas de productos en movimientos.
+- Añadir ventas de productos en movimientos. ✔
 - Añadir una autorizacion para poder edita y borrar elementos del inventario.
 - Añdir IVA (en base de datos o calculado por JS).
 - Añadir computo total de productos en el almacen, dinero invertido, cantidad total de categorias
@@ -19,7 +19,6 @@
     a los datos originales sin que esten filtrados o ordenados.
 - Eliminar la propiedad cascada de la tabla movimientos para asi cuando borres un registro esten	
 	no se borre de la tabla movimientos tambien.
-
 
 			-----ERRORES-----
 

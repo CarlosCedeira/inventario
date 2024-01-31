@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { useContadorContext } from "../context";
+import { useContadorContext } from "../../context";
 
-import EliminarProducto from "./eliminarproducto";
+import EliminarProducto from "../producto/eliminarproducto";
 import EditarCliente from "./editarCliente";
 
 function Clientes() {

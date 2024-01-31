@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Productos from "./components/tabla";
 import Movimientos from "./components/movimientos";
 import ProductosTotales from "./components/graficaProductosTotales";
-import Clientes from "./components/verClientes";
+import Clientes from "./components/clientes/verClientes";
 
 import "./css/app.css";
 
@@ -40,14 +40,14 @@ function App() {
             <li>
               <input
                 type="button"
-                value={verDatos ? "ocultar datos" : "mostrar datos"}
+                value={verDatos ? "ocultar datos" : "ver datos"}
                 onClick={handleChangeDatos}
               />
             </li>
             <li>
               <input
                 type="button"
-                value={verClientes ? "ocultar clientes" : "mostrar clientes"}
+                value={verClientes ? "ocultar clientes" : "ver clientes"}
                 onClick={handleChangeClientes}
               />
             </li>

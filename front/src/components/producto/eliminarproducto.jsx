@@ -1,4 +1,4 @@
-import { useContadorContext } from "../context";
+import { useContadorContext } from "../../context";
 
 function EliminarProducto(props) {
   const { contador, setContador } = useContadorContext();

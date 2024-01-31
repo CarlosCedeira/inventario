@@ -1,19 +1,21 @@
 import { useState } from "react";
-import { useContadorContext } from "../context";
+import { useContadorContext } from "../../context";
 
-import "../css/formularioactualizar.css";
+import "../../css/formularioactualizar.css";
 
-function EditarCliente(props) {
-  const { id, nombre, direccion, correo, telefono } = props;
+function EditarProducto(props) {
+  const { id, nombre, categoria, precio, cantidad, caducidad, lote } = props;
 
   const { contador, setContador } = useContadorContext();
   const [accion, setAccion] = useState(false);
   const [formData, setFormData] = useState({
     id,
     nombre,
-    direccion,
-    correo,
-    telefono,
+    categoria,
+    precio,
+    cantidad,
+    lote,
+    caducidad,
   });
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -23,7 +25,7 @@ function EditarCliente(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch(`http://localhost:3000/editarCliente`, {
+    fetch(`http://localhost:3000/editar`, {
       method: "put",
       headers: {
         "Content-Type": "application/json",
@@ -70,34 +72,55 @@ function EditarCliente(props) {
           </label>
           <br />
           <label>
-            Dirección:
+            Categoría:
             <input
               type="text"
-              name="direccion"
-              value={formData.direccion}
+              name="categoria"
+              value={formData.categoria}
               onChange={handleInputChange}
             />
           </label>
           <br />
           <label>
-            Correo:
-            <input
-              type="text"
-              name="correo"
-              value={formData.correo}
-              onChange={handleInputChange}
-            />
-          </label>
-          <br />
-          <label>
-            Telefono:
+            Precio:
             <input
               type="number"
-              name="telefono"
-              value={formData.telefono}
+              name="precio"
+              value={formData.precio}
               onChange={handleInputChange}
             />
           </label>
+          <br />
+          <label>
+            Cantidad:
+            <input
+              type="number"
+              name="cantidad"
+              value={formData.cantidad}
+              onChange={handleInputChange}
+            />
+          </label>
+          <br />
+          <label>
+            Lote:
+            <input
+              type="number"
+              name="lote"
+              value={formData.lote}
+              onChange={handleInputChange}
+            />
+          </label>
+          <br />
+          <label>
+            Fecha de Caducidad:
+            <input
+              type="date"
+              name="caducidad"
+              value={formData.caducidad}
+              onChange={handleInputChange}
+            />
+          </label>
+          <br />
           <button type="submit">guardar cambios</button>
         </form>
       </div>
@@ -107,4 +130,4 @@ function EditarCliente(props) {
   );
 }
 
-export default EditarCliente;
+export default EditarProducto;

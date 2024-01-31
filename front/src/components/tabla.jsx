@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useContadorContext } from "../context";
 
 import FilaProducto from "./filatabla";
-import AñadirProducto from "./añadirproducto";
+import AñadirProducto from "./producto/añadirproducto";
 
 import "../css/Tabla.css";
 
