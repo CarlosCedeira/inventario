@@ -3,19 +3,17 @@ import { useContadorContext } from "../context";
 
 import "../css/formularioactualizar.css";
 
-function EditarProducto(props) {
-  const { id, nombre, categoria, precio, cantidad, caducidad, lote } = props;
+function EditarCliente(props) {
+  const { id, nombre, direccion, correo, telefono } = props;
 
   const { contador, setContador } = useContadorContext();
   const [accion, setAccion] = useState(false);
   const [formData, setFormData] = useState({
     id,
     nombre,
-    categoria,
-    precio,
-    cantidad,
-    lote,
-    caducidad,
+    direccion,
+    correo,
+    telefono,
   });
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -25,7 +23,7 @@ function EditarProducto(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch(`http://localhost:3000/editar`, {
+    fetch(`http://localhost:3000/editarCliente`, {
       method: "put",
       headers: {
         "Content-Type": "application/json",
@@ -72,55 +70,34 @@ function EditarProducto(props) {
           </label>
           <br />
           <label>
-            Categoría:
+            Dirección:
             <input
               type="text"
-              name="categoria"
-              value={formData.categoria}
+              name="direccion"
+              value={formData.direccion}
               onChange={handleInputChange}
             />
           </label>
           <br />
           <label>
-            Precio:
+            Correo:
+            <input
+              type="text"
+              name="correo"
+              value={formData.correo}
+              onChange={handleInputChange}
+            />
+          </label>
+          <br />
+          <label>
+            Telefono:
             <input
               type="number"
-              name="precio"
-              value={formData.precio}
+              name="telefono"
+              value={formData.telefono}
               onChange={handleInputChange}
             />
           </label>
-          <br />
-          <label>
-            Cantidad:
-            <input
-              type="number"
-              name="cantidad"
-              value={formData.cantidad}
-              onChange={handleInputChange}
-            />
-          </label>
-          <br />
-          <label>
-            Lote:
-            <input
-              type="number"
-              name="lote"
-              value={formData.lote}
-              onChange={handleInputChange}
-            />
-          </label>
-          <br />
-          <label>
-            Fecha de Caducidad:
-            <input
-              type="date"
-              name="caducidad"
-              value={formData.caducidad}
-              onChange={handleInputChange}
-            />
-          </label>
-          <br />
           <button type="submit">guardar cambios</button>
         </form>
       </div>
@@ -130,4 +107,4 @@ function EditarProducto(props) {
   );
 }
 
-export default EditarProducto;
+export default EditarCliente;

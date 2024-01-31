@@ -17,6 +17,7 @@ router.post("/movimiento", async (req, res) => {
 
     const connection = await mysql.createConnection(dbConfig2);
 
+    //Ruta para las ventas guarda el numero de produtos vendidos
     if (cantidad) {
       const [rows] = await connection.execute(
         "INSERT INTO movimiento (accion, nombre, precio, cantidad, caducidad, id_foraneo) " +

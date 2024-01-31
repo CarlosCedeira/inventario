@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useContadorContext } from "../context";
 
 import EliminarProducto from "./eliminarproducto";
-import EditarProducto from "./editarproducto";
+import EditarCliente from "./editarCliente";
 
 function Clientes() {
   const [datos, setDatos] = useState([]);
@@ -41,22 +41,14 @@ function Clientes() {
                 <td>{item.correo}</td>
                 <td>{item.telefono}</td>
                 <td>
-                  <EliminarProducto
+                  <EditarCliente
                     id={item.id}
-                    nombre={item.nombreproducto}
-                    precio={item.direccion}
-                    cantidad={item.correo}
-                    caducidad={item.telefono}
-                    ruta="eliminarClientes"
+                    nombre={item.nombre}
+                    direccion={item.direccion}
+                    correo={item.correo}
+                    telefono={item.telefono}
                   />
-                  <EditarProducto
-                    id={item.id}
-                    nombreproducto={item.nombreproducto}
-                    precio={item.direccion}
-                    cantidad={item.correo}
-                    caducidad={item.telefono}
-                    ruta="editarClientes"
-                  />
+                  <EliminarProducto id={item.id} ruta="eliminarCliente" />
                 </td>
               </tr>
             ))}

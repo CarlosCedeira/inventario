@@ -3,14 +3,16 @@ const mysql = require("mysql2/promise");
 const cors = require("cors");
 
 const getController = require("./getController");
-const editarController = require("./controller/editar");
-const añadirController = require("./controller/añadir");
-const deleteController = require("./controller/delete");
+const editarController = require("./controller/Productos/editar");
+const añadirController = require("./controller/Productos/añadir");
+const deleteController = require("./controller/Productos/delete");
 
-const movimientoController = require("./controller/movimiento");
-const verMovimientosController = require("./controller/verMovimientos");
+const movimientoController = require("./controller/Movimientos/movimiento");
+const verMovimientosController = require("./controller/Movimientos/verMovimientos");
 
-const cliente = require("./controller/getCliente");
+const cliente = require("./controller/Clientes/getCliente");
+const editarCliente = require("./controller/Clientes/edit");
+const eliminarCliente = require("./controller/Clientes/delete");
 
 const app = express();
 app.use(cors());
@@ -32,6 +34,10 @@ app.post("/movimiento", movimientoController);
 app.get("/vermovimientos", verMovimientosController);
 
 app.get("/cliente", cliente);
+
+app.put("/editarCliente", editarCliente);
+
+app.delete("/eliminarCliente/:id", eliminarCliente);
 
 app.listen(process.env.port, () => {
   console.log(

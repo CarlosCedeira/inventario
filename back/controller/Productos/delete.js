@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const dbConfig = require("../config");
+const dbConfig = require("../../config");
 const mysql = require("mysql2/promise");
 
 router.delete("/eliminar/:id", async (req, res) => {

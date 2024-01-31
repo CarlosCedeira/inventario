@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const dbConfig = require("../config");
+const dbConfig = require("../../config");
 const mysql = require("mysql2/promise");
 
 router.post("/anadir", async (req, res) => {
