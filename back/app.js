@@ -13,6 +13,7 @@ const verMovimientosController = require("./controller/Movimientos/verMovimiento
 const cliente = require("./controller/Clientes/getCliente");
 const editarCliente = require("./controller/Clientes/edit");
 const eliminarCliente = require("./controller/Clientes/delete");
+const anadirCliente = require("./controller/Clientes/postCliente");
 
 const app = express();
 app.use(cors());
@@ -34,6 +35,8 @@ app.post("/movimiento", movimientoController);
 app.get("/vermovimientos", verMovimientosController);
 
 app.get("/cliente", cliente);
+
+app.post("/anadirCliente", anadirCliente);
 
 app.put("/editarCliente", editarCliente);
 

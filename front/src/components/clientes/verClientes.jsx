@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useContadorContext } from "../../context";
 
+import AñadirCliente from "./añadirCliente";
 import EliminarProducto from "../producto/eliminarproducto";
 import EditarCliente from "./editarCliente";
 
@@ -21,6 +22,7 @@ function Clientes() {
 
   return (
     <>
+      <AñadirCliente />
       {Array.isArray(datos) ? (
         <table>
           <caption>Clientes</caption>
