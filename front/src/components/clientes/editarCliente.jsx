@@ -82,7 +82,7 @@ function EditarCliente(props) {
           <label>
             Correo:
             <input
-              type="text"
+              type="email"
               name="correo"
               value={formData.correo}
               onChange={handleInputChange}

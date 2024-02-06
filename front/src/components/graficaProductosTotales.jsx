@@ -25,7 +25,7 @@ const ProdutosTotales = () => {
     Math.round(0.75 * maxValue),
     Math.round(maxValue),
   ];
-
+  console.log(nombres);
   return (
     <div className="grafica">
       <VictoryChart theme={VictoryTheme.material} title="Total de Productos">
@@ -37,7 +37,12 @@ const ProdutosTotales = () => {
           cornerRadius={5}
         />
 
-        {/* Muestra el número máximo sobre el eje Y */}
+        <VictoryAxis
+          tickValues={nombres} // Utiliza los nombres directamente como valores de las etiquetas
+          style={{
+            tickLabels: { textAnchor: "middle", fontSize: 15 },
+          }}
+        />
 
         <VictoryAxis dependentAxis tickValues={customTickValues} />
       </VictoryChart>

@@ -3,7 +3,7 @@ import { useContadorContext } from "../context";
 
 function Movimientos() {
   const [datos, setDatos] = useState([]);
-  const { contador, setContador } = useContadorContext();
+  const { contador } = useContadorContext();
 
   useEffect(() => {
     fetch("http://localhost:3000/vermovimientos")

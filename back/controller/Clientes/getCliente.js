@@ -1,17 +1,12 @@
 const express = require("express");
 const router = express.Router();
+const dbConfig = require("../../config");
+
 const mysql = require("mysql2/promise");
 
 router.get("/cliente", async (req, res) => {
   try {
-    const dbConfig2 = {
-      host: "localhost",
-      user: "root",
-      password: "root",
-      database: "almacen",
-    };
-
-    const connection = await mysql.createConnection(dbConfig2);
+    const connection = await mysql.createConnection(dbConfig);
 
     const [rows] = await connection.execute("SELECT * FROM almacen.cliente;");
 

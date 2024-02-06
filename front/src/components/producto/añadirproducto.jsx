@@ -115,7 +115,7 @@ function AñadirProducto() {
           <label>
             Lote:
             <input
-              type="number"
+              type="text"
               name="lote"
               value={formData.lote}
               onChange={handleInputChange}
@@ -130,7 +130,6 @@ function AñadirProducto() {
               value={formData.caducidad}
               onChange={handleInputChange}
             />
-            <p>{formData.caducidad}</p>
           </label>
           <br />
           <button type="submit">Añadir producto</button>

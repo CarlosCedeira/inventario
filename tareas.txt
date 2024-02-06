@@ -6,7 +6,7 @@
 - Añdir IVA (en base de datos o calculado por JS).
 - Añadir computo total de productos en el almacen, dinero invertido, cantidad total de categorias
     productos totales proximos a caducar y productos caducados.
-- Añadir apartado de visualizacion de datos.
+- Añadir apartado de visualizacion de datos. ✔
 
 			-----VISUALIZACION-----
 

@@ -17,7 +17,7 @@ router.delete("/eliminarCliente/:id", async (req, res) => {
     connection.end();
 
     if (result.affectedRows > 0) {
-      res.status(204).send(); // Código de respuesta 204 (Sin contenido)
+      res.status(204).send();
     } else {
       res.status(404).json({ error: "Producto no encontrado" });
     }

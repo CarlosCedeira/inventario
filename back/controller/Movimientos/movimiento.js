@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const dbConfig = require("../../config");
 const mysql = require("mysql2/promise");
 
 router.post("/movimiento", async (req, res) => {
@@ -8,16 +9,9 @@ router.post("/movimiento", async (req, res) => {
   try {
     const { accion, cantidad, id } = req.body;
 
-    const dbConfig2 = {
-      host: "localhost",
-      user: "root",
-      password: "root",
-      database: "almacen",
-    };
+    const connection = await mysql.createConnection(dbConfig);
 
-    const connection = await mysql.createConnection(dbConfig2);
-
-    //Ruta para las ventas guarda el numero de produtos vendidos
+    //Ruta para las ventas, guarda el numero de produtos vendidos
     if (cantidad) {
       const [rows] = await connection.execute(
         "INSERT INTO movimiento (accion, nombre, precio, cantidad, caducidad, id_foraneo) " +

@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    background: linear-gradient(to bottom, #1c80f3, orange);
+    background: radial-gradient(circle, #1c80f3, #0ca935);
     min-height: 100vh;
 
 }

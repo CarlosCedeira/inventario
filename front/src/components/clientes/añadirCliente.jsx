@@ -38,7 +38,7 @@ function AñadirCliente() {
       })
       .then((data) => {
         const { id } = data;
-        const datos = { accion: "añadir", id };
+        const datos = { accion: "nuevo cliente", id };
 
         fetch("http://localhost:3000/movimiento", {
           method: "post",

@@ -68,8 +68,12 @@ tr, td{
     border: 1px solid #000;
 }
 
-thead, tr:nth-child(2n){
+thead, tr{
     background-color: rgb(204, 227, 247);
+}
+
+thead, tr:nth-child(2n){
+    background-color: rgb(155, 185, 211);
 }
 
 button {

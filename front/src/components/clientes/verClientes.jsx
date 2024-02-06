@@ -6,8 +6,9 @@ import EliminarProducto from "../producto/eliminarproducto";
 import EditarCliente from "./editarCliente";
 
 function Clientes() {
-  const [datos, setDatos] = useState([]);
   const { contador, setContador } = useContadorContext();
+  const [datos, setDatos] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:3000/cliente")
@@ -20,9 +21,32 @@ function Clientes() {
       });
   }, [contador]);
 
+  const handleSearchChange = (e) => {
+    if (e.target.value === "") {
+      setContador(contador + 1);
+    }
+    const newSearch = e.target.value;
+    setSearch(newSearch);
+    const filteredData = datos.filter((item) => {
+      return (
+        item.nombre &&
+        item.nombre.toLowerCase().includes(newSearch.toLowerCase())
+      );
+    });
+    setDatos(filteredData);
+  };
+
   return (
     <>
       <AñadirCliente />
+      <p>Buscar cliente:</p>
+      <input
+        type="search"
+        name="search"
+        value={search}
+        onChange={handleSearchChange}
+        placeholder="Escribe un nombre..."
+      />
       {Array.isArray(datos) ? (
         <table>
           <caption>Clientes</caption>
