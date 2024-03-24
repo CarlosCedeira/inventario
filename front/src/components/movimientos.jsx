@@ -7,7 +7,20 @@ function Movimientos() {
 
   useEffect(() => {
     fetch("http://localhost:3000/vermovimientos")
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          switch (response.status) {
+            case 404:
+              throw new Error("Data not found");
+            case 500:
+              throw new Error("Server error");
+            default:
+              throw new Error("Network response was not ok");
+          }
+        }
+
+        response.json();
+      })
       .then((data) => {
         setDatos(data);
       })

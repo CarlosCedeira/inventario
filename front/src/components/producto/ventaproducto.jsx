@@ -44,6 +44,17 @@ function VentaProducto(props) {
       }),
     })
       .then((response) => {
+        if (!response.ok) {
+          switch (response.status) {
+            case 404:
+              throw new Error("Data not found");
+            case 500:
+              throw new Error("Server error");
+            default:
+              throw new Error("Network response was not ok");
+          }
+        }
+
         if (response.ok) {
           fetch("http://localhost:3000/movimiento", {
             method: "post",
