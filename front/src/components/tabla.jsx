@@ -12,7 +12,19 @@ function Productos() {
 
   useEffect(() => {
     fetch("http://localhost:3000")
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          switch (response.status) {
+            case 404:
+              throw new Error("Data not found");
+            case 500:
+              throw new Error("Server error");
+            default:
+              throw new Error("Network response was not ok");
+          }
+        }
+        return response.json();
+      })
       .then((data) => {
         setDatos(data);
         const tipo = document.getElementById("selecttipo");

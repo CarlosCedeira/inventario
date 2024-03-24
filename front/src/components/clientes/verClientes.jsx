@@ -12,12 +12,24 @@ function Clientes() {
 
   useEffect(() => {
     fetch("http://localhost:3000/cliente")
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          switch (response.status) {
+            case 404:
+              throw new Error("Data not found");
+            case 500:
+              throw new Error("Server error");
+            default:
+              throw new Error("Network response was not ok");
+          }
+        }
+        return response.json();
+      })
       .then((data) => {
         setDatos(data);
       })
-      .catch((err) => {
-        console.error("Error al realizar la solicitud:", err);
+      .catch((error) => {
+        console.error("Error al realizar la solicitud:", error);
       });
   }, [contador]);
 
