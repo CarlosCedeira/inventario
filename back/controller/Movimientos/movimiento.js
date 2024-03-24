@@ -5,11 +5,10 @@ const mysql = require("mysql2/promise");
 
 router.post("/movimiento", async (req, res) => {
   let rows;
+  const connection = await mysql.createConnection(dbConfig);
 
   try {
     const { accion, cantidad, id } = req.body;
-
-    const connection = await mysql.createConnection(dbConfig);
 
     //Ruta para las ventas, guarda el numero de produtos vendidos
     if (cantidad) {
@@ -25,12 +24,15 @@ router.post("/movimiento", async (req, res) => {
         [accion, id, id]
       );
     }
-    await connection.end();
 
     res.json(rows);
   } catch (err) {
     console.error("Error al consultar la base de datooos: " + err.message);
     res.status(500).json({ error: "Error al obtener datos de la tabla" });
+  } finally {
+    if (connection && connection.end) {
+      connection.end();
+    }
   }
 });
 
