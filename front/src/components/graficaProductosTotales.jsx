@@ -1,13 +1,7 @@
 import React from "react";
 import { useContadorContext } from "../context";
 
-import {
-  VictoryBar,
-  VictoryChart,
-  VictoryAxis,
-  VictoryLabel,
-  VictoryTheme,
-} from "victory";
+import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme } from "victory";
 
 import "../css/grafica.css";
 
@@ -28,6 +22,7 @@ const ProdutosTotales = () => {
   console.log(nombres);
   return (
     <div className="grafica">
+      <h1>Productos totales</h1>
       <VictoryChart theme={VictoryTheme.material} title="Total de Productos">
         <VictoryBar
           data={cantidades.map((cantidad, index) => ({

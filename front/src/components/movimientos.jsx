@@ -18,8 +18,7 @@ function Movimientos() {
               throw new Error("Network response was not ok");
           }
         }
-
-        response.json();
+        return response.json();
       })
       .then((data) => {
         setDatos(data);

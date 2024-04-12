@@ -4,7 +4,7 @@ const mysql = require("mysql2/promise");
 const dbConfig = require("../../config");
 
 router.get("/vermovimientos", async (req, res) => {
-  const connection = await mysql.createConnection(dbConfig2);
+  const connection = await mysql.createConnection(dbConfig);
 
   try {
     const [rows] = await connection.execute(
