@@ -19,7 +19,6 @@ const ProdutosTotales = () => {
     Math.round(0.75 * maxValue),
     Math.round(maxValue),
   ];
-  console.log(nombres);
   return (
     <div className="grafica">
       <h1>Productos totales</h1>

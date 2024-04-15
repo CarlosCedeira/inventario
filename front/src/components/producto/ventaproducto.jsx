@@ -1,21 +1,38 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useContadorContext } from "../../context";
 
 import "../../css/formularioactualizar.css";
 
 function VentaProducto(props) {
-  const { id, nombre, categoria, precio, cantidad, caducidad, lote } = props;
+  const { nombre, cantidad, lote } = props;
   const { contador, setContador } = useContadorContext();
   const [accion, setAccion] = useState(false);
-  const [formData, setFormData] = useState({
-    id,
-    nombre,
-    categoria,
-    precio,
-    cantidad,
-    caducidad,
-    lote,
-  });
+  const [formData, setFormData] = useState(cantidad);
+  const [clientes, setClientes] = useState({});
+
+  useEffect(() => {
+    fetch("http://localhost:3000/cliente", {})
+      .then((response) => {
+        if (!response.ok) {
+          switch (response.status) {
+            case 404:
+              throw new Error("Data not found");
+            case 500:
+              throw new Error("Server error");
+            default:
+              throw new Error("Network response was not ok");
+          }
+        }
+
+        return response.json();
+      })
+      .then((data) => {
+        setClientes(data);
+      })
+      .catch((error) => {
+        console.error("Error al realizar la solicitud:", error);
+      });
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -26,7 +43,7 @@ function VentaProducto(props) {
     e.preventDefault();
 
     const cantidadResto = cantidad - formData.cantidad;
-    const { id, nombre, categoria, precio, caducidad, lote } = formData;
+    const { id, nombre, categoria, precio, caducidad, lote } = props;
 
     fetch("http://localhost:3000/editar", {
       method: "put",
@@ -84,38 +101,19 @@ function VentaProducto(props) {
       <div id="formulario-editar">
         <p onClick={() => setAccion(false)}>❌</p>
         <form onSubmit={handleSubmit}>
-          <legend>Vender {nombre}</legend>
+          <legend>
+            Vender {nombre} lote {lote}
+          </legend>
           <label>
-            Nombre:
-            <input
-              type="text"
-              name="nombre"
-              value={formData.nombre}
-              onChange={handleInputChange}
-              readOnly
-            />
-          </label>
-          <br />
-          <label>
-            Categoría:
-            <input
-              type="text"
-              name="categoria"
-              value={formData.categoria}
-              onChange={handleInputChange}
-              readOnly
-            />
-          </label>
-          <br />
-          <label>
-            Precio:
-            <input
-              type="number"
-              name="precio"
-              value={formData.precio}
-              onChange={handleInputChange}
-              readOnly
-            />
+            Cliente:
+            <select name="cliente" onChange={handleInputChange}>
+              <option value="">Seleccionar Cliente</option>
+              {clientes.map((cliente) => (
+                <option key={cliente.id} value={cliente.id}>
+                  {cliente.nombre}
+                </option>
+              ))}
+            </select>
           </label>
           <br />
           <label>
@@ -127,29 +125,6 @@ function VentaProducto(props) {
               onChange={handleInputChange}
             />
           </label>
-          <br />
-          <label>
-            Fecha de Caducidad:
-            <input
-              type="date"
-              name="caducidad"
-              value={formData.caducidad}
-              onChange={handleInputChange}
-              readOnly
-            />
-          </label>
-          <br />
-          <label>
-            Lote:
-            <input
-              type="number"
-              name="lote"
-              value={formData.lote}
-              onChange={handleInputChange}
-              readOnly
-            />
-          </label>
-          <br />
           <button type="submit">guardar cambios</button>
         </form>
       </div>
