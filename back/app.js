@@ -9,6 +9,7 @@ const deleteController = require("./controller/Productos/delete");
 
 const movimientoController = require("./controller/Movimientos/movimiento");
 const verMovimientosController = require("./controller/Movimientos/verMovimientos");
+const ventaProducto = require("./controller/Movimientos/ventaProducto");
 
 const cliente = require("./controller/Clientes/getCliente");
 const editarCliente = require("./controller/Clientes/edit");
@@ -28,7 +29,7 @@ app.post("/anadir", añadirController);
 
 app.put("/editar", editarController);
 
-app.put("/venta", movimientoController);
+app.put("/venta", ventaProducto);
 
 app.post("/movimiento", movimientoController);
 

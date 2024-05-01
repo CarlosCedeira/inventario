@@ -8,7 +8,7 @@ function VentaProducto(props) {
   const { contador, setContador } = useContadorContext();
   const [accion, setAccion] = useState(false);
   const [formData, setFormData] = useState(cantidad);
-  const [clientes, setClientes] = useState({});
+  const [totalClientes, setTotalClientes] = useState({});
 
   useEffect(() => {
     fetch("http://localhost:3000/cliente", {})
@@ -27,13 +27,12 @@ function VentaProducto(props) {
         return response.json();
       })
       .then((data) => {
-        setClientes(data);
+        setTotalClientes(data);
       })
       .catch((error) => {
         console.error("Error al realizar la solicitud:", error);
       });
   }, []);
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -73,8 +72,8 @@ function VentaProducto(props) {
         }
 
         if (response.ok) {
-          fetch("http://localhost:3000/movimiento", {
-            method: "post",
+          fetch("http://localhost:3000/venta", {
+            method: "put",
             headers: {
               "content-type": "application/json",
             },
@@ -108,10 +107,8 @@ function VentaProducto(props) {
             Cliente:
             <select name="cliente" onChange={handleInputChange}>
               <option value="">Seleccionar Cliente</option>
-              {clientes.map((cliente) => (
-                <option key={cliente.id} value={cliente.id}>
-                  {cliente.nombre}
-                </option>
+              {totalClientes.map((cliente) => (
+                <option key={cliente.id}>{cliente.nombre}</option>
               ))}
             </select>
           </label>

@@ -3,11 +3,12 @@ const router = express.Router();
 const dbConfig = require("../../config");
 const mysql = require("mysql2/promise");
 
-router.post("/movimiento", async (req, res) => {
+router.put("/venta", async (req, res) => {
   let rows;
   const connection = await mysql.createConnection(dbConfig);
   try {
-    const { accion, cantidad, id } = req.body;
+    const { clientes, accion, cantidad, id } = req.body;
+    console.log(req.body);
 
     //Ruta para las ventas, guarda el numero de produtos vendidos
     if (cantidad) {
