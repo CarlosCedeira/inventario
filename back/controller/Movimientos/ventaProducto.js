@@ -7,7 +7,7 @@ router.put("/venta", async (req, res) => {
   let rows;
   const connection = await mysql.createConnection(dbConfig);
   try {
-    const { clientes, accion, cantidad, id } = req.body;
+    const { cliente, accion, cantidad, id } = req.body;
     console.log(req.body);
 
     //Ruta para las ventas, guarda el numero de produtos vendidos

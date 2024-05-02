@@ -1,8 +1,7 @@
 			
 			-----NEXT STEP-----
 
--Controlar el input del select para enviar al back-end solo la informacion del cliente seleccionado 
-	no de todos como aactualmente pasa, habrá que crear un nuevo estado solo para el cliente seleccionado			
+-		
 			
 			-----FUNCIONALIDADES-----
 

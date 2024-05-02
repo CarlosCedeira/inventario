@@ -9,6 +9,7 @@ function VentaProducto(props) {
   const [accion, setAccion] = useState(false);
   const [formData, setFormData] = useState(cantidad);
   const [totalClientes, setTotalClientes] = useState({});
+  const [clienteSeleccionado, setClienteSeleccionado] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:3000/cliente", {})
@@ -33,10 +34,16 @@ function VentaProducto(props) {
         console.error("Error al realizar la solicitud:", error);
       });
   }, []);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    console.log(e.target);
+    if (name === "cliente") {
+      setClienteSeleccionado(value);
+    }
     setFormData({ ...formData, [name]: value });
   };
+  console.log(clienteSeleccionado);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -81,6 +88,7 @@ function VentaProducto(props) {
               accion: "venta",
               id,
               cantidad: cantidad - cantidadResto,
+              cliente: clienteSeleccionado,
             }),
           }).then((response) => {
             if (response.ok) {
