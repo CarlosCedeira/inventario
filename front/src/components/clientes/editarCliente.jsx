@@ -45,7 +45,7 @@ function EditarCliente(props) {
         if (response.ok) {
           const datos = { accion: "editar", id };
 
-          fetch("http://localhost:3000/movimiento", {
+          fetch("http://localhost:3000/movimientos", {
             method: "post",
             headers: {
               "content-type": "application/json",

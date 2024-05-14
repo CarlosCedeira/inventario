@@ -25,7 +25,7 @@ function EditarProducto(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch(`http://localhost:3000/editar`, {
+    fetch(`http://localhost:3000/editarProducto`, {
       method: "put",
       headers: {
         "Content-Type": "application/json",
@@ -47,7 +47,7 @@ function EditarProducto(props) {
         if (response.ok) {
           const datos = { accion: "editar", id };
 
-          fetch("http://localhost:3000/movimiento", {
+          fetch("http://localhost:3000/movimientos", {
             method: "post",
             headers: {
               "content-type": "application/json",

@@ -12,7 +12,7 @@ function VentaProducto(props) {
   const [clienteSeleccionado, setClienteSeleccionado] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:3000/cliente", {})
+    fetch("http://localhost:3000/clientes", {})
       .then((response) => {
         if (!response.ok) {
           switch (response.status) {
@@ -37,21 +37,19 @@ function VentaProducto(props) {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    console.log(e.target);
     if (name === "cliente") {
       setClienteSeleccionado(value);
     }
     setFormData({ ...formData, [name]: value });
   };
   console.log(clienteSeleccionado);
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const cantidadResto = cantidad - formData.cantidad;
     const { id, nombre, categoria, precio, caducidad, lote } = props;
 
-    fetch("http://localhost:3000/editar", {
+    fetch("http://localhost:3000/editarProducto", {
       method: "put",
       headers: {
         "Content-Type": "application/json",
@@ -77,18 +75,16 @@ function VentaProducto(props) {
               throw new Error("Network response was not ok");
           }
         }
-
         if (response.ok) {
-          fetch("http://localhost:3000/venta", {
-            method: "put",
+          fetch("http://localhost:3000/anadirventa", {
+            method: "post",
             headers: {
               "content-type": "application/json",
             },
             body: JSON.stringify({
-              accion: "venta",
-              id,
+              idProducto: id,
               cantidad: cantidad - cantidadResto,
-              cliente: clienteSeleccionado,
+              idCliente: +clienteSeleccionado,
             }),
           }).then((response) => {
             if (response.ok) {
@@ -116,7 +112,9 @@ function VentaProducto(props) {
             <select name="cliente" onChange={handleInputChange}>
               <option value="">Seleccionar Cliente</option>
               {totalClientes.map((cliente) => (
-                <option key={cliente.id}>{cliente.nombre}</option>
+                <option key={cliente.id} value={cliente.id}>
+                  {cliente.nombre}
+                </option>
               ))}
             </select>
           </label>

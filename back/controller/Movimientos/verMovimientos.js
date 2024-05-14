@@ -3,7 +3,7 @@ const router = express.Router();
 const mysql = require("mysql2/promise");
 const dbConfig = require("../../config");
 
-router.get("/vermovimientos", async (req, res) => {
+router.get("/movimientos", async (req, res) => {
   const connection = await mysql.createConnection(dbConfig);
 
   try {

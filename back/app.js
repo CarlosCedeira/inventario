@@ -19,29 +19,29 @@ const anadirCliente = require("./controller/Clientes/postCliente");
 const app = express();
 app.use(cors());
 
-app.get("/", getController);
+app.get("/productos", getController);
 
-app.delete("/eliminar/:id", deleteController);
+app.delete("/eliminarProducto/:id", deleteController);
 
 app.use(express.json());
 
-app.post("/anadir", añadirController);
+app.post("/anadirProducto", añadirController);
 
-app.put("/editar", editarController);
+app.put("/editarProducto", editarController);
 
-app.put("/venta", ventaProducto);
+app.get("/movimientos", verMovimientosController);
 
-app.post("/movimiento", movimientoController);
+app.post("/añadirmovimiento", movimientoController);
 
-app.get("/vermovimientos", verMovimientosController);
-
-app.get("/cliente", cliente);
+app.get("/clientes", cliente);
 
 app.post("/anadirCliente", anadirCliente);
 
 app.put("/editarCliente", editarCliente);
 
 app.delete("/eliminarCliente/:id", eliminarCliente);
+
+app.post("/anadirventa", ventaProducto);
 
 app.listen(process.env.port, () => {
   console.log(

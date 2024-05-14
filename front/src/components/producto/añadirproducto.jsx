@@ -24,7 +24,7 @@ function AñadirProducto() {
     e.preventDefault();
     setAccion(false);
 
-    fetch("http://localhost:3000/anadir", {
+    fetch("http://localhost:3000/anadirProducto", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -42,7 +42,7 @@ function AñadirProducto() {
         const { id } = data;
         const datos = { accion: "añadir", id };
 
-        fetch("http://localhost:3000/movimiento", {
+        fetch("http://localhost:3000/movimientos", {
           method: "post",
           headers: {
             "content-type": "application/json",

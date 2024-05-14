@@ -11,7 +11,7 @@ function Clientes() {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:3000/cliente")
+    fetch("http://localhost:3000/clientes")
       .then((response) => {
         if (!response.ok) {
           switch (response.status) {

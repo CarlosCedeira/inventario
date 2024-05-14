@@ -3,27 +3,32 @@ const router = express.Router();
 const dbConfig = require("../../config");
 const mysql = require("mysql2/promise");
 
-router.put("/venta", async (req, res) => {
+router.post("/anadirventa", async (req, res) => {
   let rows;
   const connection = await mysql.createConnection(dbConfig);
   try {
-    const { cliente, accion, cantidad, id } = req.body;
+    const { idProducto, cantidad, idCliente } = req.body;
     console.log(req.body);
 
-    //Ruta para las ventas, guarda el numero de produtos vendidos
-    if (cantidad) {
-      const [rows] = await connection.execute(
-        "INSERT INTO movimiento (accion, nombre, precio, cantidad, caducidad, id_foraneo) " +
-          "SELECT ?, nombre_producto, precio, ?, caducidad, ? FROM almacen.producto WHERE id = ?",
-        [accion, cantidad, id, id]
-      );
-    } else {
-      const [rows] = await connection.execute(
-        "INSERT INTO movimiento (accion, nombre, precio, cantidad, caducidad, id_foraneo) " +
-          "SELECT ?, nombre_producto, precio, cantidad, caducidad, ? FROM almacen.producto WHERE id = ?",
-        [accion, id, id]
-      );
-    }
+    const [rows] = await connection.execute(
+      `
+  INSERT INTO ventas (id_producto, id_cliente, fecha_venta, cantidad_vendida, precio_unitario, total)
+  SELECT 
+      p.id, 
+      c.id, 
+      CURDATE(),  -- o la fecha de la venta
+      ?,          -- cantidad vendida como parámetro
+      p.precio, 
+      p.precio * ?  -- total calculado como precio_unitario * cantidad_vendida
+  FROM 
+      producto p, 
+      cliente c
+  WHERE 
+      p.id = ?  -- ID del producto vendido como parámetro
+      AND c.id = ?;  -- ID del cliente que compra como parámetro
+`,
+      [cantidad, cantidad, idProducto, idCliente]
+    );
 
     res.json(rows);
   } catch (err) {

@@ -51,7 +51,7 @@ function AñadirCliente() {
         const { id } = data;
         const datos = { accion: "nuevo cliente", id };
 
-        fetch("http://localhost:3000/movimiento", {
+        fetch("http://localhost:3000/movimientos", {
           method: "post",
           headers: {
             "content-type": "application/json",
