@@ -6,7 +6,7 @@ function Movimientos() {
   const { contador } = useContadorContext();
 
   useEffect(() => {
-    fetch("http://localhost:3000/vermovimientos")
+    fetch("http://localhost:3000/movements")
       .then((response) => {
         if (!response.ok) {
           switch (response.status) {

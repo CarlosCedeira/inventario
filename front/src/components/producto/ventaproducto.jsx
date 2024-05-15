@@ -12,7 +12,7 @@ function VentaProducto(props) {
   const [clienteSeleccionado, setClienteSeleccionado] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:3000/clientes", {})
+    fetch("http://localhost:3000/clients", {})
       .then((response) => {
         if (!response.ok) {
           switch (response.status) {
@@ -42,14 +42,13 @@ function VentaProducto(props) {
     }
     setFormData({ ...formData, [name]: value });
   };
-  console.log(clienteSeleccionado);
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const cantidadResto = cantidad - formData.cantidad;
     const { id, nombre, categoria, precio, caducidad, lote } = props;
 
-    fetch("http://localhost:3000/editarProducto", {
+    fetch("http://localhost:3000/editProduct", {
       method: "put",
       headers: {
         "Content-Type": "application/json",
@@ -76,7 +75,7 @@ function VentaProducto(props) {
           }
         }
         if (response.ok) {
-          fetch("http://localhost:3000/anadirventa", {
+          fetch("http://localhost:3000/addSelf", {
             method: "post",
             headers: {
               "content-type": "application/json",

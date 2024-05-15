@@ -23,7 +23,7 @@ function EditarCliente(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch(`http://localhost:3000/editarCliente`, {
+    fetch(`http://localhost:3000/editClient`, {
       method: "put",
       headers: {
         "Content-Type": "application/json",
@@ -45,7 +45,7 @@ function EditarCliente(props) {
         if (response.ok) {
           const datos = { accion: "editar", id };
 
-          fetch("http://localhost:3000/movimientos", {
+          fetch("http://localhost:3000/addMovement", {
             method: "post",
             headers: {
               "content-type": "application/json",

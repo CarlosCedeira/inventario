@@ -9,7 +9,7 @@ function EliminarProducto(props) {
     );
 
     if (confirmar) {
-      fetch(`http://localhost:3000/eliminarProducto/${props.id}`, {
+      fetch(`http://localhost:3000/deleteProduct/${props.id}`, {
         method: "DELETE",
       })
         .then((response) => {

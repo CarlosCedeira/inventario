@@ -2,49 +2,42 @@ const express = require("express");
 const mysql = require("mysql2/promise");
 const cors = require("cors");
 
-const getController = require("./getController");
-const editarController = require("./controller/Productos/editar");
-const añadirController = require("./controller/Productos/añadir");
-const deleteController = require("./controller/Productos/delete");
+const getProduct = require("./controller/Productos/getController");
+const postProduct = require("./controller/Productos/añadir");
+const putProduct = require("./controller/Productos/editar");
+const deleteProduct = require("./controller/Productos/delete");
 
-const movimientoController = require("./controller/Movimientos/movimiento");
-const verMovimientosController = require("./controller/Movimientos/verMovimientos");
-const ventaProducto = require("./controller/Movimientos/ventaProducto");
+const getMovement = require("./controller/Movimientos/verMovimientos");
+const postMovement = require("./controller/Movimientos/movimiento");
 
-const cliente = require("./controller/Clientes/getCliente");
-const editarCliente = require("./controller/Clientes/edit");
-const eliminarCliente = require("./controller/Clientes/delete");
-const anadirCliente = require("./controller/Clientes/postCliente");
+const getClient = require("./controller/Clientes/getCliente");
+const postClient = require("./controller/Clientes/postCliente");
+const putClient = require("./controller/Clientes/edit");
+const deleteClient = require("./controller/Clientes/delete");
+
+const getSelfs = require("./controller/Ventas/getSelfs");
+const ventaProducto = require("./controller/Ventas/ventaProducto");
 
 const app = express();
 app.use(cors());
-
-app.get("/productos", getController);
-
-app.delete("/eliminarProducto/:id", deleteController);
-
 app.use(express.json());
 
-app.post("/anadirProducto", añadirController);
+app.get("/products", getProduct);
+app.delete("/deleteProduct/:id", deleteProduct);
+app.post("/addProduct", postProduct);
+app.put("/editProduct", putProduct);
 
-app.put("/editarProducto", editarController);
+app.get("/movements", getMovement);
+app.post("/addMovement", postMovement);
 
-app.get("/movimientos", verMovimientosController);
+app.get("/clients", getClient);
+app.post("/addClient", postClient);
+app.put("/editClient", putClient);
+app.delete("/deleteClient/:id", deleteClient);
 
-app.post("/añadirmovimiento", movimientoController);
-
-app.get("/clientes", cliente);
-
-app.post("/anadirCliente", anadirCliente);
-
-app.put("/editarCliente", editarCliente);
-
-app.delete("/eliminarCliente/:id", eliminarCliente);
-
-app.post("/anadirventa", ventaProducto);
+app.get("/selfs", getSelfs);
+app.post("/addSelf", ventaProducto);
 
 app.listen(process.env.port, () => {
-  console.log(
-    `Servidor Express en funcionamiento en el puerto ${process.env.port}`
-  );
+  console.log(`Server working in port ${process.env.port}`);
 });

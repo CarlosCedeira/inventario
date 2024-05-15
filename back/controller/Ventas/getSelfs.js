@@ -3,13 +3,11 @@ const router = express.Router();
 const mysql = require("mysql2/promise");
 const dbConfig = require("../../config");
 
-router.get("/movements", async (req, res) => {
+router.get("/selfs", async (req, res) => {
   const connection = await mysql.createConnection(dbConfig);
 
   try {
-    const [rows] = await connection.execute(
-      "SELECT * FROM movimiento ORDER BY id DESC"
-    );
+    const [rows] = await connection.execute("SELECT * FROM ventas");
 
     res.json(rows);
   } catch (e) {

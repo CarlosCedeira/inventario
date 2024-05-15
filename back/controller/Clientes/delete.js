@@ -3,7 +3,7 @@ const router = express.Router();
 const dbConfig = require("../../config");
 const mysql = require("mysql2/promise");
 
-router.delete("/eliminarCliente/:id", async (req, res) => {
+router.delete("/delteClient/:id", async (req, res) => {
   const connection = await mysql.createConnection(dbConfig);
 
   try {

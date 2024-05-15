@@ -3,7 +3,7 @@ const router = express.Router();
 const dbConfig = require("../../config");
 const mysql = require("mysql2/promise");
 
-router.post("/anadirventa", async (req, res) => {
+router.post("/addSelf", async (req, res) => {
   let rows;
   const connection = await mysql.createConnection(dbConfig);
   try {

@@ -4,7 +4,7 @@ const dbConfig = require("../../config");
 
 const mysql = require("mysql2/promise");
 
-router.get("/clientes", async (req, res) => {
+router.get("/clients", async (req, res) => {
   const connection = await mysql.createConnection(dbConfig);
 
   try {

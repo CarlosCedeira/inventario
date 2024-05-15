@@ -11,7 +11,7 @@ function Productos() {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:3000")
+    fetch("http://localhost:3000/products")
       .then((response) => {
         if (!response.ok) {
           switch (response.status) {
@@ -116,13 +116,12 @@ function Productos() {
               <option value="caducidad">caducidad</option>
             </select>
 
-            <p>Buscar producto:</p>
             <input
               type="search"
               name="search"
               value={search}
               onChange={handleSearchChange}
-              placeholder="Escribe un nombre..."
+              placeholder="Search..."
             />
           </div>
 

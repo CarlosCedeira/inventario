@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import Productos from "./components/tabla";
 import Movimientos from "./components/movimientos";
 import ProductosTotales from "./components/graficaProductosTotales";
-import Clientes from "./components/clientes/verClientes";
+import Clientes from "./components/Clientes/verClientes";
+import Selfs from "./components/ventas/verventas";
 
 import "./css/app.css";
 
@@ -69,6 +70,7 @@ function App() {
         {formData.movimientos ? <Movimientos /> : null}
         {formData.datos ? <ProductosTotales /> : null}
         {formData.clientes ? <Clientes /> : null}
+        <Selfs />
       </main>
     </>
   );
