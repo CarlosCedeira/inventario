@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useContadorContext } from "../../context";
 
 import PostClient from "./postClient";
-import DeleteClient from "../deleteComponentt";
+import DeleteClient from "../deleteComponent";
 import EditClient from "./putClient";
 
 function Clientes() {

@@ -7,7 +7,7 @@ router.get("/selfs", async (req, res) => {
   const connection = await mysql.createConnection(dbConfig);
 
   try {
-    const [rows] = await connection.execute("SELECT * FROM ventas");
+    const [rows] = await connection.execute("SELECT * FROM sales");
 
     res.json(rows);
   } catch (e) {

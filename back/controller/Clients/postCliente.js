@@ -8,6 +8,8 @@ router.post("/addClient", async (req, res) => {
 
   try {
     const { nombre, direccion, correo, telefono } = req.body;
+    console.log("req.paranms postclcient");
+    console.log(nombre, direccion, correo, telefono);
     const [rows] = await connection.execute(
       "INSERT INTO cliente (nombre, direccion, correo, telefono) VALUES (?, ?, ?, ?)",
       [nombre, direccion, correo, telefono]

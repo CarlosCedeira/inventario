@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useContadorContext } from "../../context";
 
-import DeleteProduct from "../products/deleteProduct";
+import DeleteSelf from "../deleteComponent";
 import EditClient from "../Clients/putClient";
 
 function Selfs() {
@@ -63,19 +63,19 @@ function Selfs() {
           <caption>Ventas</caption>
           <thead>
             <tr>
-              <th>Fecha</th>
-              <th>Cantidad</th>
-              <th>Precio</th>
+              <th>date</th>
+              <th>Quantity sold</th>
+              <th>Price</th>
               <th>Total</th>
-              <th>Aciones</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             {datos.map((item) => (
               <tr key={item.id_venta}>
-                <td>{item.fecha_venta}</td>
-                <td>{item.cantidad_vendida}</td>
-                <td>{item.precio_unitario}</td>
+                <td>{item.date}</td>
+                <td>{item.quantity_sold}</td>
+                <td>{item.unit_price}</td>
                 <td>{item.total}</td>
                 <td>
                   <EditClient
@@ -85,7 +85,7 @@ function Selfs() {
                     correo={item.correo}
                     telefono={item.telefono}
                   />
-                  <DeleteProduct id={item.id} ruta="eliminarCliente" />
+                  <DeleteSelf id={item.id} ruta="deleteSale" />
                 </td>
               </tr>
             ))}

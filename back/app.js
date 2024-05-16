@@ -17,6 +17,7 @@ const deleteClient = require("./controller/Clients/deleteClient");
 
 const getSelfs = require("./controller/Selfs/getSelfs");
 const postSelf = require("./controller/Selfs/postSelf");
+const deleteSale = require("./controller/Selfs/deleteSelf");
 
 const app = express();
 app.use(cors());
@@ -37,6 +38,7 @@ app.delete("/deleteClient/:id", deleteClient);
 
 app.get("/selfs", getSelfs);
 app.post("/addSelf", postSelf);
+app.delete("/deleteSale/:id", deleteSale);
 
 app.listen(process.env.port, () => {
   console.log(`Server working in port ${process.env.port}`);

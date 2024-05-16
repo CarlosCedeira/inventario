@@ -8,18 +8,18 @@ router.post("/addSelf", async (req, res) => {
   const connection = await mysql.createConnection(dbConfig);
   try {
     const { idProducto, cantidad, idCliente } = req.body;
-    console.log(req.body);
+    console.log("req.body");
+    console.log(idProducto, cantidad, idCliente);
 
     const [rows] = await connection.execute(
       `
-  INSERT INTO ventas (id_producto, id_cliente, fecha_venta, cantidad_vendida, precio_unitario, total)
+  INSERT INTO sales (product_id, client_id, date, quantity_sold, unit_price)
   SELECT 
       p.id, 
       c.id, 
       CURDATE(),  -- o la fecha de la venta
       ?,          -- cantidad vendida como parámetro
-      p.precio, 
-      p.precio * ?  -- total calculado como precio_unitario * cantidad_vendida
+      p.precio 
   FROM 
       producto p, 
       cliente c
@@ -27,7 +27,7 @@ router.post("/addSelf", async (req, res) => {
       p.id = ?  -- ID del producto vendido como parámetro
       AND c.id = ?;  -- ID del cliente que compra como parámetro
 `,
-      [cantidad, cantidad, idProducto, idCliente]
+      [cantidad, idProducto, idCliente]
     );
 
     res.json(rows);

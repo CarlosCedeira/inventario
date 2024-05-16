@@ -2,13 +2,14 @@ import { useContadorContext } from "../context";
 
 function EliminarProducto(props) {
   const { contador, setContador } = useContadorContext();
-  console.log(props);
   const eliminar = () => {
     const confirmar = window.confirm(
       `¿Estás seguro de que deseas eliminar el producto?`
     );
 
     if (confirmar) {
+      console.log(props.ruta, props.id);
+
       fetch(`http://localhost:3000/${props.ruta}/${props.id}`, {
         method: "DELETE",
       })

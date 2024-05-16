@@ -1,4 +1,4 @@
-import DeleteProduct from "./deleteComponentt";
+import DeleteProduct from "./deleteComponent";
 import EditProduct from "./products/putProdcut";
 import PostSelf from "./selfs/postSelf";
 
@@ -38,7 +38,7 @@ function FilaProducto({ item }) {
           lote={item.lote}
           caducidad={item.caducidad.slice(0, 10)}
         />
-        <DeleteProduct id={item.id} ruta="deleteProduct" />
+        <DeleteProduct id={item.id} ruta={"deleteProduct"} />
       </td>
     </tr>
   );

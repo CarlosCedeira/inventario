@@ -4,6 +4,7 @@ import { useContadorContext } from "../../context";
 import "../../css/formularioañadir.css";
 
 function AñadirCliente() {
+  const { contador, setContador } = useContadorContext();
   const [formData, setFormData] = useState({
     nombre: "",
     direccion: "",
@@ -11,7 +12,6 @@ function AñadirCliente() {
     telefono: "",
   });
   const [accion, setAccion] = useState(false);
-  const { contador, setContador } = useContadorContext();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

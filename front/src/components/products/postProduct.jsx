@@ -42,7 +42,7 @@ function AñadirProducto() {
         const { id } = data;
         const datos = { accion: "añadir", id };
 
-        fetch("http://localhost:3000/movements", {
+        fetch("http://localhost:3000/addMovement", {
           method: "post",
           headers: {
             "content-type": "application/json",
