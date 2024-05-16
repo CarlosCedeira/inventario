@@ -1,6 +1,6 @@
-import EliminarProducto from "./producto/eliminarproducto";
-import EditarProducto from "./producto/editarproducto";
-import VentaProducto from "./producto/VentaProducto";
+import DeleteProduct from "./deleteComponentt";
+import EditProduct from "./products/putProdcut";
+import PostSelf from "./selfs/postSelf";
 
 function FilaProducto({ item }) {
   let filaStyle = {};
@@ -20,7 +20,7 @@ function FilaProducto({ item }) {
       <td>{item.lote}</td>
       <td>{item.caducidad.slice(0, 10).split("-").reverse().join("-")}</td>
       <td>
-        <VentaProducto
+        <PostSelf
           id={item.id}
           nombre={item.nombre_producto}
           categoria={item.categoria}
@@ -29,7 +29,7 @@ function FilaProducto({ item }) {
           lote={item.lote}
           caducidad={item.caducidad.slice(0, 10)}
         />
-        <EditarProducto
+        <EditProduct
           id={item.id}
           nombre={item.nombre_producto}
           categoria={item.categoria}
@@ -38,7 +38,7 @@ function FilaProducto({ item }) {
           lote={item.lote}
           caducidad={item.caducidad.slice(0, 10)}
         />
-        <EliminarProducto id={item.id} />
+        <DeleteProduct id={item.id} ruta="deleteProduct" />
       </td>
     </tr>
   );

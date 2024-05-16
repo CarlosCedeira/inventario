@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useContadorContext } from "../context";
 
 import FilaProducto from "./filatabla";
-import AñadirProducto from "./producto/añadirproducto";
+import PostProduct from "./products/postProduct";
 
 import "../css/Tabla.css";
 
@@ -101,7 +101,7 @@ function Productos() {
     <>
       {Array.isArray(datos) ? (
         <>
-          <AñadirProducto />
+          <PostProduct />
           <div className="filtradodedatos">
             <p>Ordenar por</p>
             <select id="selectorden" onChange={tipoControler}>

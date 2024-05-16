@@ -2,21 +2,21 @@ const express = require("express");
 const mysql = require("mysql2/promise");
 const cors = require("cors");
 
-const getProduct = require("./controller/Productos/getController");
-const postProduct = require("./controller/Productos/añadir");
-const putProduct = require("./controller/Productos/editar");
-const deleteProduct = require("./controller/Productos/delete");
+const getProduct = require("./controller/Products/getProduct");
+const postProduct = require("./controller/Products/postProduct");
+const putProduct = require("./controller/Products/putProduct");
+const deleteProduct = require("./controller/Products/deleteProduct");
 
-const getMovement = require("./controller/Movimientos/verMovimientos");
-const postMovement = require("./controller/Movimientos/movimiento");
+const getMovement = require("./controller/Movements/getMovements");
+const postMovement = require("./controller/Movements/postMovement");
 
-const getClient = require("./controller/Clientes/getCliente");
-const postClient = require("./controller/Clientes/postCliente");
-const putClient = require("./controller/Clientes/edit");
-const deleteClient = require("./controller/Clientes/delete");
+const getClient = require("./controller/Clients/getCliente");
+const postClient = require("./controller/Clients/postCliente");
+const putClient = require("./controller/Clients/putClient");
+const deleteClient = require("./controller/Clients/deleteClient");
 
-const getSelfs = require("./controller/Ventas/getSelfs");
-const ventaProducto = require("./controller/Ventas/ventaProducto");
+const getSelfs = require("./controller/Selfs/getSelfs");
+const postSelf = require("./controller/Selfs/postSelf");
 
 const app = express();
 app.use(cors());
@@ -36,7 +36,7 @@ app.put("/editClient", putClient);
 app.delete("/deleteClient/:id", deleteClient);
 
 app.get("/selfs", getSelfs);
-app.post("/addSelf", ventaProducto);
+app.post("/addSelf", postSelf);
 
 app.listen(process.env.port, () => {
   console.log(`Server working in port ${process.env.port}`);

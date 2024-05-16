@@ -8,6 +8,7 @@ router.delete("/deleteProduct/:id", async (req, res) => {
 
   try {
     const { id } = req.params;
+    console.log("req params", req.params);
 
     await connection.execute("DELETE FROM movimiento WHERE id_foraneo = ?", [
       id,

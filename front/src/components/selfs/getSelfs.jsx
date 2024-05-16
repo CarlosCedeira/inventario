@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { useContadorContext } from "../../context";
 
-//import AñadirCliente from "./añadirCliente";
-import EliminarProducto from "../producto/eliminarproducto";
-import EditarCliente from "../Clientes/editarCliente";
+import DeleteProduct from "../products/deleteProduct";
+import EditClient from "../Clients/putClient";
 
 function Selfs() {
   const { contador, setContador } = useContadorContext();
@@ -79,14 +78,14 @@ function Selfs() {
                 <td>{item.precio_unitario}</td>
                 <td>{item.total}</td>
                 <td>
-                  <EditarCliente
+                  <EditClient
                     id={item.id}
                     nombre={item.nombre}
                     direccion={item.direccion}
                     correo={item.correo}
                     telefono={item.telefono}
                   />
-                  <EliminarProducto id={item.id} ruta="eliminarCliente" />
+                  <DeleteProduct id={item.id} ruta="eliminarCliente" />
                 </td>
               </tr>
             ))}

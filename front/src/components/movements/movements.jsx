@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useContadorContext } from "../context";
+import { useContadorContext } from "../../context";
 
 function Movimientos() {
   const [datos, setDatos] = useState([]);

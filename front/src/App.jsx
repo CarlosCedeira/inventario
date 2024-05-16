@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-import Productos from "./components/tabla";
-import Movimientos from "./components/movimientos";
-import ProductosTotales from "./components/graficaProductosTotales";
-import Clientes from "./components/Clientes/verClientes";
-import Selfs from "./components/ventas/verventas";
+import Products from "./components/table";
+import Movements from "./components/movements/movements";
+import Grafica from "./components/graficas/graficaProductosTotales";
+import Clients from "./components//Clients/getClients";
+import Selfs from "./components//selfs/getSelfs";
 
 import "./css/app.css";
 
@@ -66,10 +66,10 @@ function App() {
         </nav>
       </header>
       <main>
-        {formData.inventario ? <Productos /> : null}
-        {formData.movimientos ? <Movimientos /> : null}
-        {formData.datos ? <ProductosTotales /> : null}
-        {formData.clientes ? <Clientes /> : null}
+        {formData.inventario ? <Products /> : null}
+        {formData.movimientos ? <Movements /> : null}
+        {formData.datos ? <Grafica /> : null}
+        {formData.clientes ? <Clients /> : null}
         <Selfs />
       </main>
     </>

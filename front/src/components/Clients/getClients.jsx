@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useContadorContext } from "../../context";
 
-import AñadirCliente from "./añadirCliente";
-import EliminarProducto from "../producto/eliminarproducto";
-import EditarCliente from "./editarCliente";
+import PostClient from "./postClient";
+import DeleteClient from "../deleteComponentt";
+import EditClient from "./putClient";
 
 function Clientes() {
   const { contador, setContador } = useContadorContext();
@@ -50,7 +50,7 @@ function Clientes() {
 
   return (
     <>
-      <AñadirCliente />
+      <PostClient />
       <p>Buscar cliente:</p>
       <input
         type="search"
@@ -79,14 +79,14 @@ function Clientes() {
                 <td>{item.correo}</td>
                 <td>{item.telefono}</td>
                 <td>
-                  <EditarCliente
+                  <EditClient
                     id={item.id}
                     nombre={item.nombre}
                     direccion={item.direccion}
                     correo={item.correo}
                     telefono={item.telefono}
                   />
-                  <EliminarProducto id={item.id} ruta="eliminarCliente" />
+                  <DeleteClient id={item.id} ruta="deleteClient" />
                 </td>
               </tr>
             ))}

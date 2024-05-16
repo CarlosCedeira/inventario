@@ -1,9 +1,9 @@
 import React from "react";
-import { useContadorContext } from "../context";
+import { useContadorContext } from "../../context";
 
 import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme } from "victory";
 
-import "../css/grafica.css";
+import "../../css/grafica.css";
 
 const ProdutosTotales = () => {
   const { datos } = useContadorContext();
