@@ -64,11 +64,14 @@ function Clientes() {
           <caption>Clientes</caption>
           <thead>
             <tr>
-              <th>Nombre</th>
-              <th>Direccion</th>
-              <th>Correo</th>
-              <th>Telefono</th>
-              <th>Acciones</th>
+              <th>1</th>
+              <th>2</th>
+              <th>3</th>
+              <th>4</th>
+              <th>5</th>
+              <th>6</th>
+              <th>7</th>
+              <th>8</th>
             </tr>
           </thead>
           <tbody>

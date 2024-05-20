@@ -7,7 +7,7 @@ import EditClient from "../Clients/putClient";
 function Selfs() {
   const { contador, setContador } = useContadorContext();
   const [datos, setDatos] = useState([]);
-  //const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:3000/selfs")
@@ -49,7 +49,6 @@ function Selfs() {
 
   return (
     <>
-      {/*<AñadirCliente />
       <p>Buscar cliente:</p>
       <input
         type="search"
@@ -57,7 +56,7 @@ function Selfs() {
         value={search}
         onChange={handleSearchChange}
         placeholder="Escribe un nombre..."
-      /> */}
+      />
       {Array.isArray(datos) ? (
         <table>
           <caption>Ventas</caption>

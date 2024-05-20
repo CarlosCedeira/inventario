@@ -66,10 +66,10 @@ function App() {
         </nav>
       </header>
       <main>
-        {formData.inventario ? <Products /> : null}
+        {formData.inventario ? <Products ruta="products" /> : null}
         {formData.movimientos ? <Movements /> : null}
         {formData.datos ? <Grafica /> : null}
-        {formData.clientes ? <Clients /> : null}
+        {formData.clientes ? <Products ruta="clients" /> : null}
         <Selfs />
       </main>
     </>

@@ -2,7 +2,8 @@ import DeleteProduct from "./deleteComponent";
 import EditProduct from "./products/putProdcut";
 import PostSelf from "./selfs/postSelf";
 
-function FilaProducto({ item }) {
+function FilaProducto(props) {
+  const { item, columna, ruta } = props;
   let filaStyle = {};
 
   if (item.cercano_caducidad === 2) {
@@ -12,34 +13,18 @@ function FilaProducto({ item }) {
   }
 
   return (
-    <tr key={item.id} style={filaStyle}>
-      <td>{item.nombre_producto}</td>
-      <td>{item.categoria}</td>
-      <td>{item.precio}€</td>
-      <td>{item.cantidad}</td>
-      <td>{item.lote}</td>
-      <td>{item.caducidad.slice(0, 10).split("-").reverse().join("-")}</td>
-      <td>
-        <PostSelf
-          id={item.id}
-          nombre={item.nombre_producto}
-          categoria={item.categoria}
-          precio={item.precio}
-          cantidad={item.cantidad}
-          lote={item.lote}
-          caducidad={item.caducidad.slice(0, 10)}
-        />
-        <EditProduct
-          id={item.id}
-          nombre={item.nombre_producto}
-          categoria={item.categoria}
-          precio={item.precio}
-          cantidad={item.cantidad}
-          lote={item.lote}
-          caducidad={item.caducidad.slice(0, 10)}
-        />
-        <DeleteProduct id={item.id} ruta={"deleteProduct"} />
-      </td>
+    <tr>
+      {<td>{item[columna[0]]}</td>}
+      {<td>{item[columna[1]]}</td>}
+      {<td>{item[columna[2]]}</td>}
+      {<td>{item[columna[3]]}</td>}
+      {<td>{item[columna[4]]}</td>}
+      {ruta === "products" ? <td>{item[columna[5]]}</td> : null}
+      {ruta === "products" ? <td>{item[columna[6]]}</td> : null}
+      {ruta === "products" ? <td>{item[columna[7]]}</td> : null}
+      {<PostSelf />}
+      {<EditProduct />}
+      {<DeleteProduct />}
     </tr>
   );
 }

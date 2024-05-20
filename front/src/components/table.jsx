@@ -6,12 +6,13 @@ import PostProduct from "./products/postProduct";
 
 import "../css/Tabla.css";
 
-function Productos() {
+function Productos(props) {
   const { datos, setDatos, contador, setContador } = useContadorContext();
   const [search, setSearch] = useState("");
+  const [columna, setColumna] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/products")
+    fetch(`http://localhost:3000/${props.ruta}`)
       .then((response) => {
         if (!response.ok) {
           switch (response.status) {
@@ -26,7 +27,9 @@ function Productos() {
         return response.json();
       })
       .then((data) => {
+        const nombresColumna = Object.keys(data[0]);
         setDatos(data);
+        setColumna(nombresColumna);
         const tipo = document.getElementById("selecttipo");
         tipo.value = "predefinido";
       })
@@ -124,23 +127,22 @@ function Productos() {
               placeholder="Search..."
             />
           </div>
-
           <table>
-            <caption>Inventario</caption>
+            <caption>{props.ruta}</caption>
             <thead>
-              <tr>
-                <th>Nombre</th>
-                <th>Categoria</th>
-                <th>Precio</th>
-                <th>Cantidad</th>
-                <th>Lote</th>
-                <th>Fecha de caducidad</th>
-                <th>Aciones</th>
-              </tr>
+              {columna.map((item, i) => (
+                <th key={i}>{item}</th>
+              ))}
+              <th>Acciones</th>
             </thead>
             <tbody>
               {datos.map((item) => (
-                <FilaProducto key={item.id} item={item} />
+                <FilaProducto
+                  key={item.id}
+                  item={item}
+                  columna={columna}
+                  ruta={props.ruta}
+                />
               ))}
             </tbody>
           </table>
