@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 
-import Products from "./components/table";
+import RenderClientsProducts from "./components/renderClientsProducts";
 import Movements from "./components/movements/movements";
 import Grafica from "./components/graficas/graficaProductosTotales";
-import Clients from "./components//Clients/getClients";
 import Selfs from "./components//selfs/getSelfs";
 
 import "./css/app.css";
@@ -66,10 +65,12 @@ function App() {
         </nav>
       </header>
       <main>
-        {formData.inventario ? <Products ruta="products" /> : null}
+        {formData.inventario ? (
+          <RenderClientsProducts ruta="getProducts" />
+        ) : null}
         {formData.movimientos ? <Movements /> : null}
         {formData.datos ? <Grafica /> : null}
-        {formData.clientes ? <Products ruta="clients" /> : null}
+        {formData.clientes ? <RenderClientsProducts ruta="getClients" /> : null}
         <Selfs />
       </main>
     </>

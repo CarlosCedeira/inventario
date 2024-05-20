@@ -8,7 +8,6 @@ router.delete("/:ruta/:id", async (req, res) => {
 
   try {
     const { ruta, id } = req.params;
-    console.log(req.params);
     let result;
     switch (ruta) {
       case "deleteSale":
