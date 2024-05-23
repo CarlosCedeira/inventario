@@ -130,19 +130,20 @@ function Productos(props) {
           <table>
             <caption>{props.ruta}</caption>
             <thead>
-              {columna.map((item, i) => (
-                <th key={i}>{item}</th>
-              ))}
-              <th>Acciones</th>
+              <tr>
+                {columna.map((item, index) => (
+                  <th key={index}>{item}</th>
+                ))}
+                <th>Acciones</th>
+              </tr>
             </thead>
             <tbody>
-              {datos.map((item) => (
-                <FilaProducto
-                  key={item.id}
-                  item={item}
-                  columna={columna}
-                  ruta={props.ruta}
-                />
+              {datos.map((fila, indiceFila) => (
+                <tr key={indiceFila}>
+                  {columna.map((columna, indiceColumna) => (
+                    <td key={indiceColumna}>{fila[columna]}</td>
+                  ))}
+                </tr>
               ))}
             </tbody>
           </table>
