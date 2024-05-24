@@ -8,22 +8,15 @@ router.get("/:ruta", async (req, res) => {
 
   try {
     const ruta = req.params.ruta;
-    console.log("ruta", ruta);
     let result;
 
     switch (ruta) {
       case "getClients":
-        console.log("case getclients");
-        console.log("ruta", ruta);
-        const [clients] = await connection.execute(
-          "SELECT * FROM almacen.cliente"
-        );
+        const [clients] = await connection.execute("SELECT * FROM cliente");
         result = clients;
         break;
 
       case "getProducts":
-        console.log("case getproducts");
-        console.log("ruta", ruta);
         const [products] = await connection.execute(`
           SELECT *,
             CASE
@@ -36,10 +29,25 @@ router.get("/:ruta", async (req, res) => {
         result = products;
         break;
 
+      case "getMovements":
+        const [movements] = await connection.execute(
+          "SELECT * FROM movimiento ORDER BY id DESC"
+        );
+        result = movements;
+        break;
+
+      case "getSells":
+        console.log("hola");
+
+        const [sells] = await connection.execute("SELECT * FROM sales");
+        console.log(sells);
+        result = sells;
+
+        break;
+
       default:
         throw new Error("Ruta no encontrada");
     }
-    console.log("result", result);
     res.json(result);
   } catch (err) {
     console.error(

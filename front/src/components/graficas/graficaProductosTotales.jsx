@@ -9,7 +9,7 @@ const ProdutosTotales = () => {
   const { datos } = useContadorContext();
 
   // Extrae las cantidades y encuentra el valor máximo
-  const nombres = datos.map((item) => item.nombre_producto);
+  const nombres = datos.map((item) => item.nombre);
   const cantidades = datos.map((item) => item.cantidad);
   const maxValue = Math.max(...cantidades);
   const customTickValues = [

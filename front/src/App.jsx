@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import RenderClientsProducts from "./components/renderClientsProducts";
-import Movements from "./components/movements/movements";
 import Grafica from "./components/graficas/graficaProductosTotales";
 import Selfs from "./components//selfs/getSelfs";
 
@@ -13,6 +12,7 @@ function App() {
     movimientos: false,
     datos: false,
     clientes: false,
+    sells: false,
   });
 
   const handleInputChange = (field) => {
@@ -21,6 +21,7 @@ function App() {
       movimientos: field === "movimientos",
       datos: field === "datos",
       clientes: field === "clientes",
+      sells: field === "sells",
     });
   };
 
@@ -61,6 +62,14 @@ function App() {
                 onClick={() => handleInputChange("clientes")}
               />
             </li>
+            <li>
+              <input
+                type="button"
+                className={formData.sells ? "hidden" : ""}
+                value={formData.sells ? "" : "sells"}
+                onClick={() => handleInputChange("sells")}
+              />
+            </li>
           </ol>
         </nav>
       </header>
@@ -68,10 +77,14 @@ function App() {
         {formData.inventario ? (
           <RenderClientsProducts ruta="getProducts" />
         ) : null}
-        {formData.movimientos ? <Movements /> : null}
+
+        {formData.movimientos ? (
+          <RenderClientsProducts ruta="getMovements" />
+        ) : null}
+
         {formData.datos ? <Grafica /> : null}
         {formData.clientes ? <RenderClientsProducts ruta="getClients" /> : null}
-        <Selfs />
+        {formData.sells ? <RenderClientsProducts ruta="getSells" /> : null}
       </main>
     </>
   );

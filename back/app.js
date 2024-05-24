@@ -2,11 +2,9 @@ const express = require("express");
 const mysql = require("mysql2/promise");
 const cors = require("cors");
 
-const getProduct = require("./controller/Products/getProduct");
 const postProduct = require("./controller/Products/postProduct");
 const putProduct = require("./controller/Products/putProduct");
 
-const getMovement = require("./controller/Movements/getMovements");
 const postMovement = require("./controller/Movements/postMovement");
 
 const getClient = require("./controller/Clients/getCliente");
@@ -23,18 +21,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-//app.get("/products", getController);
 app.post("/addProduct", postProduct);
 app.put("/editProduct", putProduct);
 
-app.get("/movements", getMovement);
 app.post("/addMovement", postMovement);
 
-//app.get("/clients", getController);
 app.post("/addClient", postClient);
 app.put("/editClient", putClient);
 
-app.get("/selfs", getSelfs);
+//app.get("/selfs", getSelfs);
 app.post("/addSelf", postSelf);
 
 app.get("/:ruta", getController);

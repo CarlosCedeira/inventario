@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useContadorContext } from "../context";
 
-import FilaProducto from "./filatabla";
 import PostProduct from "./products/postProduct";
+import DeleteComponent from "./deleteComponent";
 
 import "../css/Tabla.css";
 
@@ -46,8 +46,8 @@ function Productos(props) {
     setSearch(newSearch);
     const filteredData = datos.filter((item) => {
       return (
-        item.nombre_producto &&
-        item.nombre_producto.toLowerCase().includes(newSearch.toLowerCase())
+        item.nombre &&
+        item.nombre.toLowerCase().includes(newSearch.toLowerCase())
       );
     });
     setDatos(filteredData);
@@ -104,7 +104,7 @@ function Productos(props) {
     <>
       {Array.isArray(datos) ? (
         <>
-          <PostProduct />
+          <PostProduct columna={columna} />
           <div className="filtradodedatos">
             <p>Ordenar por</p>
             <select id="selectorden" onChange={tipoControler}>
@@ -134,15 +134,23 @@ function Productos(props) {
                 {columna.map((item, index) => (
                   <th key={index}>{item}</th>
                 ))}
-                <th>Acciones</th>
+                {props.ruta === "getProducts" || props.ruta === "getClients" ? (
+                  <th>Acciones</th>
+                ) : null}
               </tr>
             </thead>
             <tbody>
               {datos.map((fila, indiceFila) => (
                 <tr key={indiceFila}>
                   {columna.map((columna, indiceColumna) => (
-                    <td key={indiceColumna}>{fila[columna]}</td>
+                    <>
+                      <td key={indiceColumna}>{fila[columna]}</td>
+                    </>
                   ))}
+                  {props.ruta === "getProducts" ||
+                  props.ruta === "getClients" ? (
+                    <DeleteComponent id={fila.id} ruta={props.ruta} />
+                  ) : null}
                 </tr>
               ))}
             </tbody>

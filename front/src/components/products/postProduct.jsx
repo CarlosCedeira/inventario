@@ -3,7 +3,8 @@ import { useContadorContext } from "../../context";
 
 import "../../css/formularioañadir.css";
 
-function AñadirProducto() {
+function AñadirProducto(props) {
+  console.log("añadirproductoruta", props.columna);
   const [formData, setFormData] = useState({
     nombre: "",
     categoria: "",
