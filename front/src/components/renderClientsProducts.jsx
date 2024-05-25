@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useContadorContext } from "../context";
 
 import PostProduct from "./products/postProduct";
+import PostClient from "./Clients/postClient";
 import DeleteComponent from "./deleteComponent";
 
 import "../css/Tabla.css";
@@ -99,12 +100,26 @@ function Productos(props) {
       setDatos(datosOrdenados);
     }
   };
+  const ruta = props.ruta === "getProducts" ? "deleteProduct" : "deleteClient";
+  function getControllerComponent(ruta) {
+    switch (ruta) {
+      case "getProducts":
+        return <PostProduct />;
+      case "getMovements":
+      case "getSells":
+        return null; // No renderizar nada para estas rutas
+      default:
+        return <PostClient />; // Suponiendo que por defecto se desea renderizar PostClient
+    }
+  }
+
+  const renderPostController = getControllerComponent(props.ruta);
 
   return (
     <>
       {Array.isArray(datos) ? (
         <>
-          <PostProduct columna={columna} />
+          {renderPostController}
           <div className="filtradodedatos">
             <p>Ordenar por</p>
             <select id="selectorden" onChange={tipoControler}>
@@ -131,26 +146,33 @@ function Productos(props) {
             <caption>{props.ruta}</caption>
             <thead>
               <tr>
-                {columna.map((item, index) => (
-                  <th key={index}>{item}</th>
-                ))}
-                {props.ruta === "getProducts" || props.ruta === "getClients" ? (
-                  <th>Acciones</th>
-                ) : null}
+                {columna.map(
+                  (item, index) =>
+                    item !== "id" &&
+                    item !== "id_foraneo" &&
+                    item !== "cercano_caducidad" && <th key={index}>{item}</th>
+                )}
+                {(props.ruta === "getProducts" ||
+                  props.ruta === "getClients") && <th>Acciones</th>}
               </tr>
             </thead>
             <tbody>
               {datos.map((fila, indiceFila) => (
                 <tr key={indiceFila}>
-                  {columna.map((columna, indiceColumna) => (
-                    <>
-                      <td key={indiceColumna}>{fila[columna]}</td>
-                    </>
-                  ))}
-                  {props.ruta === "getProducts" ||
-                  props.ruta === "getClients" ? (
-                    <DeleteComponent id={fila.id} ruta={props.ruta} />
-                  ) : null}
+                  {columna.map(
+                    (columna, indiceColumna) =>
+                      columna !== "id" &&
+                      columna !== "id_foraneo" &&
+                      columna !== "cercano_caducidad" && (
+                        <td key={indiceColumna}>{fila[columna]}</td>
+                      )
+                  )}
+                  {(props.ruta === "getProducts" ||
+                    props.ruta === "getClients") && (
+                    <td>
+                      <DeleteComponent id={fila.id} ruta={ruta} />
+                    </td>
+                  )}
                 </tr>
               ))}
             </tbody>

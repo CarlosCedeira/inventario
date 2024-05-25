@@ -10,12 +10,6 @@ router.delete("/:ruta/:id", async (req, res) => {
     const { ruta, id } = req.params;
     let result;
     switch (ruta) {
-      case "deleteSale":
-        [result] = await connection.execute("DELETE FROM sales WHERE id = ?", [
-          id,
-        ]);
-        break;
-
       case "deleteClient":
         [result] = await connection.execute(
           "DELETE FROM cliente WHERE id = ?",

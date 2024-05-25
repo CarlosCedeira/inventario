@@ -3,25 +3,21 @@ import { useContadorContext } from "../context";
 
 function EliminarProducto(props) {
   const { contador, setContador } = useContadorContext();
-  const { rutaFinal, setRutaFinal } = useState("");
   /* if (props.ruta === "getProducts") {
     setRutaFinal("deleteProduct");
   }
   if (props.ruta == "getCLients") {
     setRutaFinal("deleteClient");
   } */
-  console.log(props.ruta);
-  console.log(rutaFinal);
   const eliminar = () => {
-    console.log(props);
     const confirmar = window.confirm(
       `¿Estás seguro de que deseas eliminar el producto?`
     );
 
     if (confirmar) {
-      console.log(rutaFinal, props.id);
+      console.log(props.ruta, props.id);
 
-      fetch(`http://localhost:3000/${rutaFinal}/${props.id}`, {
+      fetch(`http://localhost:3000/${props.ruta}/${props.id}`, {
         method: "DELETE",
       })
         .then((response) => {

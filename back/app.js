@@ -7,11 +7,9 @@ const putProduct = require("./controller/Products/putProduct");
 
 const postMovement = require("./controller/Movements/postMovement");
 
-const getClient = require("./controller/Clients/getCliente");
 const postClient = require("./controller/Clients/postCliente");
 const putClient = require("./controller/Clients/putClient");
 
-const getSelfs = require("./controller/Selfs/getSelfs");
 const postSelf = require("./controller/Selfs/postSelf");
 
 const deleteController = require("./controller/deleteController");
@@ -21,15 +19,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.post("/addProduct", postProduct);
+app.post("/postProduct", postProduct);
 app.put("/editProduct", putProduct);
 
-app.post("/addMovement", postMovement);
+app.post("/postMovement", postMovement);
 
-app.post("/addClient", postClient);
+app.post("/postClient", postClient);
 app.put("/editClient", putClient);
 
-//app.get("/selfs", getSelfs);
 app.post("/addSelf", postSelf);
 
 app.get("/:ruta", getController);

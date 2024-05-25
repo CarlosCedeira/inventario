@@ -8,6 +8,7 @@ router.get("/:ruta", async (req, res) => {
 
   try {
     const ruta = req.params.ruta;
+    console.log("ruta", req.params.ruta);
     let result;
 
     switch (ruta) {
@@ -30,6 +31,7 @@ router.get("/:ruta", async (req, res) => {
         break;
 
       case "getMovements":
+        console.log("getmovementes");
         const [movements] = await connection.execute(
           "SELECT * FROM movimiento ORDER BY id DESC"
         );

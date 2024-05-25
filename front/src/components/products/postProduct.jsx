@@ -4,7 +4,6 @@ import { useContadorContext } from "../../context";
 import "../../css/formularioañadir.css";
 
 function AñadirProducto(props) {
-  console.log("añadirproductoruta", props.columna);
   const [formData, setFormData] = useState({
     nombre: "",
     categoria: "",
@@ -13,6 +12,7 @@ function AñadirProducto(props) {
     lote: "",
     caducidad: "",
   });
+
   const [accion, setAccion] = useState(false);
   const { contador, setContador } = useContadorContext();
 
@@ -25,7 +25,7 @@ function AñadirProducto(props) {
     e.preventDefault();
     setAccion(false);
 
-    fetch("http://localhost:3000/addProduct", {
+    fetch("http://localhost:3000/postProduct", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -43,7 +43,7 @@ function AñadirProducto(props) {
         const { id } = data;
         const datos = { accion: "añadir", id };
 
-        fetch("http://localhost:3000/addMovement", {
+        fetch("http://localhost:3000/postMovement", {
           method: "post",
           headers: {
             "content-type": "application/json",

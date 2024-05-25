@@ -22,7 +22,7 @@ function AñadirCliente() {
     e.preventDefault();
     setAccion(false);
 
-    fetch("http://localhost:3000/addClient", {
+    fetch("http://localhost:3000/postClient", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -51,7 +51,7 @@ function AñadirCliente() {
         const { id } = data;
         const datos = { accion: "nuevo cliente", id };
 
-        fetch("http://localhost:3000/movements", {
+        fetch("http://localhost:3000/postMovement", {
           method: "post",
           headers: {
             "content-type": "application/json",
