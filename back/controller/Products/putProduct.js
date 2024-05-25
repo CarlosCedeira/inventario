@@ -5,12 +5,13 @@ const mysql = require("mysql2/promise");
 
 router.put("/editProduct", async (req, res) => {
   const connection = await mysql.createConnection(dbConfig);
-
+  console.log("deitproduct");
   try {
     const { id, nombre, categoria, precio, cantidad, caducidad, lote } =
       req.body;
+    console.log("req.body", req.body);
     const [result] = await connection.execute(
-      "UPDATE producto SET nombre_producto = ?, categoria = ?, precio = ?, cantidad = ?, caducidad = ?, lote = ? WHERE id = ?",
+      "UPDATE producto SET nombre = ?, categoria = ?, precio = ?, cantidad = ?, caducidad = ?, lote = ? WHERE id = ?",
       [nombre, categoria, precio, cantidad, caducidad, lote, id]
     );
 

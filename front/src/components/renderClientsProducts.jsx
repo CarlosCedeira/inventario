@@ -3,6 +3,7 @@ import { useContadorContext } from "../context";
 
 import PostProduct from "./products/postProduct";
 import PostClient from "./Clients/postClient";
+import PostSale from "./selfs/postSelf";
 import DeleteComponent from "./deleteComponent";
 
 import "../css/Tabla.css";
@@ -170,6 +171,9 @@ function Productos(props) {
                   {(props.ruta === "getProducts" ||
                     props.ruta === "getClients") && (
                     <td>
+                      {props.ruta === "getProducts" ? (
+                        <PostSale data={fila} />
+                      ) : null}
                       <DeleteComponent id={fila.id} ruta={ruta} />
                     </td>
                   )}

@@ -4,7 +4,7 @@ import { useContadorContext } from "../../context";
 import "../../css/formularioactualizar.css";
 
 function VentaProducto(props) {
-  const { nombre, cantidad, lote } = props;
+  const { nombre, cantidad, lote } = props.data;
   const { contador, setContador } = useContadorContext();
   const [accion, setAccion] = useState(false);
   const [formData, setFormData] = useState(cantidad);
@@ -12,7 +12,7 @@ function VentaProducto(props) {
   const [clienteSeleccionado, setClienteSeleccionado] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:3000/clients", {})
+    fetch("http://localhost:3000/getClients", {})
       .then((response) => {
         if (!response.ok) {
           switch (response.status) {
@@ -46,7 +46,8 @@ function VentaProducto(props) {
     e.preventDefault();
 
     const cantidadResto = cantidad - formData.cantidad;
-    const { id, nombre, categoria, precio, caducidad, lote } = props;
+    console.log(props.data.caducidad);
+    const { id, nombre, categoria, precio, caducidad, lote } = props.data;
 
     fetch("http://localhost:3000/editProduct", {
       method: "put",
