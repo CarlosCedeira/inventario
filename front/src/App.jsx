@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import RenderClientsProducts from "./components/renderClientsProducts";
+import RenderComponent from "./components/getComponent";
 import Grafica from "./components/graficas/graficaProductosTotales";
 
 import "./css/app.css";
@@ -73,17 +73,13 @@ function App() {
         </nav>
       </header>
       <main>
-        {formData.inventario ? (
-          <RenderClientsProducts ruta="getProducts" />
-        ) : null}
+        {formData.inventario ? <RenderComponent ruta="getProducts" /> : null}
 
-        {formData.movimientos ? (
-          <RenderClientsProducts ruta="getMovements" />
-        ) : null}
+        {formData.movimientos ? <RenderComponent ruta="getMovements" /> : null}
 
         {formData.datos ? <Grafica /> : null}
-        {formData.clientes ? <RenderClientsProducts ruta="getClients" /> : null}
-        {formData.sells ? <RenderClientsProducts ruta="getSells" /> : null}
+        {formData.clientes ? <RenderComponent ruta="getClients" /> : null}
+        {formData.sells ? <RenderComponent ruta="getSells" /> : null}
       </main>
     </>
   );

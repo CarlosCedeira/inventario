@@ -14,21 +14,26 @@ router.put("/:ruta/", async (req, res) => {
     switch (ruta) {
       case "putClient":
         const { direccion, correo, telefono } = req.body;
-        console.log("ruta putclient", req.params);
+        console.log("ruta putclient", ruta);
+        console.log("data");
+        console.log(nombre, direccion, correo, telefono, id);
         const [client] = await connection.execute(
           "UPDATE cliente SET nombre = ?, direccion = ?, correo = ?, telefono = ? WHERE id = ?",
           [nombre, direccion, correo, telefono, id]
         );
         result = client;
+        console.log("result", result);
         break;
 
       case "putProduct":
         const { categoria, precio, cantidad, caducidad, lote } = req.body;
+        const caducidadFormateada = caducidad.split("T")[0];
         console.log("ruta putproduct", req.params);
         console.log(req.body);
+        console.log("caducidadFormateada", caducidadFormateada);
         const [product] = await connection.execute(
           "UPDATE producto SET nombre = ?, categoria = ?, precio = ?, cantidad = ?, caducidad = ?, lote = ? WHERE id = ?",
-          [nombre, categoria, precio, cantidad, caducidad, lote, id]
+          [nombre, categoria, precio, cantidad, caducidadFormateada, lote, id]
         );
         result = product;
         console.log("result", result);

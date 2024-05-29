@@ -13,11 +13,17 @@ function EliminarProducto(props) {
     const confirmar = window.confirm(
       `¿Estás seguro de que deseas eliminar el producto?`
     );
-
+    let deleteRuta;
+    if (props.ruta === "getProducts") {
+      deleteRuta = "deleteProduct";
+    }
+    if (props.ruta === "getClients") {
+      deleteRuta = "deleteClient";
+    }
     if (confirmar) {
       console.log(props.ruta, props.id);
 
-      fetch(`http://localhost:3000/${props.ruta}/${props.id}`, {
+      fetch(`http://localhost:3000/${deleteRuta}/${props.id}`, {
         method: "DELETE",
       })
         .then((response) => {

@@ -4,6 +4,7 @@ import { useContadorContext } from "../context";
 import PostProduct from "./products/postProduct";
 import PostClient from "./Clients/postClient";
 import PostSale from "./selfs/postSelf";
+import PutComponent from "./putComponent";
 import DeleteComponent from "./deleteComponent";
 
 import "../css/Tabla.css";
@@ -12,6 +13,7 @@ function Productos(props) {
   const { datos, setDatos, contador, setContador } = useContadorContext();
   const [search, setSearch] = useState("");
   const [columna, setColumna] = useState([]);
+  console.log("datos tabla", props);
 
   useEffect(() => {
     fetch(`http://localhost:3000/${props.ruta}`)
@@ -101,7 +103,6 @@ function Productos(props) {
       setDatos(datosOrdenados);
     }
   };
-  const ruta = props.ruta === "getProducts" ? "deleteProduct" : "deleteClient";
   function getControllerComponent(ruta) {
     switch (ruta) {
       case "getProducts":
@@ -115,6 +116,7 @@ function Productos(props) {
   }
 
   const renderPostController = getControllerComponent(props.ruta);
+  console.log("props.ruta tabla", props.ruta);
 
   return (
     <>
@@ -164,17 +166,23 @@ function Productos(props) {
                     (columna, indiceColumna) =>
                       columna !== "id" &&
                       columna !== "id_foraneo" &&
-                      columna !== "cercano_caducidad" && (
+                      columna !== "cercano_caducidad" &&
+                      (columna === "caducidad" ? (
+                        <td key={indiceColumna}>
+                          {fila[columna].split("T")[0]}
+                        </td>
+                      ) : (
                         <td key={indiceColumna}>{fila[columna]}</td>
-                      )
+                      ))
                   )}
                   {(props.ruta === "getProducts" ||
                     props.ruta === "getClients") && (
                     <td>
+                      <PutComponent ruta={props.ruta} data={fila} />
                       {props.ruta === "getProducts" ? (
                         <PostSale data={fila} />
                       ) : null}
-                      <DeleteComponent id={fila.id} ruta={ruta} />
+                      <DeleteComponent id={fila.id} ruta={props.ruta} />
                     </td>
                   )}
                 </tr>
