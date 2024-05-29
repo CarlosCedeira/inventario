@@ -39,10 +39,7 @@ router.get("/:ruta", async (req, res) => {
         break;
 
       case "getSells":
-        console.log("hola");
-
         const [sells] = await connection.execute("SELECT * FROM sales");
-        console.log(sells);
         result = sells;
 
         break;

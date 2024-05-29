@@ -44,12 +44,12 @@ function VentaProducto(props) {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    const { id, nombre, categoria, precio, caducidad, lote } = props.data;
     const cantidadResto = cantidad - formData.cantidad;
     console.log(props.data.caducidad);
-    const { id, nombre, categoria, precio, caducidad, lote } = props.data;
+    const caducidadFormateada = caducidad.split("T")[0];
 
-    fetch("http://localhost:3000/editProduct", {
+    fetch("http://localhost:3000/putProduct", {
       method: "put",
       headers: {
         "Content-Type": "application/json",
@@ -60,7 +60,7 @@ function VentaProducto(props) {
         categoria,
         precio,
         cantidad: cantidadResto,
-        caducidad,
+        caducidad: caducidadFormateada,
         lote,
       }),
     })

@@ -1,50 +1,38 @@
 const express = require("express");
 const router = express.Router();
-const dbConfig = require("../../config");
+const dbConfig = require("../config");
 const mysql = require("mysql2/promise");
 
 router.put("/:ruta/", async (req, res) => {
   const connection = await mysql.createConnection(dbConfig);
+  const ruta = req.params.ruta;
 
   try {
     let result;
-    const { ruta } = req.params;
+    const { id, nombre } = req.body;
     console.log("rutaedit", ruta);
-
     switch (ruta) {
       case "putClient":
-        const {
-          id: clientId,
-          nombre: clientName,
-          direccion,
-          correo,
-          telefono,
-        } = req.body;
-        console.log("ruta putclient", ruta);
+        const { direccion, correo, telefono } = req.body;
+        console.log("ruta putclient", req.params);
         const [client] = await connection.execute(
           "UPDATE cliente SET nombre = ?, direccion = ?, correo = ?, telefono = ? WHERE id = ?",
-          [clientName, direccion, correo, telefono, clientId]
+          [nombre, direccion, correo, telefono, id]
         );
         result = client;
         break;
 
       case "putProduct":
-        const {
-          id: productId,
-          nombre,
-          categoria,
-          precio,
-          cantidad,
-          caducidad,
-          lote,
-        } = req.body;
-        console.log("ruta putproduct", req.body);
+        const { categoria, precio, cantidad, caducidad, lote } = req.body;
+        console.log("ruta putproduct", req.params);
+        console.log(req.body);
         const [product] = await connection.execute(
           "UPDATE producto SET nombre = ?, categoria = ?, precio = ?, cantidad = ?, caducidad = ?, lote = ? WHERE id = ?",
-          [nombre, categoria, precio, cantidad, caducidad, lote, productId]
+          [nombre, categoria, precio, cantidad, caducidad, lote, id]
         );
         result = product;
         console.log("result", result);
+
         break;
 
       default:
@@ -52,20 +40,18 @@ router.put("/:ruta/", async (req, res) => {
     }
 
     if (result.affectedRows > 0) {
-      res.status(204).send(); // No Content
+      res.status(204).send(result);
     } else {
-      res.status(404).json({ error: "Registro no encontrado" });
+      res.status(404).json({ error: "Producto no encontrado" });
     }
   } catch (err) {
     console.error("Error al consultar la base de datos: " + err.message);
-    res.status(500).json({ error: "Error al actualizar el registro" });
+    res.status(500).json({ error: "Error al eliminar el producto" });
   } finally {
     if (connection && connection.end) {
       connection.end();
     }
   }
 });
-
-module.exports = router;
 
 module.exports = router;

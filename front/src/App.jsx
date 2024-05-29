@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 import RenderClientsProducts from "./components/renderClientsProducts";
 import Grafica from "./components/graficas/graficaProductosTotales";
-import Selfs from "./components//selfs/getSelfs";
 
 import "./css/app.css";
 

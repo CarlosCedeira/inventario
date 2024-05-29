@@ -12,24 +12,26 @@ const putClient = require("./controller/Clients/putClient");
 
 const postSelf = require("./controller/Selfs/postSelf");
 
-const deleteController = require("./controller/deleteController");
 const getController = require("./controller/getController");
+const putController = require("./controller/putController");
+const deleteController = require("./controller/deleteController");
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 app.post("/postProduct", postProduct);
-app.put("/editProduct", putProduct);
+//app.put("/editProduct", putProduct);
 
 app.post("/postMovement", postMovement);
 
 app.post("/postClient", postClient);
-app.put("/editClient", putClient);
+//app.put("/editClient", putClient);
 
 app.post("/addSelf", postSelf);
 
 app.get("/:ruta", getController);
+app.put("/:ruta", putController);
 app.delete("/:ruta/:id", deleteController);
 
 app.listen(process.env.port, () => {
