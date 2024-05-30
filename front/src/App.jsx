@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import RenderComponent from "./components/getComponent";
-import Grafica from "./components/graficas/graficaProductosTotales";
+import Grafica from "./components/graficaProductosTotales";
 
 import "./css/app.css";
 

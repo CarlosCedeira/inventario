@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { useContadorContext } from "../../context";
+import { useContadorContext } from "../context";
 
-import "../../css/formularioactualizar.css";
+import "../css/formularioactualizar.css";
 
 function VentaProducto(props) {
   const { nombre, cantidad, lote } = props.data;

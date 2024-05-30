@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { useContadorContext } from "../context";
 
-import PostProduct from "./products/postProduct";
-import PostClient from "./Clients/postClient";
-import PostSale from "./selfs/postSelf";
-import PutComponent from "./putComponent";
+import PostSale from "./postSelf";
+import PostFormClientProduct from "./postFormClientProduct";
+import PutComponent from "./putFromClientProduct";
 import DeleteComponent from "./deleteComponent";
 
 import "../css/Tabla.css";
@@ -13,7 +12,7 @@ function Productos(props) {
   const { datos, setDatos, contador, setContador } = useContadorContext();
   const [search, setSearch] = useState("");
   const [columna, setColumna] = useState([]);
-  console.log("datos tabla", props);
+  console.log("datos tabla", datos);
 
   useEffect(() => {
     fetch(`http://localhost:3000/${props.ruta}`)
@@ -103,26 +102,12 @@ function Productos(props) {
       setDatos(datosOrdenados);
     }
   };
-  function getControllerComponent(ruta) {
-    switch (ruta) {
-      case "getProducts":
-        return <PostProduct />;
-      case "getMovements":
-      case "getSells":
-        return null; // No renderizar nada para estas rutas
-      default:
-        return <PostClient />; // Suponiendo que por defecto se desea renderizar PostClient
-    }
-  }
-
-  const renderPostController = getControllerComponent(props.ruta);
-  console.log("props.ruta tabla", props.ruta);
 
   return (
     <>
       {Array.isArray(datos) ? (
         <>
-          {renderPostController}
+          <PostFormClientProduct ruta={props.ruta} data={datos} />
           <div className="filtradodedatos">
             <p>Ordenar por</p>
             <select id="selectorden" onChange={tipoControler}>
