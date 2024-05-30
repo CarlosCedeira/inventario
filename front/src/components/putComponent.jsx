@@ -1,25 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useContadorContext } from "../context";
 import "../css/formularioactualizar.css";
 
 function PutComponent(props) {
   const { datos, setDatos, contador, setContador } = useContadorContext();
+  const [formData, setFormData] = useState({});
   const [accion, setAccion] = useState(false);
   const { ruta, data } = props;
   console.log("props.ruta", ruta);
-
-  const [formData, setFormData] = useState({
-    id: data.id,
-    nombre: data.nombre,
-    direccion: data.direccion,
-    correo: data.correo,
-    telefono: data.telefono,
-    categoria: data.categoria,
-    precio: data.precio,
-    cantidad: data.cantidad,
-    lote: data.lote,
-    caducidad: data.caducidad,
-  });
+  useEffect(() => {
+    if (props.ruta === "getClients") {
+      setFormData({
+        id: props.data.id,
+        nombre: props.data.nombre,
+        direccion: props.data.direccion,
+        correo: props.data.correo,
+        telefono: props.data.telefono,
+      });
+    } else if (props.ruta === "getProducts") {
+      setFormData({
+        id: props.data.id,
+        nombre: props.data.nombre,
+        categoria: props.data.categoria,
+        precio: props.data.precio,
+        cantidad: props.data.cantidad,
+        lote: props.data.lote,
+        caducidad: props.data.caducidad,
+      });
+    }
+  }, [props.ruta, props.data]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,7 +49,7 @@ function PutComponent(props) {
     if (ruta === "getClients") {
       putRuta = "putClient";
     }
-    console.log("formData", formData);
+    console.table(formData);
     fetch(`http://localhost:3000/${putRuta}`, {
       method: "put",
       headers: {

@@ -47,5 +47,7 @@ main {
 }
 
 .menu .hidden {
-  visibility: hidden;
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
 }
