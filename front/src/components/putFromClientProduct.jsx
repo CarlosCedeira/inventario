@@ -71,6 +71,7 @@ function PutComponent(props) {
         if (response.ok) {
           const id = formData.id;
           const datos = { accion: "editar", id };
+          console.log("id", id);
 
           fetch("http://localhost:3000/postMovement", {
             method: "post",

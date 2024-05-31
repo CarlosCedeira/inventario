@@ -2,12 +2,7 @@ const express = require("express");
 const mysql = require("mysql2/promise");
 const cors = require("cors");
 
-const postProduct = require("./controller/Products/postProduct");
-
 const postMovement = require("./controller/Movements/postMovement");
-
-const postClient = require("./controller/Clients/postCliente");
-
 const postSelf = require("./controller/Selfs/postSelf");
 
 const getController = require("./controller/getController");
@@ -18,13 +13,7 @@ const deleteController = require("./controller/deleteController");
 const app = express();
 app.use(cors());
 app.use(express.json());
-
-//app.post("/postProduct", postProduct);
-
 app.post("/postMovement", postMovement);
-
-//app.post("/postClient", postClient);
-
 app.post("/addSelf", postSelf);
 
 app.get("/:ruta", getController);
