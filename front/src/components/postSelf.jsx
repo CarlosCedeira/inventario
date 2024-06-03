@@ -12,6 +12,7 @@ function VentaProducto(props) {
   const [clienteSeleccionado, setClienteSeleccionado] = useState("");
 
   useEffect(() => {
+    console.table(props);
     fetch("http://localhost:3000/getClients", {})
       .then((response) => {
         if (!response.ok) {

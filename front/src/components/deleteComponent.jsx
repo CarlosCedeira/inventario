@@ -1,14 +1,8 @@
-import { useState } from "react";
 import { useContadorContext } from "../context";
 
 function EliminarProducto(props) {
   const { contador, setContador } = useContadorContext();
-  /* if (props.ruta === "getProducts") {
-    setRutaFinal("deleteProduct");
-  }
-  if (props.ruta == "getCLients") {
-    setRutaFinal("deleteClient");
-  } */
+
   const eliminar = () => {
     const confirmar = window.confirm(
       `¿Estás seguro de que deseas eliminar el producto?`

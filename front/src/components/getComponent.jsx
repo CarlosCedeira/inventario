@@ -8,11 +8,10 @@ import DeleteComponent from "./deleteComponent";
 
 import "../css/Tabla.css";
 
-function Productos(props) {
+function GetComponent(props) {
   const { datos, setDatos, contador, setContador } = useContadorContext();
   const [search, setSearch] = useState("");
   const [columna, setColumna] = useState([]);
-  console.log("datos tabla", datos);
 
   useEffect(() => {
     fetch(`http://localhost:3000/${props.ruta}`)
@@ -182,4 +181,4 @@ function Productos(props) {
   );
 }
 
-export default Productos;
+export default GetComponent;

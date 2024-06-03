@@ -1,12 +1,40 @@
-import React from "react";
-import { useContadorContext } from "../context";
+import React, { useState, useEffect } from "react";
 
 import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme } from "victory";
 
 import "../css/grafica.css";
 
 const ProdutosTotales = () => {
-  const { datos } = useContadorContext();
+  //const { datos } = useContadorContext();
+  const [datos, setDatos] = useState([]);
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/getProducts`)
+      .then((response) => {
+        if (!response.ok) {
+          switch (response.status) {
+            case 404:
+              throw new Error("Data not found");
+            case 500:
+              throw new Error("Server error");
+            default:
+              throw new Error("Network response was not ok");
+          }
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setDatos(data);
+        console.table(data);
+      })
+      .catch((err) => {
+        console.error("Error al realizar la solicitud:", err);
+      });
+  }, []);
+
+  if (!datos.length) {
+    return <div>Cargando datos...</div>;
+  }
 
   // Extrae las cantidades y encuentra el valor máximo
   const nombres = datos.map((item) => item.nombre);
