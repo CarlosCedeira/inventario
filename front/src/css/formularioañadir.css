@@ -32,7 +32,7 @@ label {
     margin-top: 50px; 
 }
 
-#formulario-añadir > p {
+#formulario-añadir, #formulario-editar > p {
     display: flex;
     position: fixed;
     margin: 0;
@@ -41,16 +41,7 @@ label {
     cursor: pointer; 
 }
 
-#boton-añadir {
-    box-shadow: 1px 1px 15px black;
-}
-
-#boton-añadir:hover {
-    color: black;
-    background-color: rgb(253, 187, 64);  
-}
-
-#boton-añadir, #formulario-añadir button, form button {
+#boton-añadir, #formulario-añadir, #formulario-editar button, form button {
     display: inline-block;
     margin: 5px 10px;
     padding: 5px 10px; 

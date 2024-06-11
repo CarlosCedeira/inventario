@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useContadorContext } from "../context";
 import "../css/formularioactualizar.css";
+import "../css/botonanadir.css";
 
 function PostFormClientProduct(props) {
   const { contador, setContador } = useContadorContext();
@@ -86,14 +87,19 @@ function PostFormClientProduct(props) {
             Dirección:
             <input type="text" name="direccion" onChange={handleChange} />
           </label>
+          <br />
+
           <label>
             Correo:
             <input type="email" name="correo" onChange={handleChange} />
           </label>
+          <br />
+
           <label>
             Teléfono:
             <input type="tel" name="telefono" onChange={handleChange} />
           </label>
+          <br />
         </>
       );
     } else if (props.ruta === "getProducts") {
@@ -103,22 +109,32 @@ function PostFormClientProduct(props) {
             Categoría:
             <input type="text" name="categoria" onChange={handleChange} />
           </label>
+          <br />
           <label>
-            Precio:
-            <input type="number" name="precio" onChange={handleChange} />
+            Precio de compra:
+            <input type="number" name="precioCompra" onChange={handleChange} />
           </label>
+          <br />
+          <label>
+            Precio de venta:
+            <input type="number" name="precioVenta" onChange={handleChange} />
+          </label>
+          <br />
           <label>
             Cantidad:
             <input type="number" name="cantidad" onChange={handleChange} />
           </label>
+          <br />
           <label>
             Lote:
             <input type="text" name="lote" onChange={handleChange} />
           </label>
+          <br />
           <label>
             Caducidad:
             <input type="date" name="caducidad" onChange={handleChange} />
           </label>
+          <br />
         </>
       );
     } else {
@@ -136,13 +152,14 @@ function PostFormClientProduct(props) {
             Nombre:
             <input type="text" name="nombre" onChange={handleChange} />
           </label>
+          <br />
           {renderFormFields(props.ruta)}
           <button type="submit">guardar cambios</button>
         </form>
       </div>
     </div>
-  ) : (
-    <button id="boton-añadir" onClick={() => setAccion(true)}>
+  ) : props.ruta === "getSells" || props.ruta === "getMovements" ? null : (
+    <button className="boton-añadir" onClick={() => setAccion(true)}>
       ➕
     </button>
   );

@@ -7,12 +7,14 @@ function VentaProducto(props) {
   const { nombre, cantidad, lote } = props.data;
   const { contador, setContador } = useContadorContext();
   const [accion, setAccion] = useState(false);
-  const [formData, setFormData] = useState(cantidad);
+  const [formData, setFormData] = useState({
+    cliente: "",
+    cantidad: "",
+  });
   const [totalClientes, setTotalClientes] = useState({});
   const [clienteSeleccionado, setClienteSeleccionado] = useState("");
 
   useEffect(() => {
-    console.table(props);
     fetch("http://localhost:3000/getClients", {})
       .then((response) => {
         if (!response.ok) {
@@ -34,7 +36,7 @@ function VentaProducto(props) {
       .catch((error) => {
         console.error("Error al realizar la solicitud:", error);
       });
-  }, []);
+  }, [accion]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -44,8 +46,11 @@ function VentaProducto(props) {
     setFormData({ ...formData, [name]: value });
   };
   const handleSubmit = (e) => {
+    console.log("props.data");
+    console.table(props.data);
     e.preventDefault();
-    const { id, nombre, categoria, precio, caducidad, lote } = props.data;
+    const { id, nombre, categoria, precio_de_venta, caducidad, lote } =
+      props.data;
     const cantidadResto = cantidad - formData.cantidad;
     console.log(props.data.caducidad);
     const caducidadFormateada = caducidad.split("T")[0];
@@ -59,7 +64,7 @@ function VentaProducto(props) {
         id,
         nombre,
         categoria,
-        precio,
+        precio: precio_de_venta,
         cantidad: cantidadResto,
         caducidad: caducidadFormateada,
         lote,

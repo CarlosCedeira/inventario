@@ -25,11 +25,28 @@ router.post("/:ruta/", async (req, res) => {
         break;
 
       case "postProduct":
-        const { categoria, precio, cantidad, caducidad, lote } = req.body;
+        console.log("req.body post product");
+        console.table(req.body);
+        const {
+          categoria,
+          precioCompra,
+          precioVenta,
+          cantidad,
+          caducidad,
+          lote,
+        } = req.body;
         const caducidadFormateada = caducidad.split("T")[0];
         const [product] = await connection.execute(
-          "INSERT INTO producto (nombre, categoria, precio, cantidad, caducidad, lote) VALUES (?, ?, ?, ?, ?, ?)",
-          [nombre, categoria, precio, cantidad, caducidad, lote]
+          "INSERT INTO producto (nombre, categoria, precio_de_venta, cantidad, caducidad, lote, precio_de_compra) VALUES (?, ?, ?, ?, ?, ?, ?)",
+          [
+            nombre,
+            categoria,
+            precioVenta,
+            cantidad,
+            caducidad,
+            lote,
+            precioCompra,
+          ]
         );
         result = product;
         insertedId = product.insertId;

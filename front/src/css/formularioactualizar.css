@@ -12,11 +12,22 @@
     position: fixed; 
     top: 30%; 
     left: 50%; 
+    
     transform: translate(-30%, -50%); 
 
     padding:  1rem 2rem;
 
     background-color: azure;
+}
+
+legend {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+label {
+    margin-top: 50px; 
 }
 
 #formulario-editar > p {
@@ -27,11 +38,13 @@
     bottom: 90%;
     cursor: pointer; 
 }
+#formulario-editar > p:hover {
+    background-color: rgba(253, 38, 0, 0.5);  
+}
 
-legend {
-    font-size: 1.5rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+input:hover {
+    color: black;
+    background-color: rgb(253, 187, 64);  
 }
 
 #formulario-editar button, form button {
@@ -45,3 +58,9 @@ legend {
   text-align: center; 
 }
 
+#formulario-editar button:hover {
+    color: #fff;
+    background-color: rgb(253, 187, 64);  
+ 
+    box-shadow: 1px 1px 15px rgb(253, 187, 64);  
+}

@@ -1,5 +1,25 @@
+.primera-section {
+    height: 80px;
+}
+
 .filtradodedatos {
+    padding-top: 1rem;
     display: flex;
+    width: 23rem;
+    height: 3rem;
+    position: relative;
+
+    right: 0.2rem;
+}
+
+section:nth-child(2n) {
+    background-color: rgba(240, 248, 255, 0.4);
+    border-top-left-radius: 4ºrem;
+    border-radius: 0.5rem;
+
+    padding-right: 1rem;
+    padding-left: 1rem;
+    padding-bottom: 0.5rem;
 }
 
 p {
@@ -18,9 +38,7 @@ select {
 
     cursor: pointer;
 
-    box-shadow: 1px 1px 15px black;
-
-}
+    box-shadow: 1px 1px 15px black;}
 
 select:hover {
     color: black;
@@ -39,11 +57,9 @@ input {
     border-radius: 5px;
 
     background-color: #1c80f3;
-
-    cursor: pointer;
-
     box-shadow: 1px 1px 15px black;
 
+    cursor: pointer;
 }
 
 input::placeholder {
@@ -53,14 +69,11 @@ input::placeholder {
 table {
     border-collapse: collapse;
     width: 100%;
-    text-align: center;
-    
-    box-shadow: 10px 10px 35px black;
+    text-align: center;   
 }
 
 caption{
-    padding: 2rem 0 1rem 0;
-    
+    padding-bottom: 0.5rem;    
     font-size: 2rem;
 }
 
@@ -72,7 +85,7 @@ thead, tr{
     background-color: rgb(204, 227, 247);
 }
 
-thead, tr:nth-child(2n){
+th, tr:nth-child(2n){
     background-color: rgb(155, 185, 211);
 }
 
@@ -82,3 +95,23 @@ button {
     cursor: pointer; 
 
 } 
+
+button:hover {
+    background-color: rgba(0, 0, 0, 0.15); 
+    border-radius: 50%; 
+}
+
+button:hover:nth-child(1n) {
+    background-color: rgba(51, 160, 8, 0.5); 
+    border-radius: 50%; 
+}
+
+button:hover:nth-child(2n) {
+    background-color: rgba(212, 147, 7, 0.5); 
+    border-radius: 50%; 
+}
+
+button:hover:nth-child(3n) {
+    background-color: rgba(221, 11, 11, 0.5); 
+    border-radius: 50%; 
+}

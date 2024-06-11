@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme } from "victory";
 
@@ -48,27 +48,34 @@ const ProdutosTotales = () => {
     Math.round(maxValue),
   ];
   return (
-    <div className="grafica">
-      <h1>Productos totales</h1>
-      <VictoryChart theme={VictoryTheme.material} title="Total de Productos">
-        <VictoryBar
-          data={cantidades.map((cantidad, index) => ({
-            x: nombres[index], // Usar el nombre del producto en lugar del índice
-            y: cantidad,
-          }))}
-          cornerRadius={5}
-        />
+    <>
+      <section className="primera-section"></section>
 
-        <VictoryAxis
-          tickValues={nombres} // Utiliza los nombres directamente como valores de las etiquetas
-          style={{
-            tickLabels: { textAnchor: "middle", fontSize: 15 },
-          }}
-        />
+      <div className="grafica">
+        <h1>
+          Productos totales{" "}
+          {datos.reduce((acumulador, dato) => acumulador + dato.cantidad, 0)}
+        </h1>
+        <VictoryChart theme={VictoryTheme.material} title="Total de Productos">
+          <VictoryBar
+            data={cantidades.map((cantidad, index) => ({
+              x: nombres[index], // Usar el nombre del producto en lugar del índice
+              y: cantidad,
+            }))}
+            cornerRadius={5}
+          />
 
-        <VictoryAxis dependentAxis tickValues={customTickValues} />
-      </VictoryChart>
-    </div>
+          <VictoryAxis
+            tickValues={nombres} // Utiliza los nombres directamente como valores de las etiquetas
+            style={{
+              tickLabels: { textAnchor: "middle", fontSize: 15 },
+            }}
+          />
+
+          <VictoryAxis dependentAxis tickValues={customTickValues} />
+        </VictoryChart>
+      </div>
+    </>
   );
 };
 

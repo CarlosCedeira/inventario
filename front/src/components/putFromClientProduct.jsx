@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useContadorContext } from "../context";
 import "../css/formularioactualizar.css";
 
@@ -108,6 +108,7 @@ function PutComponent(props) {
               onChange={handleChange}
             />
           </label>
+          <br />
           <label>
             Correo:
             <input
@@ -117,6 +118,7 @@ function PutComponent(props) {
               onChange={handleChange}
             />
           </label>
+          <br />
           <label>
             Teléfono:
             <input
@@ -126,6 +128,7 @@ function PutComponent(props) {
               onChange={handleChange}
             />
           </label>
+          <br />
         </>
       );
     } else if (props.ruta === "getProducts") {
@@ -140,6 +143,7 @@ function PutComponent(props) {
               onChange={handleChange}
             />
           </label>
+          <br />
           <label>
             Precio:
             <input
@@ -149,6 +153,7 @@ function PutComponent(props) {
               onChange={handleChange}
             />
           </label>
+          <br />
           <label>
             Cantidad:
             <input
@@ -158,6 +163,7 @@ function PutComponent(props) {
               onChange={handleChange}
             />
           </label>
+          <br />
           <label>
             Lote:
             <input
@@ -167,6 +173,7 @@ function PutComponent(props) {
               onChange={handleChange}
             />
           </label>
+          <br />
           <label>
             Caducidad:
             {console.log(formData.caducidad)}
@@ -177,6 +184,7 @@ function PutComponent(props) {
               onChange={handleChange}
             />
           </label>
+          <br />
         </>
       );
     } else {
@@ -199,6 +207,7 @@ function PutComponent(props) {
               onChange={handleChange}
             />
           </label>
+          <br />
           {renderFormFields(props.ruta)}
           <button type="submit">guardar cambios</button>
         </form>

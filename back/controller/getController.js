@@ -19,7 +19,7 @@ router.get("/:ruta", async (req, res) => {
 
       case "getProducts":
         const [products] = await connection.execute(`
-          SELECT *,
+          SELECT id, nombre, categoria, cantidad, precio_de_compra, precio_de_venta, lote, caducidad,
             CASE
               WHEN caducidad < CURRENT_DATE THEN 2
               WHEN caducidad BETWEEN CURRENT_DATE AND CURRENT_DATE + INTERVAL 21 DAY THEN 1
@@ -33,13 +33,15 @@ router.get("/:ruta", async (req, res) => {
       case "getMovements":
         console.log("getmovementes");
         const [movements] = await connection.execute(
-          "SELECT * FROM movimiento ORDER BY id DESC"
+          "SELECT nombre, accion, cantidad, precio,caducidad FROM movimiento ORDER BY id DESC"
         );
         result = movements;
         break;
 
       case "getSells":
-        const [sells] = await connection.execute("SELECT * FROM sales");
+        const [sells] = await connection.execute(
+          "SELECT product_id, client_id, quantity_sold, unit_price, date, total FROM sales"
+        );
         result = sells;
 
         break;

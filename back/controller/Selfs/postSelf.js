@@ -19,7 +19,7 @@ router.post("/addSelf", async (req, res) => {
       c.id, 
       CURDATE(),  -- o la fecha de la venta
       ?,          -- cantidad vendida como parámetro
-      p.precio 
+      p.precio_de_venta 
   FROM 
       producto p, 
       cliente c

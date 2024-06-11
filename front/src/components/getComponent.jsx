@@ -57,6 +57,7 @@ function GetComponent(props) {
 
   const tipoControler = () => {
     const tipo = document.getElementById("selecttipo").value;
+    console.log(tipo);
     const orden = document.getElementById("selectorden").value;
     let datosOrdenados;
 
@@ -106,73 +107,94 @@ function GetComponent(props) {
     <>
       {Array.isArray(datos) ? (
         <>
-          <PostFormClientProduct ruta={props.ruta} data={datos} />
-          <div className="filtradodedatos">
-            <p>Ordenar por</p>
-            <select id="selectorden" onChange={tipoControler}>
-              <option value="mayor">mayor</option>
-              <option value="menor">menor</option>
-            </select>
+          {props.ruta === "getProducts" ? (
+            <section className="primera-section">
+              <div className="filtradodedatos">
+                <select id="selectorden" onChange={tipoControler}>
+                  <option value="mayor">mayor</option>
+                  <option value="menor">menor</option>
+                </select>
 
-            <select id="selecttipo" onChange={tipoControler}>
-              <option value="predefinido">predefinido</option>
-              <option value="cantidad">cantidad</option>
-              <option value="precio">precio</option>
-              <option value="caducidad">caducidad</option>
-            </select>
+                <select id="selecttipo" onChange={tipoControler}>
+                  <option value="cantidad">cantidad</option>
+                  <option value="precio">precio</option>
+                  <option value="caducidad">caducidad</option>
+                </select>
 
-            <input
-              type="search"
-              name="search"
-              value={search}
-              onChange={handleSearchChange}
-              placeholder="Search..."
+                <input
+                  type="search"
+                  name="search"
+                  value={search}
+                  onChange={handleSearchChange}
+                  placeholder="Buscar por nombre"
+                />
+              </div>
+            </section>
+          ) : (
+            <section className="primera-section"></section>
+          )}
+          <section>
+            <PostFormClientProduct
+              ruta={props.ruta}
+              data={datos}
+              className="boton-añadir"
             />
-          </div>
-          <table>
-            <caption>{props.ruta}</caption>
-            <thead>
-              <tr>
-                {columna.map(
-                  (item, index) =>
-                    item !== "id" &&
-                    item !== "id_foraneo" &&
-                    item !== "cercano_caducidad" && <th key={index}>{item}</th>
-                )}
-                {(props.ruta === "getProducts" ||
-                  props.ruta === "getClients") && <th>Acciones</th>}
-              </tr>
-            </thead>
-            <tbody>
-              {datos.map((fila, indiceFila) => (
-                <tr key={indiceFila}>
+            <table>
+              <caption>{props.ruta}</caption>
+
+              <thead>
+                <tr>
                   {columna.map(
-                    (columna, indiceColumna) =>
-                      columna !== "id" &&
-                      columna !== "id_foraneo" &&
-                      columna !== "cercano_caducidad" &&
-                      (columna === "caducidad" ? (
-                        <td key={indiceColumna}>
-                          {fila[columna].split("T")[0]}
-                        </td>
-                      ) : (
-                        <td key={indiceColumna}>{fila[columna]}</td>
-                      ))
+                    (item, index) =>
+                      item !== "id" &&
+                      item !== "id_foraneo" &&
+                      item !== "cercano_caducidad" && (
+                        <th key={index}>{item}</th>
+                      )
                   )}
                   {(props.ruta === "getProducts" ||
-                    props.ruta === "getClients") && (
-                    <td>
-                      <PutComponent ruta={props.ruta} data={fila} />
-                      {props.ruta === "getProducts" ? (
-                        <PostSale data={fila} />
-                      ) : null}
-                      <DeleteComponent id={fila.id} ruta={props.ruta} />
-                    </td>
-                  )}
+                    props.ruta === "getClients") && <th>Acciones</th>}
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {datos.map((fila, indiceFila) => (
+                  <tr key={indiceFila}>
+                    {columna.map(
+                      (columna, indiceColumna) =>
+                        columna !== "id" &&
+                        columna !== "id_foraneo" &&
+                        columna !== "cercano_caducidad" &&
+                        (columna === "caducidad" || columna === "date" ? (
+                          <td key={indiceColumna}>
+                            {fila[columna].split("T")[0]}
+                          </td>
+                        ) : (
+                          <td key={indiceColumna}>{fila[columna]}</td>
+                        ))
+                    )}
+                    {(props.ruta === "getProducts" ||
+                      props.ruta === "getClients") && (
+                      <td>
+                        {props.ruta === "getProducts" ? (
+                          <PostSale data={fila} className="fondo-verde" />
+                        ) : null}
+                        <PutComponent
+                          ruta={props.ruta}
+                          data={fila}
+                          className="fondo-marron"
+                        />
+                        <DeleteComponent
+                          id={fila.id}
+                          ruta={props.ruta}
+                          className="fondo-rojo"
+                        />
+                      </td>
+                    )}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </section>
         </>
       ) : (
         <p>Cargando datos...</p>

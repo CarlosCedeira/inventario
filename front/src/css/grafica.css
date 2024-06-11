@@ -1,3 +1,12 @@
+.primera-section {
+    height: 80px;
+}
+
+h1 {
+    margin-top: 0;
+    text-align: center;
+}
+
 .grafica {
     width: 40%;
     padding-bottom: 2rem;
@@ -5,4 +14,5 @@
     background-color: rgba(240, 248, 255, 0.356);
 
     border-radius: 2rem;
+
 }

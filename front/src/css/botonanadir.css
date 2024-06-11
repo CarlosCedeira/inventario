@@ -1,0 +1,15 @@
+.boton-añadir {
+    background-color: #1c80f3; 
+    box-shadow: 1px 1px 15px black;
+    border-radius: 50%;
+    position: relative;
+    left: 92%;
+    top: 1.7rem;
+
+}
+
+.boton-añadir:hover {
+    color: black;
+    background-color: #0ca935; 
+}
+

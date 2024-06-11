@@ -32,7 +32,7 @@ router.put("/:ruta/", async (req, res) => {
         console.log(req.body);
         console.log("caducidadFormateada", caducidadFormateada);
         const [product] = await connection.execute(
-          "UPDATE producto SET nombre = ?, categoria = ?, precio = ?, cantidad = ?, caducidad = ?, lote = ? WHERE id = ?",
+          "UPDATE producto SET nombre = ?, categoria = ?, precio_de_venta = ?, cantidad = ?, caducidad = ?, lote = ? WHERE id = ?",
           [nombre, categoria, precio, cantidad, caducidadFormateada, lote, id]
         );
         result = product;

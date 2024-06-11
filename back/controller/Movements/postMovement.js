@@ -14,13 +14,13 @@ router.post("/postMovement", async (req, res) => {
     if (cantidad) {
       const [rows] = await connection.execute(
         "INSERT INTO movimiento (accion, nombre, precio, cantidad, caducidad, id_foraneo) " +
-          "SELECT ?, nombre, precio, ?, caducidad, ? FROM almacen.producto WHERE id = ?",
+          "SELECT ?, nombre, precio_de_compra, ?, caducidad, ? FROM almacen.producto WHERE id = ?",
         [accion, cantidad, id, id]
       );
     } else {
       const [rows] = await connection.execute(
         "INSERT INTO movimiento (accion, nombre, precio, cantidad, caducidad, id_foraneo) " +
-          "SELECT ?, nombre, precio, cantidad, caducidad, ? FROM almacen.producto WHERE id = ?",
+          "SELECT ?, nombre, precio_de_compra, cantidad, caducidad, ? FROM almacen.producto WHERE id = ?",
         [accion, id, id]
       );
     }
