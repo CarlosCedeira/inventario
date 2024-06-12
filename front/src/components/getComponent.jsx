@@ -12,6 +12,7 @@ function GetComponent(props) {
   const { datos, setDatos, contador, setContador } = useContadorContext();
   const [search, setSearch] = useState("");
   const [columna, setColumna] = useState([]);
+  const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
     fetch(`http://localhost:3000/${props.ruta}`)
@@ -34,11 +35,12 @@ function GetComponent(props) {
         setColumna(nombresColumna);
         const tipo = document.getElementById("selecttipo");
         tipo.value = "predefinido";
+        setAnimate(true);
       })
       .catch((err) => {
         console.error("Error al realizar la solicitud:", err);
       });
-  }, [contador, setDatos]);
+  }, [contador, setDatos, setAnimate]);
 
   const handleSearchChange = (e) => {
     if (e.target.value === "") {
@@ -133,7 +135,7 @@ function GetComponent(props) {
           ) : (
             <section className="primera-section"></section>
           )}
-          <section>
+          <section className={animate ? "fade-in" : ""}>
             <PostFormClientProduct
               ruta={props.ruta}
               data={datos}

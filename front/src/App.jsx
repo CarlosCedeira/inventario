@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 import RenderComponent from "./components/getComponent";
 import Grafica from "./components/graficaProductosTotales";
+import GraficaPorcentage from "./components/graficaPorcentaje";
+import GraficasController from "./components/graficasController";
 
 import "./css/app.css";
 
@@ -77,7 +79,7 @@ function App() {
 
         {formData.movimientos ? <RenderComponent ruta="getMovements" /> : null}
 
-        {formData.datos ? <Grafica /> : null}
+        {formData.datos ? <GraficasController /> : null}
         {formData.clientes ? <RenderComponent ruta="getClients" /> : null}
         {formData.sells ? <RenderComponent ruta="getSells" /> : null}
       </main>

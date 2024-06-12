@@ -52,10 +52,10 @@ const ProdutosTotales = () => {
       <section className="primera-section"></section>
 
       <div className="grafica">
-        <h1>
+        <h2>
           Productos totales{" "}
           {datos.reduce((acumulador, dato) => acumulador + dato.cantidad, 0)}
-        </h1>
+        </h2>
         <VictoryChart theme={VictoryTheme.material} title="Total de Productos">
           <VictoryBar
             data={cantidades.map((cantidad, index) => ({

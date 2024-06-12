@@ -1,3 +1,17 @@
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translatey(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 3s ease-in-out;
+}
 .primera-section {
     height: 80px;
 }
