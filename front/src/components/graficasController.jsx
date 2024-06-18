@@ -23,21 +23,26 @@ const GraficasController = () => {
   };
 
   return (
-    <div>
-      <button
-        onClick={renderComponenteA}
-        className={selectedButton === "A" ? "selected" : ""}
-      >
-        Productos totales
-      </button>
-      <button
-        onClick={renderComponenteB}
-        className={selectedButton === "B" ? "selected" : ""}
-      >
-        Balance
-      </button>
+    <>
+      <section className="primera-section">
+        <div>
+          <button
+            onClick={renderComponenteA}
+            className={selectedButton === "A" ? "selected" : ""}
+          >
+            Productos totales
+          </button>
+          <button
+            onClick={renderComponenteB}
+            className={selectedButton === "B" ? "selected" : ""}
+          >
+            Balance
+          </button>
+        </div>
+      </section>
+
       <div>{componente}</div>
-    </div>
+    </>
   );
 };
 

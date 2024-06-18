@@ -40,7 +40,19 @@ router.get("/:ruta", async (req, res) => {
 
       case "getSells":
         const [sells] = await connection.execute(
-          "SELECT product_id, client_id, quantity_sold, unit_price, date, total FROM sales"
+          `SELECT 
+          c.nombre AS client_name, 
+             p.nombre AS product_name, 
+             s.quantity_sold, 
+             s.unit_price, 
+             s.total,
+             s.date 
+           FROM 
+             sales s
+           JOIN 
+             producto p ON s.product_id = p.id
+           JOIN 
+             cliente c ON s.client_id = c.id`
         );
         result = sells;
 

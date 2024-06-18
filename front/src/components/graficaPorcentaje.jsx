@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { VictoryPie } from "victory";
 
-import "../css/graficaPorcentaje.css";
-
 const GraficaPorcentage = () => {
   const [totals, setTotals] = useState({ totalCompra: 0, totalVenta: 0 });
 
@@ -47,8 +45,7 @@ const GraficaPorcentage = () => {
   ];
 
   return (
-    <div>
-      <section className="primera-section"></section>
+    <div className="grafica">
       <h2>Información de caja</h2>
       <VictoryPie
         data={dataPredefinida}

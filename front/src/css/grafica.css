@@ -1,14 +1,15 @@
-.primera-section {
+section.primera-section {
     height: 80px;
 }
 
-h2 {
+div.grafica > h2 {
     margin-top: 0;
     text-align: center;
 }
 
-.grafica {
-    width: 70%;
+div.grafica {
+    width: 40%;
+
     padding-bottom: 2rem;
 
     background-color: rgba(240, 248, 255, 0.356);

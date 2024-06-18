@@ -49,8 +49,6 @@ const ProdutosTotales = () => {
   ];
   return (
     <>
-      <section className="primera-section"></section>
-
       <div className="grafica">
         <h2>
           Productos totales{" "}
