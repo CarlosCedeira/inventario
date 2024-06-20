@@ -1,0 +1,63 @@
+[33m0824594[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m Revision de css en genral añadir botones para cambiar entre graficas y la respuesta a la ruta getsells devuelve en nombre del producto y el cliente en vez de los id foraneos
+[33m9e61093[m La seccion datos puede renderizar dos componenetes de barras y de porcentage en funcion de pulsar dos botnoes, un nuevo archivo css para añadir estilos al componenete que controla la pulsacion de los botones pudo afectar a todo el css del proyecto no solo al componente
+[33m7a9246e[m visualicacion de las tablas y otros css
+[33ma71aecf[m el componente de la grafica ahora hace una petion a getProducts para obtener la informacion no a los datos del contexto
+[33mfbea8f2[m controlador de rutas back end para las peticiones postproduct y postclient
+[33mfd5c5a2[m Componente que controla un formulario para ingresar un cliente o un producto en la base de datos
+[33m6925df2[m el componente para editar ya funciona correctamente
+[33m81de220[m corregir errores del componente eliminar y comenzar el componenete acctualizar y el controlador de rutas para editar
+[33m3c59703[m la ruta putproduct ya funciona correctametne por ende el componente de añadir venta ya funciona y tambien se puede ver la tabla de ventas
+[33m94ffd1b[m El componente añadir venta ya se visualiza solo en la tabla correspondiente === productos pero falla cuando actualiza la fecha de caducidad del producto
+[33m0e1f529[m corecion de errores en el componente elimniar, los componentes añadir producto y postclient solo aparecen si la ruta es productos o clientes y la tabla ya no visualiza la columna id, id_foraneoy temprano_caducar
+[33m99b8567[m emoticono de borrar solo en las tablas productos clientes
+[33m2c8cb40[m Un solo componente tabla sirve para renderizar varias tablas
+[33m6b51368[m s
+[33m1ec8d7e[m un solo componente para renderizar clientes y productos
+[33me578398[m Un componente reutilizable se encarga de elinar los datos de las distintas tablas
+[33m7c9d0e7[m cambio de nombre de las rutas del front y back a ingles y reeestructuracion de los archivos
+[33m7ccc234[m Ya se visualizan los datos de las ventas
+[33m2967be1[m en el back end ya se puede añadir una venta
+[33m41c15cd[m controlar el input select para enviarlo al back-end hacia la ruta venta
+[33me10a2d3[m inicio de ruta para añadirinformacion en tabla de ventas
+[33ma60e14a[m Añadir nombre cliente al realizar una venta
+[33maeb9620[m solucion de errores
+[33m43d8253[m Gestion de errores mas básico 404 y 500 en el front al realizar el fetching de datos al servidor
+[33m98b3c51[m clausula finally añadida para realizar la desconecxion a la base de datos en el back end
+[33m22425e8[m Informacion de los distintos errores en las peticiones get el front y añado de la clausula finally que realiza la desconexion en la ruta principal del back
+[33mb755410[m cambios de color de fondo y buscador de clientes
+[33mb27dae8[m funcionalidad de aadir cliente
+[33m0a0075b[m Reestructuracion de los estados del menu en uno y mejora del renderizado
+[33mcdf7789[m reestructuracion de los ficheros
+[33m2159f63[m eliminar cliente y actualizarlo
+[33mf222d42[m Tabla clientes y modularizacion del componente eliminar
+[33mbd9b1f1[m aadida la caracteristica de lote en los productos
+[33m273035f[m estilos prototipo
+[33m46456f8[m Algun estilo que otro y modificacion de la navegacion
+[33m6b552fb[m Ya guarda correctamente en movimientos el valor de la venta no el valor que queda despues de la venta
+[33mfc6a1d7[m Funcionalidad de venta implementada con exito
+[33m6d84db3[m ya registra ventas pero no actualiza la tabla de productos
+[33m2c9a503[m ruta backend para la venta y componente que envia los datos
+[33m6e22d77[m modularizacion de las distintas rutas del back-end
+[33m51277d0[m contexto creado para los datos del inventario y correcta visualizacion de estos con grafica de victory
+[33mb187f03[m ultima actualizacion
+[33m99bc269[m Intento de añdir en la tabla movimientos la accion eliminar
+[33m27049f9[m Ya se puede alternar entre la tabla de inventario y movimientos
+[33maed0e5c[m Pinta de rojo la fila si el producto esta caducado y de naraja si esta proximo a caducar
+[33m7ce456b[m ya se puede buscar por nombre
+[33m32a83ba[m modularcion de las rutas del backend
+[33m55e7459[m modularizacion de las filas de la tabla
+[33mf225781[m El formulario ya no esta estatico en la web, aparece y desaparece como el de editar
+[33m4f481ac[m ultima actualizacion
+[33me70b6c3[m 1
+[33m7e79088[m 1
+[33me5a4e04[m se puede ordenar por caducidad y estilos en los botones y formulario de editar
+[33m1a99ffa[m Ya se puede actualizar un registro
+[33m05595ee[m estilos al componento tabla y coreccion del valor de los selects cada vez que añades o borras un produco
+[33m858c917[m restructuracion de las funciones de ordenado de datos en un solo switch
+[33m4e09cc7[m componente que muestra los datos recibidos en una tabla
+[33m00af06f[m Creacion de un contexto que almacena la variable contador, cada vez que se añade o elimina un producto se suma uno a la varaible contador del contexto que a su vez esta asociada con un useEfect que solicita todos los datos de produtos
+[33m136147a[m Ya se pueden eliminar productos de la base de datos
+[33maabf98d[m Ordena por cantidad y precio
+[33m386694b[m ordenar por precio
+[33m955af26[m segundo commit
+[33md4bc7e4[m primer commit

@@ -77,8 +77,12 @@ function GetComponent(props) {
 
       case "precio":
         orden === "mayor"
-          ? (datosOrdenados = [...datos].sort((a, b) => b.precio - a.precio))
-          : (datosOrdenados = [...datos].sort((a, b) => a.precio - b.precio));
+          ? (datosOrdenados = [...datos].sort(
+              (a, b) => b.precio_de_compra - a.precio_de_compra
+            ))
+          : (datosOrdenados = [...datos].sort(
+              (a, b) => a.precio_de_compra - b.precio_de_compra
+            ));
         break;
 
       case "caducidad":
@@ -118,6 +122,7 @@ function GetComponent(props) {
                 </select>
 
                 <select id="selecttipo" onChange={tipoControler}>
+                  <option value="predefinido">predefinido</option>
                   <option value="cantidad">cantidad</option>
                   <option value="precio">precio</option>
                   <option value="caducidad">caducidad</option>

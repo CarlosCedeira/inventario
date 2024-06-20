@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
-
-import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme } from "victory";
-
+import {
+  VictoryBar,
+  VictoryChart,
+  VictoryTheme,
+  VictoryAxis,
+  VictoryTooltip,
+} from "victory";
 import "../css/grafica.css";
 
 const ProdutosTotales = () => {
-  //const { datos } = useContadorContext();
   const [datos, setDatos] = useState([]);
 
   useEffect(() => {
@@ -36,7 +39,6 @@ const ProdutosTotales = () => {
     return <div>Cargando datos...</div>;
   }
 
-  // Extrae las cantidades y encuentra el valor máximo
   const nombres = datos.map((item) => item.nombre);
   const cantidades = datos.map((item) => item.cantidad);
   const maxValue = Math.max(...cantidades);
@@ -47,33 +49,46 @@ const ProdutosTotales = () => {
     Math.round(0.75 * maxValue),
     Math.round(maxValue),
   ];
+  const colors = ["#FF8C00", "#FF6347", "#009EA1", "#FFD700"]; // Colores personalizados
+
   return (
-    <>
-      <div className="grafica">
-        <h2>
-          Productos totales{" "}
-          {datos.reduce((acumulador, dato) => acumulador + dato.cantidad, 0)}
-        </h2>
-        <VictoryChart theme={VictoryTheme.material} title="Total de Productos">
-          <VictoryBar
-            data={cantidades.map((cantidad, index) => ({
-              x: nombres[index], // Usar el nombre del producto en lugar del índice
-              y: cantidad,
-            }))}
-            cornerRadius={5}
-          />
-
-          <VictoryAxis
-            tickValues={nombres} // Utiliza los nombres directamente como valores de las etiquetas
-            style={{
-              tickLabels: { textAnchor: "middle", fontSize: 15 },
-            }}
-          />
-
-          <VictoryAxis dependentAxis tickValues={customTickValues} />
-        </VictoryChart>
-      </div>
-    </>
+    <div className="grafica">
+      <h2>
+        Productos totales{" "}
+        {datos.reduce((acumulador, dato) => acumulador + dato.cantidad, 0)}
+      </h2>
+      <VictoryChart theme={VictoryTheme.material}>
+        <VictoryBar
+          data={cantidades.map((cantidad, index) => ({
+            x: nombres[index],
+            y: cantidad,
+            label: `${nombres[index]}: ${cantidad}`, // Añade tanto el nombre como la cantidad
+            fill: colors[index % colors.length], // Asigna colores cíclicamente
+          }))}
+          cornerRadius={5}
+          labelComponent={<VictoryTooltip />}
+          style={{
+            data: {
+              fill: ({ datum }) => datum.fill, // Usa el color especificado en el objeto de datos
+              fillOpacity: 0.7,
+              stroke: "#000", // Color del borde (puedes ajustarlo según tus necesidades)
+              strokeWidth: 1, // Ancho del borde
+            },
+          }}
+          events={[
+            {
+              target: "data",
+              eventHandlers: {
+                onClick: (evt, props) => {
+                  console.log(props.datum.xName); // Renderizar información del dato en la consola
+                },
+              },
+            },
+          ]}
+        />
+        <VictoryAxis dependentAxis tickValues={customTickValues} />
+      </VictoryChart>
+    </div>
   );
 };
 

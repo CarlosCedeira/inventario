@@ -83,7 +83,9 @@ input::placeholder {
 table {
     border-collapse: collapse;
     width: 100%;
-    text-align: center;   
+    text-align: left;  
+    border: 1px solid #ccc;
+    border-radius: 8px;
 }
 
 caption{
@@ -91,9 +93,12 @@ caption{
     font-size: 2rem;
 }
 
-tr, td{
-    border: 1px solid #000;
+th, td{
+    padding-bottom: 5px;
+    padding-top: 5px;
 }
+
+
 
 thead, tr{
     background-color: rgb(204, 227, 247);
