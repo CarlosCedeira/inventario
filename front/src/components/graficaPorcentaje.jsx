@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { VictoryPie, VictoryTooltip } from "victory";
+import { VictoryPie, VictoryTooltip, VictoryTheme } from "victory";
+import "../css/grafica.css";
 
 const GraficaPorcentage = () => {
   const [totals, setTotals] = useState({
@@ -114,40 +115,56 @@ const GraficaPorcentage = () => {
   ];
 
   return (
-    <div className="grafica">
-      <h2>Información de caja</h2>
-      <VictoryPie
-        data={dataPredefinida}
-        colorScale={["#FF8C00", "#FF6347", "#00CED1", "#FFD700", "#000080"]}
-        radius={100}
-        innerRadius={50}
-        labels={({ datum }) => `${datum.x}: ${datum.y}€`}
-        labelRadius={110}
-        height={300}
-        style={{
-          data: {
-            fillOpacity: 0.7,
-            stroke: "#000", // Color del borde (puedes ajustarlo según tus necesidades)
-            strokeWidth: 1, // Ancho del borde
-          },
-          labels: {
-            fontSize: 12,
-            fill: "#333",
-            fontWeight: "bold",
-          },
-        }}
-        labelComponent={
-          <VictoryTooltip
-            flyoutStyle={{
-              stroke: "none",
-              fill: "white",
-              boxShadow: "2px 2px 10px rgba(0,0,0,0.1)",
-            }}
-            style={{ fontSize: 12, fill: "#333", fontWeight: "bold" }}
-          />
-        }
-      />
-    </div>
+    <section className="grafica">
+      <div className="grafica">
+        <h2>Información de caja</h2>
+        <VictoryPie
+          data={dataPredefinida}
+          theme={VictoryTheme.material}
+          colorScale={["#FF8C00", "#FF6347", "#00CED1", "#FFD700", "#000080"]}
+          radius={({ datum }) => (hoveredSlice === datum.x ? 120 : 100)}
+          innerRadius={50}
+          labels={({ datum }) => `${datum.x}: ${datum.y}€`}
+          labelRadius={110}
+          height={300}
+          style={{
+            data: {
+              fillOpacity: 1,
+              stroke: "black",
+              strokeWidth: 1,
+              cursor: "pointer",
+            },
+            labels: {
+              fontSize: 12,
+              fill: "black",
+            },
+          }}
+          labelComponent={
+            <VictoryTooltip
+              flyoutStyle={{
+                stroke: "black",
+                strokeWidth: 1,
+                fill: "white",
+                boxShadow: "2px 2px 10px rgba(0,0,0,0.1)",
+              }}
+            />
+          }
+          events={[
+            {
+              target: "salesData",
+              eventHandlers: {
+                onClick: (evt, props, salesData) => {
+                  console.log(salesData); // Renderizar información del dato en la consola
+                },
+              },
+            },
+          ]}
+        />
+      </div>
+      <div>
+        <p>{totals.totalVenta}</p>
+      </div>
+    </section>
   );
 };
 

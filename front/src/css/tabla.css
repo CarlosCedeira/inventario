@@ -1,17 +1,18 @@
-@keyframes fadeIn {
+.fade-in {
+    animation: fadeIn 1.5s ease-out;
+  }
+  
+  @keyframes fadeIn {
     from {
-        opacity: 0;
-        transform: translate(-10px);
+      opacity: 0;
+      transform: translateY(-10px);
     }
     to {
-        opacity: 1;
-        transform: translatey(0);
+      opacity: 1;
+      transform: translateY(0);
     }
-}
+  }
 
-.fade-in {
-    animation: fadeIn 3s ease-in-out;
-}
 .primera-section {
     height: 80px;
 }
@@ -109,6 +110,7 @@ th, tr:nth-child(2n){
 }
 
 button {
+    transition: transform 0.3s ease; /* Agregar una transición de 0.3 segundos para el efecto de escala */
     border: none;
     background-color: transparent;
     cursor: pointer; 
@@ -118,6 +120,9 @@ button {
 button:hover {
     background-color: rgba(0, 0, 0, 0.15); 
     border-radius: 50%; 
+    color: black;
+    background-color: #0ca935; 
+    transform: scale(2); 
 }
 
 button.boton-acciones:hover:nth-child(1n) {

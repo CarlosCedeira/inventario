@@ -6,7 +6,6 @@ import {
   VictoryAxis,
   VictoryTooltip,
 } from "victory";
-import "../css/grafica.css";
 
 const ProdutosTotales = () => {
   const [datos, setDatos] = useState([]);
@@ -65,7 +64,7 @@ const ProdutosTotales = () => {
             label: `${nombres[index]}: ${cantidad}`, // Añade tanto el nombre como la cantidad
             fill: colors[index % colors.length], // Asigna colores cíclicamente
           }))}
-          cornerRadius={5}
+          cornerRadius={3}
           labelComponent={<VictoryTooltip />}
           style={{
             data: {
@@ -73,6 +72,7 @@ const ProdutosTotales = () => {
               fillOpacity: 0.7,
               stroke: "#000", // Color del borde (puedes ajustarlo según tus necesidades)
               strokeWidth: 1, // Ancho del borde
+              cursor: "pointer",
             },
           }}
           events={[
@@ -80,7 +80,18 @@ const ProdutosTotales = () => {
               target: "data",
               eventHandlers: {
                 onClick: (evt, props) => {
-                  console.log(props.datum.xName); // Renderizar información del dato en la consola
+                  //console.log(props.datum.xName); // Renderizar información del dato en la consola
+                  //console.log(datos); // Renderizar información del dato en la consola
+                  let total = 0;
+                  datos.map((item) => {
+                    total += item.cantidad;
+                  });
+                  datos.map((item) => {
+                    if (item.nombre === props.datum.xName) {
+                      console.log(total);
+                      console.log((item.cantidad * 100) / total);
+                    }
+                  });
                 },
               },
             },

@@ -66,7 +66,7 @@ function EliminarProducto(props) {
   };
 
   return (
-    <button className="boton-acciones" onClick={eliminar}>
+    <button className="boton-acciones" title="eliminar" onClick={eliminar}>
       🗑️
     </button>
   );

@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { useContadorContext } from "../context";
-
 import PostSale from "./postSelf";
 import PostFormClientProduct from "./postFormClientProduct";
 import PutComponent from "./putFromClientProduct";
 import DeleteComponent from "./deleteComponent";
-
 import "../css/Tabla.css";
 
 function GetComponent(props) {
@@ -15,6 +13,7 @@ function GetComponent(props) {
   const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
+    setAnimate(false); // Reiniciar animación antes de la carga de datos
     fetch(`http://localhost:3000/${props.ruta}`)
       .then((response) => {
         if (!response.ok) {
@@ -35,12 +34,16 @@ function GetComponent(props) {
         setColumna(nombresColumna);
         const tipo = document.getElementById("selecttipo");
         tipo.value = "predefinido";
-        setAnimate(true);
+        setAnimate(true); // Activar animación después de cargar datos
       })
       .catch((err) => {
         console.error("Error al realizar la solicitud:", err);
       });
-  }, [contador, setDatos, setAnimate]);
+  }, [contador, setDatos, props.ruta]);
+
+  useEffect(() => {
+    setAnimate(true);
+  }, [props.ruta]); // Reiniciar animación cuando la ruta cambie
 
   const handleSearchChange = (e) => {
     if (e.target.value === "") {
@@ -72,7 +75,6 @@ function GetComponent(props) {
           : (datosOrdenados = [...datos].sort(
               (a, b) => a.cantidad - b.cantidad
             ));
-
         break;
 
       case "precio":
@@ -112,7 +114,7 @@ function GetComponent(props) {
   return (
     <>
       {Array.isArray(datos) ? (
-        <>
+        <div className={animate ? "fade-in" : ""}>
           {props.ruta === "getProducts" ? (
             <section className="primera-section">
               <div className="filtradodedatos">
@@ -202,7 +204,7 @@ function GetComponent(props) {
               </tbody>
             </table>
           </section>
-        </>
+        </div>
       ) : (
         <p>Cargando datos...</p>
       )}

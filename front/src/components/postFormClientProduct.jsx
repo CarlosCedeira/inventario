@@ -159,7 +159,11 @@ function PostFormClientProduct(props) {
       </div>
     </div>
   ) : props.ruta === "getSells" || props.ruta === "getMovements" ? null : (
-    <button className="boton-añadir" onClick={() => setAccion(true)}>
+    <button
+      className="boton-añadir"
+      title="añadir"
+      onClick={() => setAccion(true)}
+    >
       ➕
     </button>
   );

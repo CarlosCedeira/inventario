@@ -214,7 +214,11 @@ function PutComponent(props) {
       </div>
     </div>
   ) : (
-    <button className="boton-acciones" onClick={() => setAccion(true)}>
+    <button
+      className="boton-acciones"
+      title="aztualizar"
+      onClick={() => setAccion(true)}
+    >
       ✏️
     </button>
   );

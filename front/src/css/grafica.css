@@ -17,3 +17,12 @@ div.grafica {
     border-radius: 2rem;
 
 }
+
+svg {
+    transition: transform 1s ease; /* Agregar una transición de 0.3 segundos para el efecto de transformación */
+}
+
+svg:hover {
+    transform: scale(1.1); /* Mover 10px hacia la derecha y escalar el elemento a 1.2 veces su tamaño original al pasar el cursor */
+}
+

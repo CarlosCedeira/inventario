@@ -139,7 +139,11 @@ function VentaProducto(props) {
       </div>
     </div>
   ) : (
-    <button className="boton-acciones" onClick={() => setAccion(true)}>
+    <button
+      className="boton-acciones"
+      title="venta"
+      onClick={() => setAccion(true)}
+    >
       🛒
     </button>
   );

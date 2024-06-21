@@ -13,7 +13,10 @@ router.get("/:ruta", async (req, res) => {
 
     switch (ruta) {
       case "getClients":
-        const [clients] = await connection.execute("SELECT * FROM cliente");
+        const [clients] = await connection.execute(
+          "SELECT * FROM cliente ORDER BY nombre ASC"
+        );
+
         result = clients;
         break;
 
@@ -26,6 +29,7 @@ router.get("/:ruta", async (req, res) => {
               ELSE 0
             END AS cercano_caducidad
           FROM producto
+          ORDER BY nombre ASC
         `);
         result = products;
         break;
@@ -52,7 +56,8 @@ router.get("/:ruta", async (req, res) => {
            JOIN 
              producto p ON s.product_id = p.id
            JOIN 
-             cliente c ON s.client_id = c.id`
+             cliente c ON s.client_id = c.id
+             ORDER BY s.id DESC`
         );
         result = sells;
 

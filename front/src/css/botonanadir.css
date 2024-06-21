@@ -8,8 +8,12 @@
 
 }
 
+.boton-añadir {
+    transition: transform 0.3s ease; /* Agregar una transición de 0.3 segundos para el efecto de escala */
+}
+
 .boton-añadir:hover {
     color: black;
     background-color: #0ca935; 
-}
+    transform: scale(1.2); /* Escalar el elemento a 1.2 veces su tamaño original al pasar el cursor */}
 
