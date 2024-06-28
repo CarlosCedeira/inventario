@@ -215,7 +215,7 @@ function PutComponent(props) {
     </div>
   ) : (
     <button
-      className="boton-acciones"
+      className="boton-edit"
       title="aztualizar"
       onClick={() => setAccion(true)}
     >

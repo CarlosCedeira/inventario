@@ -140,7 +140,7 @@ function VentaProducto(props) {
     </div>
   ) : (
     <button
-      className="boton-acciones"
+      className="boton-self"
       title="venta"
       onClick={() => setAccion(true)}
     >

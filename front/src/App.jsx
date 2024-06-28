@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import RenderComponent from "./components/getComponent";
 import GraficasController from "./components/graficasController";
 import "./css/app.css";

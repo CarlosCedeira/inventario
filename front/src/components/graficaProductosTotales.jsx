@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import AnimacionCarga from "./animacionCarga";
+
 import {
   VictoryBar,
   VictoryChart,
@@ -33,10 +35,6 @@ const ProdutosTotales = () => {
         console.error("Error al realizar la solicitud:", err);
       });
   }, []);
-
-  if (!datos.length) {
-    return <div>Cargando datos...</div>;
-  }
 
   const nombres = datos.map((item) => item.nombre);
   const cantidades = datos.map((item) => item.cantidad);

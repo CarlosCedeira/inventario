@@ -9,6 +9,7 @@ const getController = require("./controller/getController");
 const postClientProductController = require("./controller/postClientProduct");
 const putController = require("./controller/putController");
 const deleteController = require("./controller/deleteController");
+const graficaController = require("./controller/graficas");
 
 const app = express();
 app.use(cors());
@@ -20,6 +21,8 @@ app.get("/:ruta", getController);
 app.post("/:ruta", postClientProductController);
 app.put("/:ruta", putController);
 app.delete("/:ruta/:id", deleteController);
+
+app.get("/grafica/:ruta", graficaController);
 
 app.listen(process.env.port, () => {
   console.log(`Server working in port ${process.env.port}`);

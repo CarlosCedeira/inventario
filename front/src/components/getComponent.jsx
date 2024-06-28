@@ -4,16 +4,17 @@ import PostSale from "./postSelf";
 import PostFormClientProduct from "./postFormClientProduct";
 import PutComponent from "./putFromClientProduct";
 import DeleteComponent from "./deleteComponent";
+import AnimacionCarga from "./animacionCarga";
 import "../css/Tabla.css";
 
 function GetComponent(props) {
   const { datos, setDatos, contador, setContador } = useContadorContext();
   const [search, setSearch] = useState("");
   const [columna, setColumna] = useState([]);
-  const [animate, setAnimate] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setAnimate(false); // Reiniciar animación antes de la carga de datos
+    setLoading(true);
     fetch(`http://localhost:3000/${props.ruta}`)
       .then((response) => {
         if (!response.ok) {
@@ -33,16 +34,17 @@ function GetComponent(props) {
         setDatos(data);
         setColumna(nombresColumna);
         const tipo = document.getElementById("selecttipo");
-        tipo.value = "predefinido";
-        setAnimate(true); // Activar animación después de cargar datos
+        // tipo.value = "predefinido";
+        setLoading(false);
       })
       .catch((err) => {
         console.error("Error al realizar la solicitud:", err);
+        setLoading(false);
       });
   }, [contador, setDatos, props.ruta]);
 
   useEffect(() => {
-    setAnimate(true);
+    setLoading(true);
   }, [props.ruta]); // Reiniciar animación cuando la ruta cambie
 
   const handleSearchChange = (e) => {
@@ -113,8 +115,10 @@ function GetComponent(props) {
 
   return (
     <>
-      {Array.isArray(datos) ? (
-        <div className={animate ? "fade-in" : ""}>
+      {loading ? (
+        <AnimacionCarga />
+      ) : (
+        <div className="fade-in">
           {props.ruta === "getProducts" ? (
             <section className="primera-section">
               <div className="filtradodedatos">
@@ -142,7 +146,7 @@ function GetComponent(props) {
           ) : (
             <section className="primera-section"></section>
           )}
-          <section className={animate ? "fade-in" : ""}>
+          <section className="fade-in">
             <PostFormClientProduct
               ruta={props.ruta}
               data={datos}
@@ -205,8 +209,6 @@ function GetComponent(props) {
             </table>
           </section>
         </div>
-      ) : (
-        <p>Cargando datos...</p>
       )}
     </>
   );

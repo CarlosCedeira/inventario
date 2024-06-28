@@ -1,5 +1,5 @@
 .fade-in {
-    animation: fadeIn 1.5s ease-out;
+    animation: fadeIn 1.2s ease-out;
   }
   
   @keyframes fadeIn {
@@ -99,13 +99,17 @@ th, td{
     padding-top: 5px;
 }
 
+th {
+    border-bottom: 1px solid #000;
+    background-color: rgb(144, 144, 145);
 
+}
 
 thead, tr{
     background-color: rgb(204, 227, 247);
 }
 
-th, tr:nth-child(2n){
+tr:nth-child(2n){
     background-color: rgb(155, 185, 211);
 }
 
@@ -118,24 +122,25 @@ button {
 } 
 
 button:hover {
-    background-color: rgba(0, 0, 0, 0.15); 
     border-radius: 50%; 
-    color: black;
     background-color: #0ca935; 
-    transform: scale(2); 
+    
 }
 
-button.boton-acciones:hover:nth-child(1n) {
+.boton-self:hover {
     background-color: rgba(51, 160, 8, 0.5); 
     border-radius: 50%; 
+    transform: scale(1.5); 
 }
 
-button.boton-acciones:hover:nth-child(2n) {
+.boton-edit:hover {
     background-color: rgba(212, 147, 7, 0.5); 
     border-radius: 50%; 
+    transform: scale(1.5); 
 }
 
-button.boton-acciones:hover:nth-child(3n) {
+.boton-delete:hover {
     background-color: rgba(221, 11, 11, 0.5); 
     border-radius: 50%; 
+    transform: scale(1.5); 
 }

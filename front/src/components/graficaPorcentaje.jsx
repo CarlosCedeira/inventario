@@ -142,7 +142,7 @@ const GraficaPorcentage = () => {
           labelComponent={
             <VictoryTooltip
               flyoutStyle={{
-                stroke: "black",
+                stroke: "white",
                 strokeWidth: 1,
                 fill: "white",
                 boxShadow: "2px 2px 10px rgba(0,0,0,0.1)",
