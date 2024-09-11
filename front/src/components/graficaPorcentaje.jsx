@@ -93,7 +93,7 @@ const GraficaPorcentage = () => {
 
   const dataPredefinida = [
     {
-      x: "Para vender",
+      x: "Riesgo",
       y: totals.totalVenta,
       percentage: (totals.totalVenta / totalSum) * 100,
     },
@@ -103,12 +103,12 @@ const GraficaPorcentage = () => {
       percentage: (totals.totalCompra / totalSum) * 100,
     },
     {
-      x: "Ventas totales",
+      x: "Beneficio",
       y: totals.totalVentas,
       percentage: (totals.totalVentas / totalSum) * 100,
     },
     {
-      x: "Ganancia esperada",
+      x: "Beneficio esperado",
       y: totals.ganaciaEsperada,
       percentage: (totals.ganaciaEsperada / totalSum) * 100,
     },

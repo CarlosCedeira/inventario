@@ -2,12 +2,17 @@ section.primera-section {
     height: 80px;
 }
 
-div.grafica > h2 {
+section.datos {
+    display: flex;
+    justify-content:flex-start
+}
+
+div.grafica > h2, div.datos > h2 {
     margin-top: 0;
     text-align: center;
 }
 
-div.grafica {
+div.grafica, div.datos {
     width: 40%;
 
     padding-bottom: 2rem;
@@ -16,6 +21,20 @@ div.grafica {
 
     border-radius: 2rem;
 
+}
+
+div.datos, div.datos > p {
+    margin-left: 1rem;
+}
+
+div.datos button.cerrar {
+    display: flex;
+    position: relative;
+    left: 90%;
+}
+
+div.datos button.cerrar:hover {
+    cursor: pointer;
 }
 
 svg {

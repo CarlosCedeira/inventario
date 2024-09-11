@@ -30,22 +30,19 @@ function GetComponent(props) {
         return response.json();
       })
       .then((data) => {
-        const nombresColumna = Object.keys(data[0]);
         setDatos(data);
-        setColumna(nombresColumna);
-        const tipo = document.getElementById("selecttipo");
-        // tipo.value = "predefinido";
+        setColumna(Object.keys(data[0]));
         setLoading(false);
       })
       .catch((err) => {
         console.error("Error al realizar la solicitud:", err);
         setLoading(false);
       });
-  }, [contador, setDatos, props.ruta]);
+  }, []);
 
   useEffect(() => {
     setLoading(true);
-  }, [props.ruta]); // Reiniciar animación cuando la ruta cambie
+  }, [props.ruta]);
 
   const handleSearchChange = (e) => {
     if (e.target.value === "") {
@@ -64,7 +61,6 @@ function GetComponent(props) {
 
   const tipoControler = () => {
     const tipo = document.getElementById("selecttipo").value;
-    console.log(tipo);
     const orden = document.getElementById("selectorden").value;
     let datosOrdenados;
 
@@ -122,6 +118,14 @@ function GetComponent(props) {
           {props.ruta === "getProducts" ? (
             <section className="primera-section">
               <div className="filtradodedatos">
+                <input
+                  type="search"
+                  name="search"
+                  value={search}
+                  onChange={handleSearchChange}
+                  placeholder="Buscar por nombre"
+                />
+
                 <select id="selectorden" onChange={tipoControler}>
                   <option value="mayor">mayor</option>
                   <option value="menor">menor</option>
@@ -133,14 +137,6 @@ function GetComponent(props) {
                   <option value="precio">precio</option>
                   <option value="caducidad">caducidad</option>
                 </select>
-
-                <input
-                  type="search"
-                  name="search"
-                  value={search}
-                  onChange={handleSearchChange}
-                  placeholder="Buscar por nombre"
-                />
               </div>
             </section>
           ) : (

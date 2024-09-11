@@ -87,19 +87,16 @@ function PostFormClientProduct(props) {
             Dirección:
             <input type="text" name="direccion" onChange={handleChange} />
           </label>
-          <br />
 
           <label>
             Correo:
             <input type="email" name="correo" onChange={handleChange} />
           </label>
-          <br />
 
           <label>
             Teléfono:
             <input type="tel" name="telefono" onChange={handleChange} />
           </label>
-          <br />
         </>
       );
     } else if (props.ruta === "getProducts") {
@@ -147,7 +144,7 @@ function PostFormClientProduct(props) {
       <div id="formulario-editar">
         <p onClick={() => setAccion(false)}>❌</p>
         <form onSubmit={handleSubmit}>
-          <legend>Editar {formData.nombre}</legend>
+          <legend>{formData.nombre}</legend>
           <label>
             Nombre:
             <input type="text" name="nombre" onChange={handleChange} />
